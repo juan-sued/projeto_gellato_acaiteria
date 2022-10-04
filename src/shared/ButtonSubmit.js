@@ -17,7 +17,7 @@ const ButtonSubmitStyle = styled.button`
   color: #1c2156;
   font-family: 'Jost', sans-serif;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 2px;
+  border-radius: 4px;
 
   :hover {
     cursor: pointer;
