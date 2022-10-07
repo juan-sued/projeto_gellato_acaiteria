@@ -10,6 +10,10 @@ export default function HomePage() {
   return (
     <>
       <SideBar />
+      <Main margin_top={'30'}>
+        <TitleStatus />
+      </Main>
+
       <ImageArvoreAcai src={Arvore_de_acai} alt="" />
     </>
   );

@@ -36,56 +36,51 @@ export default function SideBar() {
       <TopBarList>
         <div className="helloUser">Olá, Alessandra</div>
       </TopBarList>
+      <Test>
+        <Box
+          sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+          role="presentation"
+          onClick={toggleDrawer(anchor, false)}
+          onKeyDown={toggleDrawer(anchor, false)}
+        >
+          <List>
+            {[
+              { nameIcon: 'logout', nameText: 'Sair' },
+              { nameIcon: 'favorite', nameText: 'Meus favoritos' },
 
-      <Box
-        sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
-        role="presentation"
-        onClick={toggleDrawer(anchor, false)}
-        onKeyDown={toggleDrawer(anchor, false)}
-      >
-        <List>
-          {[
-            { nameIcon: 'material-icons-round', nameText: 'Login' },
-            { nameIcon: 'material-icons-round', nameText: 'Login' },
-            { nameIcon: 'material-icons-round', nameText: 'Login' },
-            { nameIcon: 'material-icons-round', nameText: 'Login' },
-            { nameIcon: 'material-icons-round', nameText: 'Login' },
-            { nameIcon: 'material-icons-round', nameText: 'Login' },
-            { nameIcon: 'material-icons-round', nameText: 'Login' },
-            { nameIcon: 'material-icons-round', nameText: 'Login' },
-            { nameIcon: 'material-icons-round', nameText: 'Login' },
-            { nameIcon: 'material-icons-round', nameText: 'Login' },
-            { nameIcon: 'material-icons-round', nameText: 'Login' },
-            { nameIcon: 'material-icons-round', nameText: 'Login' }
-          ].map((text, index) => (
-            <ListItem key={index} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <span className={text.nameIcon}>login</span>
-                </ListItemIcon>
-                <ListItemText primary={text.nameText} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {[
-            { nameIcon: 'material-icons-round', nameText: 'Login' },
-            { nameIcon: 'material-icons-round', nameText: 'Login' },
-            { nameIcon: 'material-icons-round', nameText: 'Login' }
-          ].map((text, index) => (
-            <ListItem key={index} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <span className={text.nameIcon}>login</span>
-                </ListItemIcon>
-                <ListItemText primary={text.nameText} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-      </Box>
+              { nameIcon: 'emoji_events', nameText: 'Mais pedidos' },
+              { nameIcon: 'fingerprint', nameText: 'Minhas informações' },
+              { nameIcon: 'shopping_cart', nameText: 'Meu carrinho' }
+            ].map((text, index) => (
+              <ListItem key={index} disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <span className="material-icons-round">{text.nameIcon}</span>
+                  </ListItemIcon>
+                  <ListItemText primary={text.nameText} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+          <List>
+            {[
+              { nameIcon: 'done', nameText: 'Açaí 700ml' },
+              { nameIcon: 'done', nameText: 'Açaí 300ml' },
+              { nameIcon: 'done', nameText: 'Açaí 1 Litro' }
+            ].map((text, index) => (
+              <ListItem key={index} disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <span className="material-icons-round">{text.nameIcon}</span>
+                  </ListItemIcon>
+                  <ListItemText primary={text.nameText} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
+      </Test>
     </>
   );
 
@@ -110,6 +105,9 @@ export default function SideBar() {
   );
 }
 
+const Test = styled.div`
+  margin-top: 88px;
+`;
 const Container = styled.div`
   background-color: #1c2156;
   height: 88px;
@@ -127,18 +125,23 @@ const Container = styled.div`
   }
   .material-icons-round {
     font-size: 50px;
+    color: white;
   }
 `;
 
 const TopBarList = styled.div`
   background-color: #1c2156;
-  min-height: 100px;
-  width: 100%;
+  min-height: 88px;
+  width: 250px;
+  position: fixed;
+  z-index: 2;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.5);
 
   display: flex;
   align-items: end;
   justify-content: end;
-  padding: 10px;
+  padding: 15px;
+
   .helloUser {
     color: white;
   }
