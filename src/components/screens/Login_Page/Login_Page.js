@@ -2,13 +2,15 @@ import Main from '../../shared/Main';
 
 import ButtonOnlyWords from '../../shared/ButtonOnlyWords.js';
 import logo from '../../assets/logo.png';
-import styled from 'styled-components';
+
 import { Link } from 'react-router-dom';
 import Background from '../../shared/Background.js';
 import imageBoxIceCream from '../../assets/imageboxtemaclaro.webp';
 import invertida from '../../assets/imageboxtemaclaroinvertida.webp';
-import InputLogin from './InputLogin';
+import SingInForm from './SingInForm';
 import imageBoxIceCreamVideo from '../../assets/dairystore.mp4';
+import { ContainerVideo, ImageBoxIceCream, InvertidaBoxIceCream, Logo } from './styles';
+
 export default function Login_Page() {
   return (
     <>
@@ -28,7 +30,7 @@ export default function Login_Page() {
 
         <Main margin_top={'90'}>
           <Logo src={logo} alt="" />
-          <InputLogin />
+          <SingInForm />
           <Link to="/sign-up">
             <ButtonOnlyWords>Não possui cadastro? Clique aqui!</ButtonOnlyWords>
           </Link>
@@ -37,59 +39,3 @@ export default function Login_Page() {
     </>
   );
 }
-
-const ContainerVideo = styled.div`
-  width: 100%;
-  max-height: 400px;
-  margin-bottom: 10px;
-  position: fixed;
-  z-index: 0;
-  bottom: 0;
-  right: 0;
-  margin-bottom: 0;
-
-  video {
-    max-width: 100%;
-  }
-
-  @media screen and (min-width: 450px) {
-    display: none;
-  }
-`;
-
-const ImageBoxIceCream = styled.img`
-  width: 100%;
-  max-width: 50.1%;
-  max-height: 400px;
-  margin-bottom: 10px;
-  position: fixed;
-  z-index: 0;
-  bottom: 0;
-  right: 0;
-  margin-bottom: 0;
-
-  @media screen and (max-width: 450px) {
-    display: none;
-  }
-`;
-const InvertidaBoxIceCream = styled.img`
-  width: 100%;
-  max-width: 50.1%;
-  max-height: 400px;
-  margin-bottom: 10px;
-  position: fixed;
-  z-index: 0;
-  bottom: 0;
-  left: 0;
-  margin-bottom: 0;
-
-  @media screen and (max-width: 450px) {
-    display: none;
-  }
-`;
-
-const Logo = styled.img`
-  min-width: 145px;
-  width: 20%;
-  max-width: 200px;
-`;
