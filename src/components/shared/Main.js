@@ -11,4 +11,5 @@ const MainStyle = styled.main`
   margin-top: ${props => props.margin_top}px;
   position: absolute;
   z-index: 1;
+  width: 100%;
 `;

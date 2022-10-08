@@ -13,11 +13,14 @@ const TitleStatusStyle = styled.div`
   display: flex;
   align-items: flex-start;
   flex-direction: column;
+  position: absolute;
+  left: 0;
+  top: 26px;
 
   p {
     color: #028c10;
     font-family: 'Josefin Slab', serif;
-    font-size: 35px;
+    font-size: 32px;
     font-weight: 700;
     margin-left: 20px;
   }
