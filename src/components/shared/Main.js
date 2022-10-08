@@ -9,6 +9,7 @@ const MainStyle = styled.main`
   align-items: center;
   justify-content: center;
   margin-top: ${props => props.margin_top}px;
-  position: relative;
+  position: absolute;
   z-index: 1;
+  width: 100%;
 `;

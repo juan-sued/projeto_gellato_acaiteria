@@ -2,10 +2,10 @@ import Main from '../../shared/Main';
 import InputsRegister from './InputsRegister';
 import ButtonOnlyWords from '../../shared/ButtonOnlyWords.js';
 import logo from '../../assets/logo.png';
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Background from '../../shared/Background.js';
 import imageBoxIceCream from '../../assets/imageboxicecream.webp';
+import { ImageBoxIceCream, Logo } from './styles';
 
 export default function Register_Page() {
   return (
@@ -28,21 +28,3 @@ export default function Register_Page() {
     </>
   );
 }
-
-const ImageBoxIceCream = styled.img`
-  width: 100%;
-  max-width: 500px;
-  max-height: 400px;
-  margin-bottom: 10px;
-  position: fixed;
-  z-index: 0;
-  bottom: 0;
-  right: 0;
-  margin-bottom: 0;
-`;
-
-const Logo = styled.img`
-  min-width: 145px;
-  width: 20%;
-  max-width: 200px;
-`;
