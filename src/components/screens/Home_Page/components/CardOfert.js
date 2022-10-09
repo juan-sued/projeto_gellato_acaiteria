@@ -22,10 +22,9 @@ export default function CardOfert() {
 }
 
 const ImageAcaiFruta = styled.img`
-  width: 80px;
-  height: 80px;
+  width: 70px;
   position: relative;
-  bottom: 250px;
+  bottom: 260px;
   left: 120px;
 `;
 
@@ -36,16 +35,16 @@ const CardOfertContainer = styled.div`
   justify-content: end;
   align-items: center;
   padding-right: 20px;
-  margin-top: 80px;
+  margin-top: 60px;
   .cardOfert {
     width: 175px;
     height: 220px;
     background-color: #1e0c22;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     border: solid 8px #bc984d;
     margin-right: 20px;
-    border-width: 1px 5px 5px 0px;
+    border-width: 0px 5px 5px 0px;
     padding: 10px;
     display: flex;
     flex-direction: column;

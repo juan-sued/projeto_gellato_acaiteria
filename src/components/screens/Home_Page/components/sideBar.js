@@ -110,21 +110,22 @@ const Test = styled.div`
 `;
 const Container = styled.div`
   background-color: #1c2156;
-  height: 88px;
-  width: 88px;
+  height: 77px;
+  width: 77px;
   position: fixed;
   right: 0;
   top: 0;
   border-radius: 0 0 0 10px;
   border: 0;
-  box-shadow: -0px 0px 10px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  z-index: 4;
 
   button {
     width: 100%;
     height: 100%;
   }
   .material-icons-round {
-    font-size: 50px;
+    font-size: 40px;
     color: white;
   }
 `;

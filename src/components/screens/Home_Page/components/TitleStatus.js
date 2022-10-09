@@ -27,7 +27,7 @@ const TitleStatusStyle = styled.div`
   span {
     position: relative;
     margin-top: -9px;
-    width: 230px;
+    width: 210px;
     height: 1px;
     background-color: black;
     z-index: -1;
