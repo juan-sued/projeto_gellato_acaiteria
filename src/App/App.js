@@ -1,6 +1,6 @@
 import { BrowserRouter } from 'react-router-dom';
 import { AuthProvider } from '../hooks/useAuth';
-
+import 'material-icons/iconfont/material-icons.css';
 import Routes from '../Routes';
 import GlobalStyles from '../styles/globalStyles/globalStyles';
 

@@ -1,11 +1,14 @@
 import styled from 'styled-components';
 import placeorder from '../../../../assets/placeorder.gif';
+
+import clickhere from '../../../../assets/click.gif';
 export default function PlaceMyOrderButton() {
   return (
     <PlaceMyOrderContainer>
       <button className="placeMyOrderButton">
         <div className="degrade">
           <p>Fazer meu pedido</p>
+          <img src={clickhere} alt="" />
         </div>
       </button>
     </PlaceMyOrderContainer>
@@ -39,13 +42,21 @@ const PlaceMyOrderContainer = styled.div`
     height: 100%;
     border-radius: 10px;
     background: rgba(0, 0, 0, 0.37);
+    flex-direction: column;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-top: 150px;
+
     p {
       font-weight: 600;
       font-size: 40px;
       color: white;
+    }
+    img {
+      position: relative;
+
+      width: 140px;
     }
   }
 `;

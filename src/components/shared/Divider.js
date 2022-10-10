@@ -12,7 +12,8 @@ export default function Divider() {
 const DividerStyle = styled.div`
   margin-top: 50px;
   margin-bottom: 50px;
-  width: 100%;
+  max-width: 100%;
+
   display: flex;
   justify-content: center;
   align-items: center;

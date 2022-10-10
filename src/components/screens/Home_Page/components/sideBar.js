@@ -9,7 +9,6 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import styled from 'styled-components';
-import 'material-icons/iconfont/material-icons.css';
 
 export default function SideBar() {
   const [state, setState] = React.useState({
