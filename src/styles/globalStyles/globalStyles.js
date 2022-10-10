@@ -31,7 +31,8 @@ const GlobalStyles = createGlobalStyle`
   }
   body {
     line-height: 1;
-    background-color:#EEEDF4
+    background-color:#EEEDF4;
+    font-family: 'Josefin Slab', serif;
   }
   ol, ul {
     list-style: none;
