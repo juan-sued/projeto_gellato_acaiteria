@@ -59,6 +59,10 @@ const GlobalStyles = createGlobalStyle`
 scrollbar-width: none;
 overflow-x: hidden;
   overflow-y: hidden;
+
+}
+::-webkit-scrollbar-track {
+  background: transparent;
 }
 -ms-overflow-style: none;
 scrollbar-width: none;
