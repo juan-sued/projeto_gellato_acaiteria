@@ -60,5 +60,6 @@ const CarouselListContainer = styled.div`
     align-items: center;
     overflow-y: scroll;
     padding-left: 20px;
+    margin-right: 0px;
   }
 `;

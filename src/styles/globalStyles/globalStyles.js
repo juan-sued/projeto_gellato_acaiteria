@@ -52,6 +52,11 @@ const GlobalStyles = createGlobalStyle`
   a {
     text-decoration: none;
   }
+/* width */
+::-webkit-scrollbar {
+  width: 0px;
+}
+
 
 `;
 
