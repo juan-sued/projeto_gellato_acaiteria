@@ -49,7 +49,9 @@ export default function CarouselListProduct() {
 
 const CarouselListContainer = styled.div`
   width: 100%;
+  min-width: 100%;
   height: 400px;
+  overflow-x: hidden;
 
   .rowOfCardsContainer {
     margin-top: 40px;
@@ -59,7 +61,8 @@ const CarouselListContainer = styled.div`
     justify-content: start;
     align-items: center;
     overflow-y: scroll;
-    padding-left: 20px;
+    padding-left: 10px;
     margin-right: 0px;
+    background-color: red;
   }
 `;
