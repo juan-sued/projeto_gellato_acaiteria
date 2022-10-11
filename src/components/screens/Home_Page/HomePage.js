@@ -12,7 +12,7 @@ import WellcomeUser from './components/WellcomeUser';
 import Divider from '../../shared/Divider';
 import PlaceMyOrderButton from './components/PlaceMyOrderButton';
 
-import TitleAndArrow from '../../shared/TitleAndArrow';
+import CarouselListProduct from '../../shared/CarouselListProduct';
 export default function HomePage() {
   return (
     <>
@@ -24,20 +24,10 @@ export default function HomePage() {
         <Divider />
         <PlaceMyOrderButton />
         <Divider />
-
-        <CarouselListContainer>
-          <div className="titleAndDescriptionContainer">
-            <TitleAndArrow />
-          </div>
-        </CarouselListContainer>
+        <CarouselListProduct />
       </Main>
 
       <ImageArvoreAcai src={Arvore_de_acai} alt="" />
     </>
   );
 }
-
-const CarouselListContainer = styled.div`
-  width: 100%;
-  height: 400px;
-`;

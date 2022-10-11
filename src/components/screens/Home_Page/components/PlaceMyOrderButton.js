@@ -17,7 +17,7 @@ export default function PlaceMyOrderButton() {
 
 const PlaceMyOrderContainer = styled.div`
   height: 192px;
-  width: 100%;
+  max-width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,9 +53,9 @@ const PlaceMyOrderContainer = styled.div`
       font-size: 40px;
       color: white;
     }
+
     img {
       position: relative;
-
       width: 140px;
     }
   }
