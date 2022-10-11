@@ -6,13 +6,42 @@ import CardCarouselProduct from './cardCarouselProduct';
 import TitleAndArrow from './TitleAndArrow';
 
 export default function CarouselListProduct() {
+  const listMoreOrders = [
+    {
+      image: acai,
+      description: '1 Litro',
+      price: '20,00'
+    },
+    {
+      image: acai,
+      description: '1 Litro',
+      price: '20,00'
+    },
+    {
+      image: acai,
+      description: '1 Litro',
+      price: '20,00'
+    },
+    {
+      image: acai,
+      description: '1 Litro',
+      price: '20,00'
+    }
+  ];
+
   return (
     <CarouselListContainer>
       <div className="titleAndDescriptionContainer">
         <TitleAndArrow />
       </div>
       <div className="rowOfCardsContainer">
-        <CardCarouselProduct />
+        {listMoreOrders.map((order, index) => (
+          <CardCarouselProduct
+            image={order.image}
+            description={order.description}
+            price={order.price}
+          />
+        ))}
       </div>
     </CarouselListContainer>
   );

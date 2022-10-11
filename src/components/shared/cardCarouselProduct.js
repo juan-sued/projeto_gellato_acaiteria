@@ -2,15 +2,15 @@ import styled from 'styled-components';
 
 import acai from '../../assets/copoacai.svg';
 
-export default function CardCarouselProduct() {
+export default function CardCarouselProduct({ image, description, price }) {
   return (
     <CardOfProduct>
       <div className="halfCircle">
-        <img src={acai} alt="" />
+        <img src={image} alt="" />
       </div>
-      <h1 className="title">1 Litro</h1>
+      <h1 className="title">{description}</h1>
       <div className="priceProductContainer">
-        <p className="priceProduct">R$ 27,00</p>
+        <p className="priceProduct">R$ {price}</p>
       </div>
     </CardOfProduct>
   );
