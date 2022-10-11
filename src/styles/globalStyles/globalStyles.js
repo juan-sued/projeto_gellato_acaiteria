@@ -60,6 +60,7 @@ const GlobalStyles = createGlobalStyle`
   ::-webkit-scrollbar {
   width: 0px;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
   }
 `;
