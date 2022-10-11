@@ -19,6 +19,7 @@ export default function CardCarouselProduct({ image, description, price }) {
 const CardOfProduct = styled.div`
   height: 250px;
   width: 175px;
+  min-width: 175px;
   background-color: #8e1c5a;
   border-radius: 10px;
   margin-right: 20px;

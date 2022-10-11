@@ -33,6 +33,8 @@ const GlobalStyles = createGlobalStyle`
     line-height: 1;
     background-color:#EEEDF4;
     font-family: 'Josefin Slab', serif;
+    overflow-x: hidden;
+    overflow-y: hidden;
   }
   ol, ul {
     list-style: none;

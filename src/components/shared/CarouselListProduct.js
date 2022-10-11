@@ -49,6 +49,7 @@ export default function CarouselListProduct() {
 
 const CarouselListContainer = styled.div`
   width: 100%;
+  min-width: 100%;
   height: 400px;
 
   .rowOfCardsContainer {
