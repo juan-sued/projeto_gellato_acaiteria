@@ -55,14 +55,17 @@ const GlobalStyles = createGlobalStyle`
 /* width */
 ::-webkit-scrollbar {
   width: 0px;
-}
-@media screen and (min-width: 700px) {
-  ::-webkit-scrollbar {
-  width: 0px;
-  overflow-x: hidden;
+  -ms-overflow-style: none;
+scrollbar-width: none;
+overflow-x: hidden;
   overflow-y: hidden;
 }
-  }
+-ms-overflow-style: none;
+scrollbar-width: none;
+overflow-x: hidden;
+overflow-y: hidden;
+
+  
 `;
 
 export default GlobalStyles;
