@@ -11,8 +11,9 @@ import CardOfert from './components/CardOfert';
 import WellcomeUser from './components/WellcomeUser';
 import Divider from '../../shared/Divider';
 import PlaceMyOrderButton from './components/PlaceMyOrderButton';
-import CarouselMoreOrders from './components/CarouselFavoriteds';
+
 import CarouselFavoriteds from './components/CarouselFavoriteds';
+import CarouselMoreOrders from './components/CarouselMoreOrders ';
 
 export default function HomePage() {
   return (
@@ -26,6 +27,7 @@ export default function HomePage() {
         <PlaceMyOrderButton />
         <Divider />
         <CarouselMoreOrders />
+
         <CarouselFavoriteds />
       </Main>
 

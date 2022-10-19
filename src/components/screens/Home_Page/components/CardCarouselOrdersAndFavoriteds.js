@@ -3,9 +3,8 @@ import styled from 'styled-components';
 export default function CardCarouselOrdersAndFavoriteds({ image, description, price }) {
   return (
     <CardOfProduct>
-      <div className="halfCircle">
-        <img src={image} alt="" />
-      </div>
+      <img src={image} alt="" />
+
       <h1 className="title">{description}</h1>
       <div className="priceProductContainer">
         <p className="priceProduct">R$ {price}</p>
@@ -16,8 +15,8 @@ export default function CardCarouselOrdersAndFavoriteds({ image, description, pr
 
 const CardOfProduct = styled.div`
   height: 250px;
-  width: 175px;
-  min-width: 175px;
+  width: 165px;
+  max-width: 175px;
   background-color: #8e1c5a;
   border-radius: 10px;
   margin-right: 20px;
@@ -46,20 +45,10 @@ const CardOfProduct = styled.div`
     }
   }
 
-  .halfCircle {
-    position: relative;
-    height: 99px;
-    width: 175px;
-    margin-bottom: 25px;
-    background-color: #eeedf4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+  img {
+    max-width: 100%;
+    max-width: 175px;
     border-radius: 10px 10px 59px 59px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    img {
-      width: fit-content;
-    }
   }
 `;
