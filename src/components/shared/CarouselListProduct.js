@@ -1,14 +1,44 @@
+import { useState } from 'react';
 import styled from 'styled-components';
-
+import CardCarouselOrdersAndProducts from '../screens/Home_Page/components/CardCarouselOrdersAndProducts';
+import CardCarouselProduct from './CardCarouselProduct';
+import iconExitFavorites from '../../assets/iconExitFavorites.svg';
+import iconFavorited from '../../assets/iconFavorited.svg';
+import addFavorit from '../../assets/addFavorit.svg';
 import TitleAndArrow from './TitleAndArrow';
 
-export default function CarouselListProduct({ title, children, margin_top }) {
-  console.log(title);
-
+export default function CarouselListProduct({ title, margin_top, objctResponseAPI }) {
   return (
     <CarouselListContainer margin_top={margin_top}>
       {title ? <TitleAndArrow>{title}</TitleAndArrow> : ''}
-      <div className="rowOfCardsContainer">{children}</div>
+      <div className="rowOfCardsContainer">
+        {objctResponseAPI.map((order, index) =>
+          title === 'Mais pedidos' ? (
+            <CardCarouselOrdersAndProducts
+              key={index}
+              image={order.image}
+              description={order.description}
+              price={order.price}
+              icon={iconFavorited}
+            />
+          ) : title === 'Meus favoritos' ? (
+            <CardCarouselOrdersAndProducts
+              key={index}
+              image={order.image}
+              description={order.description}
+              price={order.price}
+              icon={iconExitFavorites}
+            />
+          ) : (
+            <CardCarouselProduct
+              key={index}
+              image={order.image}
+              description={order.description}
+              price={order.price}
+            />
+          )
+        )}
+      </div>
     </CarouselListContainer>
   );
 }
