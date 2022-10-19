@@ -29,6 +29,7 @@ const CardOfProduct = styled.div`
   align-items: center;
   padding: 0 19px 19px 19px;
   color: white;
+  box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.3);
 
   .title {
     font-size: 40px;

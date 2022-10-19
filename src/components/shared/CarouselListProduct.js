@@ -1,68 +1,33 @@
 import styled from 'styled-components';
 
-import acai from '../../assets/copoacai.svg';
-import CardCarouselProduct from './cardCarouselProduct';
-
 import TitleAndArrow from './TitleAndArrow';
 
-export default function CarouselListProduct() {
-  const listMoreOrders = [
-    {
-      image: acai,
-      description: '1 Litro',
-      price: '20,00'
-    },
-    {
-      image: acai,
-      description: '1 Litro',
-      price: '20,00'
-    },
-    {
-      image: acai,
-      description: '1 Litro',
-      price: '20,00'
-    },
-    {
-      image: acai,
-      description: '1 Litro',
-      price: '20,00'
-    }
-  ];
-
+export default function CarouselListProduct({ title, children, margin_top }) {
   return (
-    <CarouselListContainer>
-      <div className="titleAndDescriptionContainer">
-        <TitleAndArrow />
-      </div>
-      <div className="rowOfCardsContainer">
-        {listMoreOrders.map((order, index) => (
-          <CardCarouselProduct
-            image={order.image}
-            description={order.description}
-            price={order.price}
-          />
-        ))}
-      </div>
+    <CarouselListContainer margin_top={margin_top}>
+      {title ? <TitleAndArrow title={title} /> : ''}
+      <div className="rowOfCardsContainer">{children}</div>
     </CarouselListContainer>
   );
 }
 
 const CarouselListContainer = styled.div`
+  margin-top: 100px;
   width: 100%;
   min-width: 100%;
   height: 400px;
-  overflow-x: hidden;
+
+  margin-right: 0;
 
   .rowOfCardsContainer {
-    margin-top: 40px;
+    margin-top: ${props => props.margin_top}px;
     width: 100%;
     height: 450px;
     display: flex;
     justify-content: start;
     align-items: center;
-    overflow-y: scroll;
-    padding-left: 10px;
+    overflow-x: scroll;
+    padding-left: 1%;
     margin-right: 0px;
-    background-color: red;
   }
 `;

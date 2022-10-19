@@ -12,6 +12,7 @@ body, html {
     background-color: #523AB2;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
     
    
   }
