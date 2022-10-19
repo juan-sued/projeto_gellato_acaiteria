@@ -3,9 +3,11 @@ import styled from 'styled-components';
 import TitleAndArrow from './TitleAndArrow';
 
 export default function CarouselListProduct({ title, children, margin_top }) {
+  console.log(title);
+
   return (
     <CarouselListContainer margin_top={margin_top}>
-      {title ? <TitleAndArrow title={title} /> : ''}
+      {title ? <TitleAndArrow>{title}</TitleAndArrow> : ''}
       <div className="rowOfCardsContainer">{children}</div>
     </CarouselListContainer>
   );
@@ -27,7 +29,7 @@ const CarouselListContainer = styled.div`
     justify-content: start;
     align-items: center;
     overflow-x: scroll;
-    padding-left: 1%;
+    padding-left: 13px;
     margin-right: 0px;
   }
 `;

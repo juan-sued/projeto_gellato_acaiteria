@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import arrowright from '../../assets/arrowright.svg';
 
-export default function TitleAndArrow({ title }) {
+export default function TitleAndArrow({ children }) {
   return (
     <TitleAndArrowContainer>
       <div className="titleContainer">
-        <h2>{title}</h2>
+        <h2>{children}</h2>
         <div className="line"></div>
       </div>
       <img src={arrowright} alt="" />
