@@ -10,25 +10,25 @@ import { ContainerFormClass, InputClass } from './styles';
 export default function SingInForm() {
   const { signIn } = useAuth();
 
-  const [signInData, setSignInData] = useState({
+  const [signInData, setSignIndata] = useState({
     email: '',
     password: ''
   });
 
   const [stateColorButton, setStateCollorButton] = useState('#ffffff');
-  const handleChangText = e => {
-    setSignInData({
-      ...signInData,
-      [e.target.name]: e.target.value
-    });
+
+  const handleChangeText = e => {
+    setSignIndata({ ...signInData, [e.target.name]: e.target.value });
   };
 
   function newLogin(event) {
     event.preventDefault();
-    signIn(signInData, setStateCollorButton, setStateMessageButton);
+    signIn(signInData, setStateCollorButton, setSignIndata);
   }
 
-  if (setStateCollorButton === '#e21a27' && signInData.email.length > 0) {
+  if (stateColorButton === '#e21a27' && signInData.email.length > 0) {
+    console.log(signInData.email.length);
+
     setStateCollorButton('#ffffff');
   }
 
@@ -38,19 +38,21 @@ export default function SingInForm() {
         <InputClass
           placeholder="E-mail"
           type="email"
+          name="email"
           value={signInData.email}
-          onChange={handleChangText}
+          onChange={handleChangeText}
           required
         />
         <InputClass
           placeholder="Senha"
           type="password"
+          name="password"
           value={signInData.password}
-          onChange={handleChangText}
+          onChange={handleChangeText}
           required
         />
         <ButtonSubmit width={'303px'} backgroundcolor={stateColorButton} type="submit">
-          {stateColorButton === '#e21a26' ? (
+          {stateColorButton === '#e21a27' ? (
             'Email ou senha incorretas!'
           ) : stateColorButton === '#8a8893' ? (
             <Loading height={20} width={20} />

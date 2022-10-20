@@ -9,12 +9,12 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 export default function SideBar() {
+  const navigate = useNavigate();
+
   const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
     right: false
   });
 
@@ -28,6 +28,14 @@ export default function SideBar() {
     }
 
     setState({ ...state, [anchor]: open });
+  };
+
+  const selectedButton = text => {
+    if (text.nameIcon === 'shopping_cart') {
+      navigate('/sign-in');
+    } else {
+      console.log('não carrinho');
+    }
   };
 
   const list = anchor => (
@@ -51,7 +59,12 @@ export default function SideBar() {
               { nameIcon: 'fingerprint', nameText: 'Minhas informações' },
               { nameIcon: 'shopping_cart', nameText: 'Meu carrinho' }
             ].map((text, index) => (
-              <ListItem key={index} disablePadding>
+              <ListItem
+                key={index}
+                disablePadding
+                selected={false}
+                onClick={() => selectedButton(text)}
+              >
                 <ListItemButton>
                   <ListItemIcon>
                     <span className="material-icons-round">{text.nameIcon}</span>
@@ -85,21 +98,17 @@ export default function SideBar() {
 
   return (
     <Container>
-      {['right'].map(anchor => (
-        <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>
-            {<span className="material-icons-round">menu_open</span>}
-          </Button>
-          <SwipeableDrawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-            onOpen={toggleDrawer(anchor, true)}
-          >
-            {list(anchor)}
-          </SwipeableDrawer>
-        </React.Fragment>
-      ))}
+      <Button onClick={toggleDrawer('right', true)}>
+        {<span className="material-icons-round">menu_open</span>}
+      </Button>
+      <SwipeableDrawer
+        anchor={'right'}
+        open={state['right']}
+        onClose={toggleDrawer('right', false)}
+        onOpen={toggleDrawer('right', true)}
+      >
+        {list('right')}
+      </SwipeableDrawer>
     </Container>
   );
 }
