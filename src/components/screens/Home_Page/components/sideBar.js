@@ -32,7 +32,7 @@ export default function SideBar() {
 
   const selectedButton = text => {
     if (text.nameIcon === 'shopping_cart') {
-      navigate('/sign-in');
+      navigate('/cart');
     } else {
       console.log('não carrinho');
     }
