@@ -9,6 +9,10 @@ import { useAuth } from '../../../hooks/useAuth';
 import { useCart } from '../../../hooks/useCart';
 
 import copoHome2 from '../../../assets/copoHome2.png';
+import iconremove from '../../../assets/iconremove.svg';
+
+import iconpencil from '../../../assets/iconpencil.svg';
+import { useState } from 'react';
 
 export default function Cart({ to, message, isSigned = false }) {
   const { userInfo, signOut } = useAuth();
@@ -119,6 +123,11 @@ export default function Cart({ to, message, isSigned = false }) {
       }
     ]
   };
+  const [inputQtd, setInputQtd] = useState(1);
+
+  const atualiza = e => {
+    setInputQtd(e.target.value);
+  };
 
   return (
     <Container>
@@ -127,19 +136,28 @@ export default function Cart({ to, message, isSigned = false }) {
           <img src={copoHome2} alt="" />
           <div className="column">
             <div className="nameColumn">Preço</div>
-            <p className="Price"> R$ 20,60</p>
+            <p className="value"> R$ 20,60</p>
           </div>
           <div className="column">
             <div className="nameColumn">Qtd.</div>
-            <p className="Price">R$ 20,60</p>
+            <input
+              type="number"
+              name="qtd"
+              className="inputQntd"
+              value={inputQtd}
+              onChange={atualiza}
+              required
+              disabled={true}
+              min={1}
+            />
           </div>
           <div className="column">
-            <div className="nameColumn">Preço</div>
-            <p className="Price">R$ 20,60</p>
+            <div className="nameColumn">SubTotal</div>
+            <p className="value">R$ 20,60</p>
           </div>
-          <div className="column">
-            <div className="nameColumn">Preço</div>
-            <p className="Price">R$ 20,60</p>
+          <div className="column buttons">
+            <img src={iconremove} alt="" />
+            <img src={iconpencil} alt="" />
           </div>
         </div>
       </ProductTable>
@@ -164,32 +182,61 @@ export default function Cart({ to, message, isSigned = false }) {
 }
 export const ProductTable = styled.div`
   width: 100%;
+  display: flex;
 
-  background-color: green;
+  background-color: #9747ff;
+  border-radius: 5px;
+
   .itemTable {
     width: 100%;
     display: flex;
     justify-content: space-between;
     padding: 10px;
+    padding-top: 14px;
+    padding-bottom: 14px;
     color: white;
+    font-weight: 700;
+    height: 100px;
+    align-items: center;
 
     .column {
+      height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-      background-color: purple;
-    }
-    .productDescription {
-      display: flex;
-      flex-direction: column;
-      justify-content: end;
-      align-items: center;
-      background-color: purple;
+      .nameColumn {
+        font-size: 16px;
+      }
+      img {
+        width: 20px;
+        height: 20px;
+      }
+
+      .value {
+        font-size: 16px;
+      }
+
+      .inputQntd {
+        font-size: 18px;
+        width: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #d4d4d4;
+        font-family: 'Jost', sans-serif;
+        border-radius: 4px;
+        padding-left: 6px;
+
+        background: #ffffff;
+        box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+        color: #000000;
+      }
     }
 
     img {
-      height: 60px;
+      height: 50px;
     }
   }
 `;
