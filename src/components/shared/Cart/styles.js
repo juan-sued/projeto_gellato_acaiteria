@@ -1,13 +1,10 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  padding: 2rem 0.85rem;
+  padding: 20px;
   background: #fff;
   border-radius: 4px;
-
-  @media screen and (max-width: 500px) {
-    font-size: 0.75rem;
-  }
+  max-width: 100%;
 
   footer {
     margin-top: 30px;
@@ -32,85 +29,6 @@ export const Container = styled.div`
   }
 `;
 
-export const ProductTable = styled.table`
-  width: 100%;
-
-  @media screen and (max-width: 500px) {
-    tbody tr td {
-      padding: 5px;
-    }
-  }
-
-  thead th {
-    color: #999;
-    text-align: left;
-    padding: 12px;
-  }
-
-  tbody td {
-    padding: 12px;
-    border-bottom: 1px solid #eee;
-  }
-
-  img {
-    height: 100px;
-  }
-
-  strong {
-    color: #333;
-    display: block;
-  }
-
-  span {
-    display: block;
-    margin-top: 5px;
-    font-size: 18px;
-    font-weight: bold;
-
-    @media screen and (max-width: 500px) {
-      font-size: 0.75rem;
-    }
-  }
-
-  div {
-    display: flex;
-    align-items: center;
-
-    input {
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      color: #666;
-      padding: 6px;
-      width: 50px;
-    }
-  }
-
-  button {
-    background: none;
-    border: 0;
-    padding: 6px;
-    cursor: pointer;
-
-    svg {
-      color: #7159c1;
-      transition: color 0.2s;
-    }
-
-    &:hover {
-      svg {
-        color: #7159c1;
-      }
-    }
-
-    &:disabled {
-      svg {
-        color: #7159c1;
-        cursor: not-allowed;
-      }
-    }
-  }
-`;
-
 export const Total = styled.div`
   display: flex;
   align-items: baseline;
@@ -121,7 +39,7 @@ export const Total = styled.div`
   }
 
   strong {
-    font-size: 28px;
+    font-size: 25px;
     margin-left: 5px;
   }
 `;

@@ -1,14 +1,14 @@
-import { useCart } from '../../hooks/useCart';
 import { useNavigate } from 'react-router-dom';
-import { formatPrice } from '../../util/format';
+import { formatPrice } from '../../../util/format';
 
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { Container, Total } from './styles';
+import styled from 'styled-components';
 
-import { Container, ProductTable, Total } from "./styles";
-import { useAuth } from '../../contexts/auth';
 import requestOrder from './requestOrder';
+import { useAuth } from '../../../hooks/useAuth';
+import { useCart } from '../../../hooks/useCart';
+
+import copoHome2 from '../../../assets/copoHome2.png';
 
 export default function Cart({ to, message, isSigned = false }) {
   const { userInfo, signOut } = useAuth();
@@ -17,10 +17,10 @@ export default function Cart({ to, message, isSigned = false }) {
 
   const { cart, updateProductAmount, removeProduct, setCart } = useCart();
 
-  const cartFormatted = cart.map((product) => ({
+  const cartFormatted = cart.map(product => ({
     ...product,
     priceFormatted: formatPrice(product.price),
-    subTotal: formatPrice(product.price * product.amount),
+    subTotal: formatPrice(product.price * product.amount)
   }));
   const total = formatPrice(
     cart.reduce((sumTotal, product) => {
@@ -40,101 +40,120 @@ export default function Cart({ to, message, isSigned = false }) {
     removeProduct(productId);
   }
   function handleCreateOrder() {
-
     const books = cart.map(books => {
-      return (
-        {
-          id: books._id,
-          name: books.name,
-          price: books.price,
-          image: books.image,
-          amount: books.amount,
-        }
-      )
-    })
+      return {
+        id: books._id,
+        name: books.name,
+        price: books.price,
+        image: books.image,
+        amount: books.amount
+      };
+    });
 
     const orderData = {
       user: userInfo.email,
-      books,
-    }
+      books
+    };
     const sucess = () => {
-      setCart([])
+      setCart([]);
       localStorage.removeItem('gellatoCart');
+    };
 
-    }
-
-    requestOrder(orderData, signOut, sucess)
+    requestOrder(orderData, signOut, sucess);
   }
+
+  const objctResponseAPI = {
+    listMyFavoriteds: [
+      {
+        id: 2,
+        image: copoHome2,
+        title: '1 Litro',
+        name: 'acaizaum',
+        priceFormatted: '20.50'
+      },
+      {
+        id: 2,
+        image: copoHome2,
+        title: '1 Litro',
+        price: '20,00'
+      },
+      {
+        image: copoHome2,
+        description: '1 Litro',
+        price: '20,00'
+      },
+      {
+        image: copoHome2,
+        description: '1 Litro',
+        price: '20,00'
+      }
+    ],
+    listMoreOrders: [
+      {
+        id: 2,
+        image: copoHome2,
+        title: '1 Litro',
+        name: 'acaizaum',
+        priceFormatted: '20.50'
+      },
+      {
+        id: 3,
+        image: copoHome2,
+        title: '1 Litro',
+        name: 'acaizaum',
+        priceFormatted: '20.50'
+      },
+      {
+        id: 4,
+        image: copoHome2,
+        title: '1 Litro',
+        name: 'acaizaum',
+        priceFormatted: '20.50'
+      },
+      {
+        id: 5,
+        image: copoHome2,
+        title: '1 Litro',
+        name: 'acaizaum',
+        priceFormatted: '20.50'
+      }
+    ]
+  };
 
   return (
     <Container>
       <ProductTable>
-        <thead>
-          <tr>
-            <th aria-label="product image" />
-            <th>PRODUTO</th>
-            <th>QTD</th>
-            <th>SUBTOTAL</th>
-            <th aria-label="delete icon" />
-          </tr>
-        </thead>
-        <tbody>
-          {cartFormatted.map((product) => (
-            <tr data-testid="product" key={product._id}>
-              <td>
-                <img src={product.image} alt={product.title} />
-              </td>
-              <td>
-                <strong>{product.name}</strong>
-                <span>{product.priceFormatted}</span>
-              </td>
-              <td>
-                <div>
-                  <button
-                    type="button"
-                    data-testid="decrement-product"
-                    disabled={product.amount <= 1}
-                    onClick={() => handleProductDecrement(product)}
-                  >
-                    <RemoveIcon />
-                  </button>
-                  <input
-                    type="text"
-                    data-testid="product-amount"
-                    readOnly
-                    value={product.amount}
-                  />
-                  <button
-                    type="button"
-                    data-testid="increment-product"
-                    onClick={() => handleProductIncrement(product)}
-                  >
-                    <AddIcon />
-                  </button>
-                </div>
-              </td>
-              <td>
-                <strong>{product.subTotal}</strong>
-              </td>
-              <td>
-                <button
-                  type="button"
-                  data-testid="remove-product"
-                  onClick={() => handleRemoveProduct(product._id)}
-                >
-                  <DeleteIcon />
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
+        <div className="itemTable">
+          <img src={copoHome2} alt="" />
+          <div className="column">
+            <div className="nameColumn">Preço</div>
+            <p className="Price"> R$ 20,60</p>
+          </div>
+          <div className="column">
+            <div className="nameColumn">Qtd.</div>
+            <p className="Price">R$ 20,60</p>
+          </div>
+          <div className="column">
+            <div className="nameColumn">Preço</div>
+            <p className="Price">R$ 20,60</p>
+          </div>
+          <div className="column">
+            <div className="nameColumn">Preço</div>
+            <p className="Price">R$ 20,60</p>
+          </div>
+        </div>
       </ProductTable>
 
       <footer>
-        {isSigned
-          ? <button type="button" onClick={handleCreateOrder}>Finalizar Compra</button>
-          : <button type="button" onClick={() => navigate(to)}>{message}</button>
-        }
+        {isSigned ? (
+          <button type="button" onClick={handleCreateOrder}>
+            Finalizar Compra
+          </button>
+        ) : (
+          <button type="button" onClick={() => navigate(to)}>
+            Fazer login
+          </button>
+        )}
         <Total>
           <span>TOTAL</span>
           <strong>{total}</strong>
@@ -143,3 +162,34 @@ export default function Cart({ to, message, isSigned = false }) {
     </Container>
   );
 }
+export const ProductTable = styled.div`
+  width: 100%;
+
+  background-color: green;
+  .itemTable {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    color: white;
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      background-color: purple;
+    }
+    .productDescription {
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      align-items: center;
+      background-color: purple;
+    }
+
+    img {
+      height: 60px;
+    }
+  }
+`;
