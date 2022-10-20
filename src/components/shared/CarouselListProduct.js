@@ -4,10 +4,11 @@ import CardCarouselOrdersAndProducts from '../screens/Home_Page/components/CardC
 import CardCarouselProduct from './CardCarouselProduct';
 import iconExitFavorites from '../../assets/iconExitFavorites.svg';
 import iconFavorited from '../../assets/iconFavorited.svg';
-import addFavorit from '../../assets/addFavorit.svg';
+import addFavorites from '../../assets/addFavorites.svg';
 import TitleAndArrow from './TitleAndArrow';
 
 export default function CarouselListProduct({ title, margin_top, objctResponseAPI }) {
+  console.log(objctResponseAPI);
   return (
     <CarouselListContainer margin_top={margin_top}>
       {title ? <TitleAndArrow>{title}</TitleAndArrow> : ''}
@@ -19,7 +20,7 @@ export default function CarouselListProduct({ title, margin_top, objctResponseAP
               image={order.image}
               description={order.description}
               price={order.price}
-              icon={iconFavorited}
+              icon={order.favorited ? iconFavorited : addFavorites}
             />
           ) : title === 'Meus favoritos' ? (
             <CardCarouselOrdersAndProducts

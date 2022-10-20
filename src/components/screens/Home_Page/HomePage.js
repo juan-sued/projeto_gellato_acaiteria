@@ -16,6 +16,7 @@ import CarouselListProduct from '../../shared/CarouselListProduct';
 
 import copoHome2 from '../../../assets/copoHome2.png';
 import copoHome from '../../../assets/copoHome.png';
+import { formatPrice } from '../../../util/format';
 
 export default function HomePage() {
   const objctResponseAPI = {
@@ -45,7 +46,8 @@ export default function HomePage() {
       {
         image: copoHome,
         description: '1 Litro',
-        price: '20,00'
+        price: '20.60',
+        favorited: true
       },
       {
         image: copoHome,
@@ -55,7 +57,8 @@ export default function HomePage() {
       {
         image: copoHome,
         description: '1 Litro',
-        price: '20,00'
+        price: '20,00',
+        favorited: true
       },
       {
         image: copoHome,
@@ -64,6 +67,12 @@ export default function HomePage() {
       }
     ]
   };
+
+  const numero = objctResponseAPI.listMoreOrders[0].price;
+
+  const numeroFormatado = parseFloat(numero);
+  console.log(formatPrice(numeroFormatado));
+
   return (
     <>
       <SideBar />
