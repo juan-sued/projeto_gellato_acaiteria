@@ -1,17 +1,17 @@
 import Main from '../../shared/Main';
 
 import ButtonOnlyWords from '../../shared/ButtonOnlyWords.js';
-import logo from '../../assets/logo.png';
+import logo from '../../../assets/logo.png';
 
 import { Link } from 'react-router-dom';
 import Background from '../../shared/Background.js';
-import imageBoxIceCream from '../../assets/imageboxtemaclaro.webp';
-import invertida from '../../assets/imageboxtemaclaroinvertida.webp';
+import imageBoxIceCream from '../../../assets/imageboxtemaclaro.webp';
+import invertida from '../../../assets/imageboxtemaclaroinvertida.webp';
 import SingInForm from './SingInForm';
-import imageBoxIceCreamVideo from '../../assets/dairystore.mp4';
+import imageBoxIceCreamVideo from '../../../assets/dairystore.mp4';
 import { ContainerVideo, ImageBoxIceCream, InvertidaBoxIceCream, Logo } from './styles';
 
-export default function Login_Page() {
+export default function LoginPage() {
   return (
     <>
       <Background

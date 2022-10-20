@@ -45,7 +45,7 @@ export default function HomePage() {
     listMoreOrders: [
       {
         image: copoHome,
-        description: '1 Litro',
+        description: '500 ml',
         price: '20.60',
         favorited: true
       },

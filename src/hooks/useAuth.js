@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  const signIn = async (signInData, setStateCollorButton) => {
+  const signIn = async (signInData, setStateCollorButton, setSignIndata) => {
     setStateCollorButton('#8a8893');
 
     try {
@@ -32,6 +32,10 @@ export const AuthProvider = ({ children }) => {
 
       navigate('/');
     } catch (err) {
+      setSignIndata({
+        email: '',
+        password: ''
+      });
       setStateCollorButton('#e21a27');
     }
   };

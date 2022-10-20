@@ -1,13 +1,13 @@
 import Main from '../../shared/Main';
 import InputsRegister from './InputsRegister';
 import ButtonOnlyWords from '../../shared/ButtonOnlyWords.js';
-import logo from '../../assets/logo.png';
+import logo from '../../../assets/logo.png';
 import { Link } from 'react-router-dom';
 import Background from '../../shared/Background.js';
-import imageBoxIceCream from '../../assets/imageboxicecream.webp';
+import imageBoxIceCream from '../../../assets/imageboxicecream.webp';
 import { ImageBoxIceCream, Logo } from './styles';
 
-export default function Register_Page() {
+export default function RegisterPage() {
   return (
     <>
       <Background
