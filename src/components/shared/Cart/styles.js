@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  padding: 20px;
+  padding: 10px;
   background: #fff;
   border-radius: 4px;
   max-width: 100%;
@@ -21,6 +21,7 @@ export const Container = styled.div`
       font-weight: bold;
       text-transform: uppercase;
       transition: background 0.2s;
+      width: 155px;
 
       &:hover {
         background: #7159c1;
