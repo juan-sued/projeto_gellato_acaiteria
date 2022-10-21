@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 import iconprofile from '../../../assets/iconprofile.svg';
 import iconstart from '../../../assets/iconstart.svg';
-export default function CardFeedback() {
+import iconmiddlestart from '../../../assets/iconmiddlestart.svg';
+import iconnotpoint from '../../../assets/iconnotpoint.svg';
+import incrementStarsFeedback from './incrementStarsFeedback';
+
+export default function CardFeedback({ name, points, feedback }) {
   return (
     <CardFeedbackStyle>
       <div className="columnIcon">
@@ -10,17 +14,26 @@ export default function CardFeedback() {
         </div>
       </div>
       <div className="columnContent">
-        <h1>Mariana</h1>
+        <h1>{name}</h1>
         <span className="lineDetailsFeedback">
-          <p className="points">5,0</p>
-          <img src={iconstart} alt="" />
-          <img src={iconstart} alt="" />
-          <img src={iconstart} alt="" />
-          <img src={iconstart} alt="" />
-          <img src={iconstart} alt="" />
+          <p className="points">{points}</p>
+          {incrementStarsFeedback(points).map((star, index) => (
+            <img
+              key={index}
+              src={
+                star === 'startFull'
+                  ? iconstart
+                  : star === 'middle'
+                  ? iconmiddlestart
+                  : iconnotpoint
+              }
+              alt=""
+            />
+          ))}
+
           <p className="date">12/01/2022</p>
         </span>
-        <div className="feedback">Muito legal muito bom mesmo!!!!! Recomendo!!</div>
+        <div className="feedback">{feedback}</div>
       </div>
     </CardFeedbackStyle>
   );
@@ -28,7 +41,6 @@ export default function CardFeedback() {
 
 const CardFeedbackStyle = styled.div`
   background-color: white;
-
   padding: 15px;
   border-radius: 8px;
   display: flex;
@@ -37,6 +49,11 @@ const CardFeedbackStyle = styled.div`
   font-weight: 500;
   margin-bottom: 20px;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
+  transition: all 0.5s ease-out;
+  :hover {
+    cursor: pointer;
+    box-shadow: none;
+  }
 
   .feedback {
     width: 275px;
@@ -44,6 +61,9 @@ const CardFeedbackStyle = styled.div`
     line-height: 21px;
     font-weight: 500;
     font-size: 17px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .lineDetailsFeedback {
