@@ -33,6 +33,9 @@ export default function SideBar() {
   const selectedButton = text => {
     if (text.nameIcon === 'shopping_cart') {
       navigate('/cart');
+    }
+    if (text.nameIcon === 'logout') {
+      navigate('/sign-in');
     } else {
       console.log('não carrinho');
     }

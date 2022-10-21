@@ -7,10 +7,10 @@ import RegisterPage from '../components/screens/Register_Page/RegisterPage';
 
 const PublicRoutes = () => (
   <Routes>
-    <Route path="/home" element={<HomePage />} />
+    <Route path="/" element={<HomePage />} />
     <Route path="/sign-in" element={<LoginPage />} />
     <Route path="/sign-up" element={<RegisterPage />} />
-    <Route path="/" element={<Cart />} />
+    <Route path="/cart" element={<Cart />} />
   </Routes>
 );
 
