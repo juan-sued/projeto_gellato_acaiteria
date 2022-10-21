@@ -12,11 +12,11 @@ import copoHome2 from '../../../../assets/copoHome2.jpg';
 
 import ItemProductTable from '../ItemProductTable';
 import { useAuth } from '../../../../hooks/useAuth';
-
+import arrowright from '../../../../assets/arrowright.svg';
 export default function Cart({ to, message, isSigned = false }) {
   const { userInfo, signOut } = useAuth();
 
-  const navigate = useNavigate();
+  let navigate = useNavigate();
 
   const { cart, setCart } = useCart();
 
@@ -120,6 +120,12 @@ export default function Cart({ to, message, isSigned = false }) {
     <>
       <Back />
       <Container>
+        <BackPage>
+          <button onClick={() => navigate('/')}>
+            <img src={arrowright} alt="" />
+            <p>voltar</p>
+          </button>
+        </BackPage>
         <TitleContainer>Meu Carrinho</TitleContainer>
         <ProductTable>
           {objctResponseAPI.listMoreOrders.map((product, index) => (
@@ -141,7 +147,7 @@ export default function Cart({ to, message, isSigned = false }) {
               Finalizar Compra
             </button>
           ) : (
-            <button type="button" onClick={() => navigate(to)}>
+            <button type="button" onClick={() => navigate('/')}>
               Fazer login
             </button>
           )}
@@ -154,6 +160,26 @@ export default function Cart({ to, message, isSigned = false }) {
     </>
   );
 }
+
+const BackPage = styled.div`
+  button {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-top: 20px;
+    border: none;
+    img {
+      transform: rotate(180deg);
+      width: 25px;
+    }
+    p {
+      font-size: 18px;
+      margin-left: 10px;
+      font-family: 'Josefin Slab', serif;
+    }
+  }
+`;
 
 const Back = styled.div`
   background-color: '#EEEDF4';
@@ -172,7 +198,7 @@ const TitleContainer = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 40px;
-  height: 100px;
+  height: 140px;
 `;
 
 const ProductTable = styled.div`
