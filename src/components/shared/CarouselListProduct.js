@@ -7,14 +7,18 @@ import iconFavorited from '../../assets/iconFavorited.svg';
 import addFavorites from '../../assets/addFavorites.svg';
 import TitleAndArrow from './TitleAndArrow';
 
-export default function CarouselListProduct({ title, margin_top, objctResponseAPI }) {
+export default function CarouselListProduct({
+  titleSession,
+  margin_top,
+  objctResponseAPI
+}) {
   console.log(objctResponseAPI);
   return (
     <CarouselListContainer margin_top={margin_top}>
-      {title ? <TitleAndArrow>{title}</TitleAndArrow> : ''}
+      {titleSession ? <TitleAndArrow titleSession={titleSession} /> : ''}
       <div className="rowOfCardsContainer">
         {objctResponseAPI.map((order, index) =>
-          title === 'Mais pedidos' ? (
+          titleSession === 'Mais pedidos' ? (
             <CardCarouselOrdersAndProducts
               key={index}
               image={order.image}
@@ -22,7 +26,7 @@ export default function CarouselListProduct({ title, margin_top, objctResponseAP
               price={order.price}
               icon={order.favorited ? iconFavorited : addFavorites}
             />
-          ) : title === 'Meus favoritos' ? (
+          ) : titleSession === 'Meus favoritos' ? (
             <CardCarouselOrdersAndProducts
               key={index}
               image={order.image}
@@ -49,13 +53,12 @@ const CarouselListContainer = styled.div`
   width: 100%;
   min-width: 100%;
   height: 400px;
-
   margin-right: 0;
 
   .rowOfCardsContainer {
     margin-top: ${props => props.margin_top}px;
     width: 100%;
-    height: 450px;
+
     display: flex;
     justify-content: start;
     align-items: center;

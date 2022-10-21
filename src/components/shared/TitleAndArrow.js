@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import arrowright from '../../assets/arrowright.svg';
 
-export default function TitleAndArrow({ children }) {
+export default function TitleAndArrow({ titleSession }) {
   return (
     <TitleAndArrowContainer>
       <div className="titleContainer">
-        <h2>{children}</h2>
+        <h2>{titleSession}</h2>
         <div className="line"></div>
       </div>
       <img src={arrowright} alt="" />
@@ -18,6 +18,9 @@ const TitleAndArrowContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   padding-right: 20px;
+  min-width: 100%;
+
+  margin-left: -5px;
 
   .titleContainer {
     h2 {
@@ -31,6 +34,7 @@ const TitleAndArrowContainer = styled.div`
       width: 102%;
       position: relative;
       bottom: 8px;
+      left: 0;
     }
   }
 `;
