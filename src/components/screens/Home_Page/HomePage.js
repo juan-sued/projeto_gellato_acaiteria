@@ -95,8 +95,8 @@ export default function HomePage() {
           titleSession={'Meus favoritos'}
           margin_top={'50'}
         />
-
         <FeedBacks titleSession={'Feedbacks'} />
+        asdasd
       </Main>
 
       <ImageArvoreAcai src={Arvore_de_acai} alt="" />
