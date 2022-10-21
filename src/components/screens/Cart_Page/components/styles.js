@@ -2,15 +2,25 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   padding: 10px;
-  background: #fff;
+
   border-radius: 4px;
-  max-width: 100%;
+  min-width: 100%;
+  z-index: 3;
+  margin-bottom: 90px;
 
   footer {
-    margin-top: 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    background-color: white;
+    min-width: 100%;
+    height: 80px;
+    padding: 10px;
+    box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 2px 2px 0px 0px;
 
     button {
       background: #7159c1;

@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
+import Cart from '../components/screens/Cart_Page/components';
 import HomePage from '../components/screens/Home_Page/HomePage';
-import Cart from '../components/shared/Cart';
+
 const PrivateRoutes = () => (
   <Routes>
     <Route path={'/'} element={<HomePage />} />

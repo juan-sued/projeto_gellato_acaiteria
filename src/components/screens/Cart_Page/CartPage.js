@@ -1,4 +1,4 @@
-import Cart from '../../shared/Cart';
+import Cart from './components';
 
 export default function CartPage() {
   return <Cart to={'/cart'} />;

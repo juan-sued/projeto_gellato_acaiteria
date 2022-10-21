@@ -4,12 +4,12 @@ import iconremove from '../../../assets/iconremove.svg';
 import iconpencil from '../../../assets/iconpencil.svg';
 import { useState } from 'react';
 import InputNumber from '../../shared/InputNumber';
-
-function ItemProductTable({ image, price, subTotal, description }) {
+import iconcheck from '../../../assets/iconcheck.svg';
+function ItemProductTable({ image, price, subTotal, description, amount }) {
   const [stateInput, setStateInput] = useState(true);
 
   const editQntd = () => {
-    setStateInput(false);
+    setStateInput(!stateInput);
   };
 
   return (
@@ -26,7 +26,7 @@ function ItemProductTable({ image, price, subTotal, description }) {
         </div>
         <div className="column">
           <div className="nameColumn">Qtd.</div>
-          <InputNumber stateInput={stateInput} />
+          <InputNumber amount={amount} stateInput={stateInput} />
         </div>
         <div className="column">
           <div className="nameColumn">SubTotal</div>
@@ -41,7 +41,7 @@ function ItemProductTable({ image, price, subTotal, description }) {
               <img src={iconremove} alt="" />
             </button>
             <button className="iconButton" onClick={editQntd}>
-              <img src={iconpencil} alt="" />
+              <img src={stateInput ? iconpencil : iconcheck} alt="" />
             </button>
           </div>
         </div>
