@@ -94,21 +94,21 @@ export default function Cart({ to, message, isSigned = false }) {
       {
         id: 2,
         image: copoHome2,
-        title: '1 Litro',
+        title: '700 ml',
         name: 'acaizaum',
         priceFormatted: 'R$ 20,50'
       },
       {
         id: 3,
         image: copoHome2,
-        title: '1 Litro',
+        title: '300ml',
         name: 'acaizaum',
         priceFormatted: 'R$ 20,50'
       },
       {
         id: 4,
         image: copoHome2,
-        title: '1 Litro',
+        title: '500ml',
         name: 'acaizaum',
         priceFormatted: 'R$ 20,50'
       },
@@ -122,7 +122,7 @@ export default function Cart({ to, message, isSigned = false }) {
       {
         id: 5,
         image: copoHome2,
-        title: '1 Litro',
+        title: '200ml',
         name: 'acaizaum',
         priceFormatted: 'R$ 20,50'
       },
@@ -136,7 +136,7 @@ export default function Cart({ to, message, isSigned = false }) {
       {
         id: 5,
         image: copoHome2,
-        title: '1 Litro',
+        title: '300ml',
         name: 'acaizaum',
         priceFormatted: 'R$ 20,50'
       },
