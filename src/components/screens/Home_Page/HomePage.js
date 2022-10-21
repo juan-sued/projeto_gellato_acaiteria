@@ -17,6 +17,8 @@ import CarouselListProduct from '../../shared/CarouselListProduct';
 import copoHome2 from '../../../assets/copoHome2.png';
 import copoHome from '../../../assets/copoHome.png';
 import { formatPrice } from '../../../util/format';
+import FeedBacks from '../../shared/Feedback/Feedbacks';
+import TitleAndArrow from '../../shared/TitleAndArrow';
 
 export default function HomePage() {
   const objctResponseAPI = {
@@ -85,14 +87,16 @@ export default function HomePage() {
         <Divider />
         <CarouselListProduct
           objctResponseAPI={objctResponseAPI.listMoreOrders}
-          title={'Mais pedidos'}
-          margin_top={'0'}
+          titleSession={'Mais pedidos'}
+          margin_top={'50'}
         />
         <CarouselListProduct
           objctResponseAPI={objctResponseAPI.listMyFavoriteds}
-          title={'Meus favoritos'}
-          margin_top={'0'}
+          titleSession={'Meus favoritos'}
+          margin_top={'50'}
         />
+
+        <FeedBacks titleSession={'Feedbacks'} />
       </Main>
 
       <ImageArvoreAcai src={Arvore_de_acai} alt="" />
