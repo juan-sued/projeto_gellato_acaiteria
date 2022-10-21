@@ -16,4 +16,9 @@ const incrementStarsFeedback = points => {
   return arrStars;
 };
 
-export default incrementStarsFeedback;
+const increaseCardSizeToggle = ({ setStateCardFeedback, stateCardFeedback }) => {
+  console.log(stateCardFeedback);
+  return setStateCardFeedback(!stateCardFeedback);
+};
+
+export { incrementStarsFeedback, increaseCardSizeToggle };

@@ -3,11 +3,22 @@ import iconprofile from '../../../assets/iconprofile.svg';
 import iconstart from '../../../assets/iconstart.svg';
 import iconmiddlestart from '../../../assets/iconmiddlestart.svg';
 import iconnotpoint from '../../../assets/iconnotpoint.svg';
-import incrementStarsFeedback from './incrementStarsFeedback';
+import * as utils from './utils/utilsFeedback';
+import { useState } from 'react';
 
-export default function CardFeedback({ name, points, feedback }) {
+export default function CardFeedback({ name, points, feedback, increaseCardSizeToggle }) {
+  const [stateCardFeedback, setStateCardFeedback] = useState(false);
+
   return (
-    <CardFeedbackStyle>
+    <CardFeedbackStyle
+      onClick={() =>
+        utils.increaseCardSizeToggle({
+          setStateCardFeedback,
+          stateCardFeedback
+        })
+      }
+      stateCardFeedback={stateCardFeedback}
+    >
       <div className="columnIcon">
         <div className="iconBackground">
           <img src={iconprofile} alt="" />
@@ -17,7 +28,7 @@ export default function CardFeedback({ name, points, feedback }) {
         <h1>{name}</h1>
         <span className="lineDetailsFeedback">
           <p className="points">{points}</p>
-          {incrementStarsFeedback(points).map((star, index) => (
+          {utils.incrementStarsFeedback(points).map((star, index) => (
             <img
               key={index}
               src={
@@ -50,6 +61,8 @@ const CardFeedbackStyle = styled.div`
   margin-bottom: 20px;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
   transition: all 0.5s ease-out;
+
+  height: ${props => (props.stateCardFeedback ? 'auto' : '110px')};
   :hover {
     cursor: pointer;
     box-shadow: none;
@@ -61,7 +74,7 @@ const CardFeedbackStyle = styled.div`
     line-height: 21px;
     font-weight: 500;
     font-size: 17px;
-    white-space: nowrap;
+    white-space: ${props => (props.stateCardFeedback ? 'normal' : 'nowrap')};
     overflow: hidden;
     text-overflow: ellipsis;
   }
