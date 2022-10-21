@@ -18,7 +18,7 @@ export default function Cart({ to, message, isSigned = false }) {
 
   const navigate = useNavigate();
 
-  const { cart, updateProductAmount, removeProduct, setCart } = useCart();
+  const { cart, setCart } = useCart();
 
   const cartFormatted = cart.map(product => ({
     ...product,
@@ -31,31 +31,20 @@ export default function Cart({ to, message, isSigned = false }) {
     }, 0)
   );
 
-  function handleProductIncrement(product) {
-    updateProductAmount({ productId: product._id, amount: product.amount + 1 });
-  }
-
-  function handleProductDecrement(product) {
-    updateProductAmount({ productId: product._id, amount: product.amount - 1 });
-  }
-
-  function handleRemoveProduct(productId) {
-    removeProduct(productId);
-  }
   function handleCreateOrder() {
-    const books = cart.map(books => {
+    const products = cart.map(products => {
       return {
-        id: books._id,
-        name: books.name,
-        price: books.price,
-        image: books.image,
-        amount: books.amount
+        id: products._id,
+        name: products.name,
+        price: products.price,
+        image: products.image,
+        amount: products.amount
       };
     });
 
     const orderData = {
       user: userInfo.email,
-      books
+      products
     };
 
     const sucess = () => {
@@ -67,31 +56,6 @@ export default function Cart({ to, message, isSigned = false }) {
   }
 
   const objctResponseAPI = {
-    listMyFavoriteds: [
-      {
-        id: 2,
-        image: copoHome2,
-        title: '1 Litro',
-        name: 'acaizaum',
-        priceFormatted: '20.50'
-      },
-      {
-        id: 2,
-        image: copoHome2,
-        title: '1 Litro',
-        price: '20,00'
-      },
-      {
-        image: copoHome2,
-        description: '1 Litro',
-        price: '20,00'
-      },
-      {
-        image: copoHome2,
-        description: '1 Litro',
-        price: '20,00'
-      }
-    ],
     listMoreOrders: [
       {
         id: 2,
@@ -126,7 +90,7 @@ export default function Cart({ to, message, isSigned = false }) {
         amount: 2
       },
       {
-        id: 5,
+        id: 6,
         image: copoHome2,
         title: '1 Litro',
         name: 'acaizaum',
@@ -134,7 +98,7 @@ export default function Cart({ to, message, isSigned = false }) {
         amount: 2
       },
       {
-        id: 5,
+        id: 7,
         image: copoHome2,
         title: '1 Litro',
         name: 'acaizaum',
@@ -142,7 +106,7 @@ export default function Cart({ to, message, isSigned = false }) {
         amount: 2
       },
       {
-        id: 5,
+        id: 8,
         image: copoHome2,
         title: '1 Litro',
         name: 'acaizaum',
@@ -160,12 +124,13 @@ export default function Cart({ to, message, isSigned = false }) {
         <ProductTable>
           {objctResponseAPI.listMoreOrders.map((product, index) => (
             <ItemProductTable
-              key={index}
+              key={product.id}
               image={product.image}
               price={product.priceFormatted}
               subTotal={product.priceFormatted}
               description={product.title}
               amount={product.amount}
+              id={product.id}
             />
           ))}
         </ProductTable>
