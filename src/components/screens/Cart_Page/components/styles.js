@@ -2,9 +2,11 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   padding: 10px;
-  background: #ffffff;
+
   border-radius: 4px;
   min-width: 100%;
+  z-index: 3;
+  margin-bottom: 90px;
 
   footer {
     display: flex;

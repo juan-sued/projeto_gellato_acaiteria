@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 
-export default function InputNumber({ stateInput }) {
-  const [inputQtd, setInputQtd] = useState(1);
-  const atualiza = e => {
+export default function InputNumber({ amount, stateInput }) {
+  const [inputQtd, setInputQtd] = useState(amount);
+  const attValue = e => {
     setInputQtd(e.target.value);
   };
   return (
@@ -12,9 +12,10 @@ export default function InputNumber({ stateInput }) {
       name="qtd"
       className="inputQntd"
       value={inputQtd}
-      onChange={atualiza}
+      onChange={attValue}
       required
       disabled={stateInput}
+      stateInput={stateInput}
       min={1}
     />
   );
@@ -30,11 +31,12 @@ const InputNumberStyle = styled.input`
   font-family: 'Jost', sans-serif;
   border-radius: 4px;
   padding-left: 12px;
+  height: 35px;
 
   background: ${props => (props.stateInput ? '#E5E5E5' : '#ffffff')};
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
 
-  color: ${props => (props.stateInput ? '#d4d4d4' : '#000000')};
+  color: ${props => (props.stateInput ? '#8F8F8F' : '#000000')};
   @media screen and (min-width: 700px) {
     padding-left: 4px;
   }
