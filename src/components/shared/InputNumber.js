@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 
-export default function InputNumber({ amount, stateInput }) {
+export default function InputNumber({ amount }) {
   const [inputQtd, setInputQtd] = useState(amount);
   const attValue = e => {
     setInputQtd(e.target.value);
@@ -14,14 +14,16 @@ export default function InputNumber({ amount, stateInput }) {
       value={inputQtd}
       onChange={attValue}
       required
-      disabled={stateInput}
-      stateInput={stateInput}
+      disabled={inputQtd <= 1}
+      stateInput={inputQtd <= 1 ? true : false}
       min={1}
     />
   );
 }
 
 const InputNumberStyle = styled.input`
+  margin-top: 5px;
+  margin-bottom: 5px;
   font-size: 16px;
   width: 35px;
   display: flex;

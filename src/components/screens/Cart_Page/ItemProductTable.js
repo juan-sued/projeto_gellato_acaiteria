@@ -1,21 +1,30 @@
 import styled from 'styled-components';
 import iconremove from '../../../assets/iconremove.svg';
 
-import iconpencil from '../../../assets/iconpencil.svg';
 import { useState } from 'react';
 import InputNumber from '../../shared/InputNumber';
-import iconcheck from '../../../assets/iconcheck.svg';
-function ItemProductTable({ image, price, subTotal, description, amount }) {
-  const [stateInput, setStateInput] = useState(true);
+import iconnegative from '../../../assets/iconnegative.svg';
+import iconpositive from '../../../assets/iconpositive.svg';
+import { useCart } from '../../../hooks/useCart';
+function ItemProductTable({ image, price, subTotal, description, amount, id }) {
+  const { updateProductAmount, removeProduct } = useCart();
 
-  const editQntd = () => {
-    setStateInput(!stateInput);
-  };
+  function handleProductIncrement({ id, amount }) {
+    updateProductAmount({ productId: id, amount: amount + 1 });
+  }
 
+  function handleProductDecrement({ id, amount }) {
+    updateProductAmount({ productId: id, amount: amount - 1 });
+  }
+
+  function handleRemoveProduct(productId) {
+    removeProduct(productId);
+  }
   return (
     <ItemProductTableStyle>
       <div className="itemTable">
         <div className="column">
+          <div className="nameColumn">Açaí</div>
           <img className="productImage" src={image} alt="" />
           <div className="nameColumn description">{description}</div>
         </div>
@@ -25,9 +34,27 @@ function ItemProductTable({ image, price, subTotal, description, amount }) {
           <p className="value">{price}</p>
         </div>
         <div className="column">
-          <div className="nameColumn">Qtd.</div>
-          <InputNumber amount={amount} stateInput={stateInput} />
+          <div className="nameColumn qtd">Qtd.</div>
+          <div className="inputContainer">
+            <button
+              className="iconButton"
+              onClick={() => handleProductIncrement({ id, amount })}
+            >
+              <img src={iconpositive} alt="" />
+            </button>
+
+            <InputNumber amount={amount} />
+
+            <button
+              className="iconButton"
+              disabled={amount <= 1}
+              onClick={() => handleProductDecrement({ id, amount })}
+            >
+              <img src={iconnegative} alt="" />
+            </button>
+          </div>
         </div>
+
         <div className="column">
           <div className="nameColumn">SubTotal</div>
           <p className="value">{subTotal}</p>
@@ -37,11 +64,8 @@ function ItemProductTable({ image, price, subTotal, description, amount }) {
           <div className="divider"></div>
 
           <div className="column buttons">
-            <button className="iconButton">
+            <button className="iconButton" onClick={() => handleRemoveProduct(id)}>
               <img src={iconremove} alt="" />
-            </button>
-            <button className="iconButton" onClick={editQntd}>
-              <img src={stateInput ? iconpencil : iconcheck} alt="" />
             </button>
           </div>
         </div>
@@ -68,9 +92,12 @@ export const ItemProductTableStyle = styled.div`
     padding-bottom: 14px;
     color: white;
     font-weight: 700;
-    height: 100px;
+    height: 130px;
     align-items: center;
 
+    .qtd {
+      margin-bottom: 10px;
+    }
     .containerDivider {
       display: flex;
       height: 100%;
@@ -89,6 +116,9 @@ export const ItemProductTableStyle = styled.div`
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
+      .value {
+        margin-bottom: 18px;
+      }
 
       .nameColumn {
         font-size: 16px;
@@ -104,6 +134,8 @@ export const ItemProductTableStyle = styled.div`
       button {
         background-color: transparent;
         border: none;
+
+        margin-right: -4px;
         ::hover {
           cursor: pointer;
           box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -118,6 +150,9 @@ export const ItemProductTableStyle = styled.div`
     }
     .column .description {
       font-size: 14px;
+    }
+    .buttons {
+      justify-content: center;
     }
   }
 `;
