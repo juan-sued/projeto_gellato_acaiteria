@@ -80,7 +80,7 @@ export const ItemProductTableStyle = styled.div`
 
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
 
-  background-color: #9747ff;
+  background-color: #8e1c5a;
   border-radius: 5px;
 
   .itemTable {

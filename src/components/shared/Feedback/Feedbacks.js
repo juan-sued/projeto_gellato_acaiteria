@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import TitleAndArrow from '../TitleAndArrow';
 import { useState } from 'react';
 import CardFeedback from './CardFeedback';
-import * as utilsFeedback from './utils/utilsFeedback.js';
+
 export default function FeedBacks({ titleSession }) {
   const arrayFeedbacks = [
     {
