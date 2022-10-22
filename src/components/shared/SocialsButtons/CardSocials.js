@@ -58,13 +58,13 @@ const CardSocialsStyle = styled.div`
   padding: 15px;
   border-radius: 8px;
   display: flex;
-  width: ${props => (props.stateCardSocialButtons ? '100%' : '27%')};
+  width: ${props => (props.stateCardSocialButtons ? '100%' : '24%')};
 
   padding: 15px 10px 15px 10px;
   font-weight: 500;
   color: white;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
-  height: ${props => (props.stateCardSocialButtons ? '100%' : '25%')};
+  height: ${props => (props.stateCardSocialButtons ? '100%' : '24%')};
   transition: height 0.5s 0.6s, width 0.5s;
   overflow: hidden;
 

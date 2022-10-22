@@ -60,6 +60,7 @@ export default function SocialsButtons() {
 
 const Container = styled.div`
   margin-top: 100px;
+  min-width: 100%;
 `;
 
 const SocialButtons = styled.div`
