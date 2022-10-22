@@ -71,6 +71,7 @@ const SocialButtons = styled.div`
   flex-direction: column;
   justify-content: start;
   align-items: start;
+  margin-top: 50px;
   .container {
     height: 400px;
     width: 100%;
