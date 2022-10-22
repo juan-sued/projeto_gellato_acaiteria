@@ -3,52 +3,65 @@ import iconprofile from '../../../assets/iconprofile.svg';
 import iconstart from '../../../assets/iconstart.svg';
 import iconmiddlestart from '../../../assets/iconmiddlestart.svg';
 import iconnotpoint from '../../../assets/iconnotpoint.svg';
-import * as utils from './utils/utilsFeedback';
+import * as utils from '../../../util/utilsFunctions';
 import { useState } from 'react';
-
+import AnimateHeight from 'react-animate-height';
 export default function CardFeedback({ name, points, feedback, increaseCardSizeToggle }) {
   const [stateCardFeedback, setStateCardFeedback] = useState(false);
 
   return (
-    <CardFeedbackStyle
-      onClick={() =>
-        utils.increaseCardSizeToggle({
-          setStateCardFeedback,
-          stateCardFeedback
-        })
-      }
-      stateCardFeedback={stateCardFeedback}
-    >
-      <div className="columnIcon">
-        <div className="iconBackground">
-          <img src={iconprofile} alt="" />
-        </div>
-      </div>
-      <div className="columnContent">
-        <h1>{name}</h1>
-        <span className="lineDetailsFeedback">
-          <p className="points">{points}</p>
-          {utils.incrementStarsFeedback(points).map((star, index) => (
-            <img
-              key={index}
-              src={
-                star === 'startFull'
-                  ? iconstart
-                  : star === 'middle'
-                  ? iconmiddlestart
-                  : iconnotpoint
-              }
-              alt=""
-            />
-          ))}
+    <Animated>
+      <AnimateHeight
+        className="AnimatedHeight"
+        duration={500}
+        height={stateCardFeedback ? 'auto' : '110px'}
+        animateOpacity={true}
+      >
+        <CardFeedbackStyle
+          onClick={() =>
+            utils.increaseCardSizeToggle(setStateCardFeedback, stateCardFeedback)
+          }
+          stateCardFeedback={stateCardFeedback}
+        >
+          <div className="columnIcon">
+            <div className="iconBackground">
+              <img src={iconprofile} alt="" />
+            </div>
+          </div>
+          <div className="columnContent">
+            <h1>{name}</h1>
+            <span className="lineDetailsFeedback">
+              <p className="points">{points}</p>
+              {utils.incrementStarsFeedback(points).map((star, index) => (
+                <img
+                  key={index}
+                  src={
+                    star === 'startFull'
+                      ? iconstart
+                      : star === 'middle'
+                      ? iconmiddlestart
+                      : iconnotpoint
+                  }
+                  alt=""
+                />
+              ))}
 
-          <p className="date">12/01/2022</p>
-        </span>
-        <div className="feedback">{feedback}</div>
-      </div>
-    </CardFeedbackStyle>
+              <p className="date">12/01/2022</p>
+            </span>
+            <div className="feedback">{feedback}</div>
+          </div>
+        </CardFeedbackStyle>
+      </AnimateHeight>
+    </Animated>
   );
 }
+
+const Animated = styled.div`
+  .AnimatedHeight {
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+`;
 
 const CardFeedbackStyle = styled.div`
   background-color: white;
@@ -58,13 +71,12 @@ const CardFeedbackStyle = styled.div`
   max-width: 100%;
   padding: 15px 10px 15px 10px;
   font-weight: 500;
-  margin-bottom: 20px;
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
-  transition: all 0.5s ease-out;
 
-  height: ${props => (props.stateCardFeedback ? 'auto' : '110px')};
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
+
   :hover {
     cursor: pointer;
+    transition: all 0.5s ease-out;
     box-shadow: none;
   }
 

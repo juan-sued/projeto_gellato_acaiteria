@@ -54,7 +54,5 @@ const Container = styled.div`
 const FeedBacksContainer = styled.div`
   margin-top: 50px;
   width: 100%;
-  height: 200px;
-
   padding: 10px;
 `;

@@ -1,0 +1,104 @@
+import { useState } from 'react';
+import AnimateHeight from 'react-animate-height';
+import styled from 'styled-components';
+import * as utils from '../../../util/utilsFunctions.js';
+import iconwhatsapp from '../../../assets/iconwhatsapp.svg';
+export default function SocialsButtons() {
+  const [stateCardSocialButtons, setStateCardSocialButtons] = useState(false);
+
+  return (
+    <SocialButtons>
+      <div className="container">
+        <CardSocialsStyle
+          onClick={() =>
+            utils.increaseCardSizeToggle(
+              setStateCardSocialButtons,
+              stateCardSocialButtons
+            )
+          }
+          stateCardSocialButtons={stateCardSocialButtons}
+        >
+          <div className="columnIcon">
+            <div className="iconBackground">
+              <img src={iconwhatsapp} alt="" />
+            </div>
+          </div>
+          <div className="columnContent">
+            <h1>(21) 98498-0723</h1>
+
+            <div className="message">
+              Clique clique para saber mais aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+            </div>
+          </div>
+        </CardSocialsStyle>
+      </div>
+    </SocialButtons>
+  );
+}
+
+const SocialButtons = styled.div`
+  width: 100%;
+  padding: 10px 20px 10px 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  .container {
+    height: 400px;
+    width: 100%;
+  }
+`;
+
+const CardSocialsStyle = styled.div`
+  background-color: #1c2156;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  width: ${props => (props.stateCardSocialButtons ? '100%' : '27%')};
+
+  padding: 15px 10px 15px 10px;
+  font-weight: 500;
+  color: white;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
+  height: ${props => (props.stateCardSocialButtons ? '100%' : '25%')};
+  transition: height 0.5s 1.1s, width 0.5s;
+  overflow: hidden;
+  :hover {
+    cursor: pointer;
+
+    box-shadow: none;
+  }
+
+  .message {
+    width: 210px;
+    background-color: green;
+    word-wrap: break-word;
+    line-height: 21px;
+    font-weight: 500;
+    font-size: 17px;
+    white-space: ${props => (props.stateCardSocialButtons ? 'normal' : 'nowrap')};
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 50px;
+  }
+
+  .columnContent {
+    h1 {
+      margin-bottom: 10px;
+      font-weight: 600;
+      font-size: 30px;
+      margin-top: 30px;
+    }
+  }
+
+  .columnIcon {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 70px;
+    }
+  }
+`;
