@@ -80,7 +80,7 @@ export const ItemProductTableStyle = styled.div`
 
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
 
-  background-color: #8e1c5a;
+  background-color: #9747ff;
   border-radius: 5px;
 
   .itemTable {
@@ -121,7 +121,7 @@ export const ItemProductTableStyle = styled.div`
       }
 
       .nameColumn {
-        font-size: 16px;
+        font-size: 17px;
       }
       img {
         width: 20px;
@@ -146,7 +146,7 @@ export const ItemProductTableStyle = styled.div`
     .productImage {
       min-height: 50px;
       min-width: fit-content;
-      border-radius: 10px;
+      border-radius: 100px;
     }
     .column .description {
       font-size: 14px;

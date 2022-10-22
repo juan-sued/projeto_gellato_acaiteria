@@ -16,9 +16,9 @@ const incrementStarsFeedback = points => {
   return arrStars;
 };
 
-const increaseCardSizeToggle = ({ setStateCardFeedback, stateCardFeedback }) => {
-  console.log(stateCardFeedback);
-  return setStateCardFeedback(!stateCardFeedback);
+const increaseCardSizeToggle = (setStateCard, stateCard) => {
+  console.log(stateCard);
+  return setStateCard(!stateCard);
 };
 
 export { incrementStarsFeedback, increaseCardSizeToggle };

@@ -19,6 +19,7 @@ import copoHome from '../../../assets/copoHome.png';
 import { formatPrice } from '../../../util/format';
 import FeedBacks from '../../shared/Feedback/Feedbacks';
 import TitleAndArrow from '../../shared/TitleAndArrow';
+import SocialsButtons from '../../shared/SocialsButtons/SocialsButtons';
 
 export default function HomePage() {
   const objctResponseAPI = {
@@ -71,7 +72,7 @@ export default function HomePage() {
   };
 
   const numero = objctResponseAPI.listMoreOrders[0].price;
-
+  const batata = 'batata';
   const numeroFormatado = parseFloat(numero);
   console.log(formatPrice(numeroFormatado));
 
@@ -95,8 +96,9 @@ export default function HomePage() {
           titleSession={'Meus favoritos'}
           margin_top={'50'}
         />
-
         <FeedBacks titleSession={'Feedbacks'} />
+
+        <SocialsButtons />
       </Main>
 
       <ImageArvoreAcai src={Arvore_de_acai} alt="" />
