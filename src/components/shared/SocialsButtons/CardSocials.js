@@ -58,13 +58,14 @@ const CardSocialsStyle = styled.div`
   padding: 15px;
   border-radius: 8px;
   display: flex;
-  width: ${props => (props.stateCardSocialButtons ? '100%' : '27%')};
-
+  width: ${props => (props.stateCardSocialButtons ? '100%' : '24%')};
+  min-width: 90px;
   padding: 15px 10px 15px 10px;
   font-weight: 500;
   color: white;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
-  height: ${props => (props.stateCardSocialButtons ? '100%' : '25%')};
+  height: ${props => (props.stateCardSocialButtons ? '100%' : '23%')};
+
   transition: height 0.5s 0.6s, width 0.5s;
   overflow: hidden;
 
@@ -86,7 +87,7 @@ const CardSocialsStyle = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
     margin-top: 30px;
-    min-height: 50%;
+    min-height: 51%;
 
     .hoursOn {
       margin-top: 20px;
@@ -131,7 +132,7 @@ const CardSocialsStyle = styled.div`
       margin-bottom: 10px;
       font-weight: 600;
       font-size: 170%;
-      margin-top: 30px;
+      margin-top: 20px;
     }
   }
 

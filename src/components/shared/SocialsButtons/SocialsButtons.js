@@ -60,6 +60,7 @@ export default function SocialsButtons() {
 
 const Container = styled.div`
   margin-top: 100px;
+  min-width: 100%;
 `;
 
 const SocialButtons = styled.div`
@@ -70,6 +71,7 @@ const SocialButtons = styled.div`
   flex-direction: column;
   justify-content: start;
   align-items: start;
+  margin-top: 50px;
   .container {
     height: 400px;
     width: 100%;
