@@ -27,7 +27,13 @@ export default function SocialsButtons() {
             <h1>(21) 98498-0723</h1>
 
             <div className="message">
-              Clique clique para saber mais aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+              <p>Olá, sou a Adriana, como posso ajudá-lo?</p>
+              <p className="hoursOn">Horário de atendimento:</p>
+              <p className="hoursOn">Segunda à Sexta de 9:00 às 18:00.</p>
+              <p className="hoursOn">Finais de Semana de 10:00 às 20:00.</p>
+            </div>
+            <div className="containerSendMessage">
+              <button className="sendMessage">ENVIAR MENSAGEM</button>
             </div>
           </div>
         </CardSocialsStyle>
@@ -62,7 +68,7 @@ const CardSocialsStyle = styled.div`
   color: white;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
   height: ${props => (props.stateCardSocialButtons ? '100%' : '25%')};
-  transition: height 0.5s 1.1s, width 0.5s;
+  transition: height 0.5s 0.6s, width 0.5s;
   overflow: hidden;
   :hover {
     cursor: pointer;
@@ -72,15 +78,45 @@ const CardSocialsStyle = styled.div`
 
   .message {
     width: 210px;
-    background-color: green;
+
     word-wrap: break-word;
     line-height: 21px;
     font-weight: 500;
-    font-size: 17px;
+    font-size: 18px;
     white-space: ${props => (props.stateCardSocialButtons ? 'normal' : 'nowrap')};
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-top: 50px;
+    margin-top: 30px;
+
+    .hoursOn {
+      margin-top: 20px;
+    }
+  }
+
+  .containerSendMessage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+
+    .sendMessage {
+      height: 50px;
+      border-radius: 3px;
+      border: solid 1px #07ef1e;
+      font-size: 16px;
+      font-family: 'Jost', sans-serif;
+      width: 100%;
+      border-radius: 4px;
+      color: #07ef1e;
+      background-color: transparent;
+
+      :hover {
+        cursor: pointer;
+        color: #1c2156;
+        border: solid 1px #1c2156;
+        background-color: #07ef1e;
+      }
+    }
   }
 
   .columnContent {
