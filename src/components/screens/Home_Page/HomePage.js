@@ -71,11 +71,6 @@ export default function HomePage() {
     ]
   };
 
-  const numero = objctResponseAPI.listMoreOrders[0].price;
-  const batata = 'batata';
-  const numeroFormatado = parseFloat(numero);
-  console.log(formatPrice(numeroFormatado));
-
   return (
     <>
       <SideBar />
