@@ -1,14 +1,26 @@
 import styled from 'styled-components';
 import arrowright from '../../assets/arrowright.svg';
-
-export default function TitleAndArrow({ titleSession }) {
+import arrowrigthwhite from '../../assets/arrowrigthwhite.svg';
+export default function TitleAndArrow({
+  titleSession,
+  color = '#1e0c22c2',
+  fontSize = '30px',
+  fontWeight,
+  colorLine = '#8e1c5ae5'
+}) {
+  console.log(color);
   return (
-    <TitleAndArrowContainer>
+    <TitleAndArrowContainer
+      color={color}
+      fontSize={fontSize}
+      fontWeight={fontWeight}
+      colorLine={colorLine}
+    >
       <div className="titleContainer">
         <h2>{titleSession}</h2>
         <div className="line"></div>
       </div>
-      <img src={arrowright} alt="" />
+      <img src={color === '#1e0c22c2' ? arrowright : arrowrigthwhite} alt="" />
     </TitleAndArrowContainer>
   );
 }
@@ -24,17 +36,27 @@ const TitleAndArrowContainer = styled.div`
 
   .titleContainer {
     h2 {
-      padding-left: 20px;
-      font-size: 30px;
-      color: #1e0c22c2;
+      padding-left: 30px;
+      font-size: ${props => props.fontSize};
+      color: ${props => props.color};
+      font-weight: ${props => props.fontWeight};
     }
     .line {
-      background-color: #8e1c5ae5;
+      background-color: ${props => props.colorLine};
       height: 1px;
-      width: 102%;
+      width: 103%;
+      max-width: 210px;
       position: relative;
-      bottom: 8px;
+      bottom: ${props => (props.fontSize === '30px' ? '8px' : '12px')};
       left: 0;
+
+      @media screen and (min-width: 700px) {
+        max-width: 500px;
+      }
     }
+  }
+
+  img {
+    width: ${props => props.fontSize};
   }
 `;
