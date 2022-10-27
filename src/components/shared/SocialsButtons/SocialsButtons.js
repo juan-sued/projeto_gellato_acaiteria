@@ -1,7 +1,4 @@
-import { useState } from 'react';
-import AnimateHeight from 'react-animate-height';
 import styled from 'styled-components';
-import * as utils from '../../../util/utilsFunctions.js';
 import iconwhatsapp from '../../../assets/iconwhatsapp.svg';
 import iconinstagram from '../../../assets/iconinstagram.svg';
 import iconfacebook from '../../../assets/iconfacebook.svg';
@@ -87,7 +84,7 @@ const Container = styled.div`
   margin-top: 80px;
   min-width: 100%;
   padding-top: 50px;
-  height: 1300px;
+  height: 1400px;
 
   .containerComic {
     z-index: 5;
@@ -96,7 +93,7 @@ const Container = styled.div`
     width: 100%;
 
     position: absolute;
-    bottom: 1340px;
+    bottom: 1440px;
     img {
       width: 30%;
       min-width: 240px;

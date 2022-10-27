@@ -8,11 +8,10 @@ import requestOrder from './requestOrder';
 
 import { useCart } from '../../../../hooks/useCart';
 
-import copoHome2 from '../../../../assets/copoHome2.jpg';
-
 import ItemProductTable from '../ItemProductTable';
 import { useAuth } from '../../../../hooks/useAuth';
 import arrowright from '../../../../assets/arrowright.svg';
+
 export default function Cart({ to, message, isSigned = false }) {
   const { userInfo, signOut } = useAuth();
 
@@ -32,7 +31,7 @@ export default function Cart({ to, message, isSigned = false }) {
   );
 
   function handleCreateOrder() {
-    const products = cart.map(products => {
+    const order = cart.map(products => {
       return {
         id: products._id,
         name: products.name,
@@ -44,7 +43,7 @@ export default function Cart({ to, message, isSigned = false }) {
 
     const orderData = {
       user: userInfo.email,
-      products
+      order
     };
 
     const sucess = () => {
@@ -54,67 +53,6 @@ export default function Cart({ to, message, isSigned = false }) {
 
     requestOrder(orderData, signOut, sucess);
   }
-
-  const objctResponseAPI = {
-    listMoreOrders: [
-      {
-        id: 2,
-        image: copoHome2,
-        title: '700 ml',
-        name: 'acaizaum',
-        priceFormatted: 'R$ 20,50',
-        amount: 2
-      },
-      {
-        id: 3,
-        image: copoHome2,
-        title: '300ml',
-        name: 'acaizaum',
-        priceFormatted: 'R$ 20,50',
-        amount: 1
-      },
-      {
-        id: 4,
-        image: copoHome2,
-        title: '500ml',
-        name: 'acaizaum',
-        priceFormatted: 'R$ 20,50',
-        amount: 0
-      },
-      {
-        id: 5,
-        image: copoHome2,
-        title: '1 Litro',
-        name: 'acaizaum',
-        priceFormatted: 'R$ 20,50',
-        amount: 2
-      },
-      {
-        id: 6,
-        image: copoHome2,
-        title: '1 Litro',
-        name: 'acaizaum',
-        priceFormatted: 'R$ 20,50',
-        amount: 2
-      },
-      {
-        id: 7,
-        image: copoHome2,
-        title: '1 Litro',
-        name: 'acaizaum',
-        priceFormatted: 'R$ 20,50',
-        amount: 2
-      },
-      {
-        id: 8,
-        image: copoHome2,
-        title: '1 Litro',
-        name: 'acaizaum',
-        priceFormatted: 'R$ 20,50',
-        amount: 2
-      }
-    ]
-  };
 
   return (
     <>
@@ -128,12 +66,12 @@ export default function Cart({ to, message, isSigned = false }) {
         </BackPage>
         <TitleContainer>Meu Carrinho</TitleContainer>
         <ProductTable>
-          {objctResponseAPI.listMoreOrders.map((product, index) => (
+          {cartFormatted.map((product, index) => (
             <ItemProductTable
               key={product.id}
               image={product.image}
               price={product.priceFormatted}
-              subTotal={product.priceFormatted}
+              subTotal={product.subTotal}
               description={product.title}
               amount={product.amount}
               id={product.id}
