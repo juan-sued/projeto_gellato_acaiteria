@@ -41,10 +41,15 @@ const Container = styled.div`
   bottom: 500px;
 
   .developed {
-    margin-top: 100px;
     width: 100%;
     text-align: center;
     color: white;
+    height: 20%;
+    font-size: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   h2 {
     color: white;

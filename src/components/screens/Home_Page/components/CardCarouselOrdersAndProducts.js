@@ -54,10 +54,10 @@ const CardOfProduct = styled.div`
 
   .banner {
     margin-top: -1px;
-    min-width: 100%;
+    min-width: auto;
     max-width: 173px;
 
-    border-radius: 10px 10px 59px 59px;
+    border-radius: 10px 10px 60px 60px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   }
 `;
