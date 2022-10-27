@@ -6,44 +6,49 @@ import iconExitFavorites from '../../assets/iconExitFavorites.svg';
 import iconFavorited from '../../assets/iconFavorited.svg';
 import addFavorites from '../../assets/addFavorites.svg';
 import TitleAndArrow from './TitleAndArrow';
+import Loading from '../shared/Loading';
 
 export default function CarouselListProduct({
   titleSession,
   margin_top,
   objctResponseAPI
 }) {
-  console.log(objctResponseAPI);
   return (
     <CarouselListContainer margin_top={margin_top}>
       {titleSession ? <TitleAndArrow titleSession={titleSession} /> : ''}
-      <div className="rowOfCardsContainer">
-        {objctResponseAPI.map((order, index) =>
-          titleSession === 'Mais pedidos' ? (
-            <CardCarouselOrdersAndProducts
-              key={index}
-              image={order.image}
-              description={order.description}
-              price={order.price}
-              icon={order.favorited ? iconFavorited : addFavorites}
-            />
-          ) : titleSession === 'Meus favoritos' ? (
-            <CardCarouselOrdersAndProducts
-              key={index}
-              image={order.image}
-              description={order.description}
-              price={order.price}
-              icon={iconExitFavorites}
-            />
-          ) : (
-            <CardCarouselProduct
-              key={index}
-              image={order.image}
-              description={order.description}
-              price={order.price}
-            />
-          )
-        )}
-      </div>
+
+      {objctResponseAPI.length === 0 ? (
+        <Loading />
+      ) : (
+        <div className="rowOfCardsContainer">
+          {objctResponseAPI.map((order, index) =>
+            titleSession === 'Mais pedidos' ? (
+              <CardCarouselOrdersAndProducts
+                key={index}
+                image={order.image}
+                description={order.description}
+                price={order.price}
+                icon={order.favorited ? iconFavorited : addFavorites}
+              />
+            ) : titleSession === 'Meus favoritos' ? (
+              <CardCarouselOrdersAndProducts
+                key={index}
+                image={order.image}
+                description={order.description}
+                price={order.price}
+                icon={iconExitFavorites}
+              />
+            ) : (
+              <CardCarouselProduct
+                key={index}
+                image={order.image}
+                description={order.description}
+                price={order.price}
+              />
+            )
+          )}
+        </div>
+      )}
     </CarouselListContainer>
   );
 }
@@ -58,6 +63,7 @@ const CarouselListContainer = styled.div`
   .rowOfCardsContainer {
     margin-top: ${props => props.margin_top}px;
     width: 100%;
+    height: 290px;
 
     display: flex;
     justify-content: start;
