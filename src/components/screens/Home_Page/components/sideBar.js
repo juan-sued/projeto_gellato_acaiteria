@@ -10,9 +10,18 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-
+import { useCart } from '../../../../hooks/useCart';
+import { formatPrice } from '../../../../util/format';
 export default function SideBar() {
   const navigate = useNavigate();
+
+  const { cart, setCart } = useCart();
+
+  const cartFormatted = cart.map(product => ({
+    ...product,
+    priceFormatted: formatPrice(product.price),
+    subTotal: formatPrice(product.price * product.amount)
+  }));
 
   const [state, setState] = React.useState({
     right: false
@@ -79,15 +88,11 @@ export default function SideBar() {
           </List>
           <Divider />
           <List>
-            {[
-              { nameIcon: 'done', nameText: 'Açaí 700ml' },
-              { nameIcon: 'done', nameText: 'Açaí 300ml' },
-              { nameIcon: 'done', nameText: 'Açaí 1 Litro' }
-            ].map((text, index) => (
+            {cartFormatted.map((text, index) => (
               <ListItem key={index} disablePadding>
                 <ListItemButton>
                   <ListItemIcon>
-                    <span className="material-icons-round">{text.nameIcon}</span>
+                    <span className="material-icons-round">done</span>
                   </ListItemIcon>
                   <ListItemText primary={text.nameText} />
                 </ListItemButton>
