@@ -10,7 +10,8 @@ export default function CardSocials({
   messageButton,
   introduction,
   text,
-  index
+  index,
+  color
 }) {
   const [stateCardSocialButtons, setStateCardSocialButtons] = useState(false);
   console.log(icon);
@@ -22,6 +23,7 @@ export default function CardSocials({
         }
         stateCardSocialButtons={stateCardSocialButtons}
         index={index}
+        color={color}
       >
         <div className="columnIcon">
           <div className="iconBackground">
@@ -50,7 +52,6 @@ const Container = styled.div`
   height: 100%;
   display: flex;
   justify-content: ${props => (props.index % 2 === 0 ? 'start' : 'end')};
-  margin-top: 20px;
 `;
 
 const CardSocialsStyle = styled.div`
@@ -64,16 +65,31 @@ const CardSocialsStyle = styled.div`
   font-weight: 500;
   color: white;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
-  height: ${props => (props.stateCardSocialButtons ? '100%' : '23%')};
 
+  height: ${props => (props.stateCardSocialButtons ? '100%' : '23%')};
+  z-index: ${props => (props.stateCardSocialButtons ? '30' : '10')};
   transition: height 0.5s 0.6s, width 0.5s;
   overflow: hidden;
+  margin-top: -${props => (props.index === 1 ? '400px' : props.index === 2 ? '493px' : props.index === 3 ? '893px' : '0')};
+  //é aqui
 
   margin-bottom: 20px;
   :hover {
     cursor: pointer;
 
     box-shadow: none;
+  }
+
+  @media screen and (min-width: 700px) {
+    width: ${props => (props.stateCardSocialButtons ? '100%' : '26%')};
+    min-width: 340px;
+    .columnContent {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      width: 100%;
+    }
   }
 
   .message {
@@ -101,21 +117,23 @@ const CardSocialsStyle = styled.div`
     margin-top: 20px;
     min-height: 18%;
 
+    width: 100%;
+
     a {
       width: 100%;
     }
     .sendMessage {
       height: 50px;
       border-radius: 3px;
-      border: solid 1px
-        ${props =>
-          props.index === 0 ? '#07ef1e' : props.index === 1 ? '#F657E7' : '#5B6BF9'};
+      border: solid 1px ${props => props.color};
       font-size: 16px;
       font-family: 'Jost', sans-serif;
       width: 100%;
+
       border-radius: 4px;
-      color: ${props =>
-        props.index === 0 ? '#07ef1e' : props.index === 1 ? '#F657E7' : '#5B6BF9'};
+
+      color: ${props => props.color};
+
       background-color: transparent;
 
       :hover {
@@ -129,7 +147,6 @@ const CardSocialsStyle = styled.div`
 
   .columnContent {
     h1 {
-      margin-bottom: 10px;
       font-weight: 600;
       font-size: 170%;
       margin-top: 20px;
