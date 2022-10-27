@@ -6,26 +6,25 @@ import CardFeedback from './CardFeedback';
 export default function FeedBacks({ titleSession }) {
   const arrayFeedbacks = [
     {
-      name: 'Mariana',
+      name: 'Alessandra Meireles',
       points: '1,0',
-      feedback:
-        'Muito legal! Muito bom mesmo!!! Realmente incrível esse açaí é pftttttt!!'
+      feedback: 'Açaí muito bom, dei um só pra ver como fica só com uma estrelinha'
     },
     {
-      name: 'Mariana',
-      points: '1,5',
-      feedback:
-        'FeedBACK GRANDE PRA TESTAR SE TA SUAVES NA NAVES AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA Muito legal! Muito bom mesmo!!! Realmente incrível esse açaí é pftttttt!!'
+      name: 'Ronaldinho Fenômeno',
+      points: '5,0',
+      feedback: 'A RAZÃO DE EU TER SAÍDO DE CAMPO!!'
     },
     {
-      name: 'Mariana',
+      name: 'Rogério Siena',
       points: '3,0',
-      feedback: 'SIMPLESMENTE PERFEITO, MAS DEI 3 PQ SOU CHATO'
+      feedback: 'Melhor que agarrar pro São Paulo, mas dei 3 pq sou calvo'
     },
     {
-      name: 'Mariana',
+      name: 'Silvio Santos',
       points: '2,5',
-      feedback: 'Colocaria mais calda de petróleo da próxima vez'
+      feedback:
+        ' MAOOOEEEH Colocaria mais calda de petróleo da próxima vez MAAAOOEEH O AVIÃOZINHO'
     }
   ];
 

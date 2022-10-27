@@ -20,6 +20,7 @@ import { formatPrice } from '../../../util/format';
 import FeedBacks from '../../shared/Feedback/Feedbacks';
 import TitleAndArrow from '../../shared/TitleAndArrow';
 import SocialsButtons from '../../shared/SocialsButtons/SocialsButtons';
+import OurHistory from '../../shared/OurHistory/OurHistory';
 
 export default function HomePage() {
   const objctResponseAPI = {
@@ -71,11 +72,6 @@ export default function HomePage() {
     ]
   };
 
-  const numero = objctResponseAPI.listMoreOrders[0].price;
-  const batata = 'batata';
-  const numeroFormatado = parseFloat(numero);
-  console.log(formatPrice(numeroFormatado));
-
   return (
     <>
       <SideBar />
@@ -99,6 +95,8 @@ export default function HomePage() {
         <FeedBacks titleSession={'Feedbacks'} />
 
         <SocialsButtons />
+
+        <OurHistory />
       </Main>
 
       <ImageArvoreAcai src={Arvore_de_acai} alt="" />

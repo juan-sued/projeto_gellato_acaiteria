@@ -84,11 +84,11 @@ export default function SocialsButtons() {
 }
 
 const Container = styled.div`
-  margin-top: 100px;
+  margin-top: 80px;
   min-width: 100%;
   padding-top: 50px;
-  height: 1900px;
-  background-color: transparent;
+  height: 1300px;
+
   .containerComic {
     z-index: 5;
     display: flex;
@@ -96,7 +96,7 @@ const Container = styled.div`
     width: 100%;
 
     position: absolute;
-    bottom: 1450px;
+    bottom: 1340px;
     img {
       width: 30%;
       min-width: 240px;
@@ -107,7 +107,7 @@ const Container = styled.div`
 const SocialButtons = styled.div`
   width: 100%;
   padding: 10px 20px 10px 20px;
-  max-height: 1400px;
+  max-height: 1900px;
   display: flex;
   flex-direction: column;
   justify-content: start;
