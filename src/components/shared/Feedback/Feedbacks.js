@@ -13,7 +13,8 @@ export default function FeedBacks({ titleSession }) {
     {
       name: 'Ronaldinho Fenômeno',
       points: '5,0',
-      feedback: 'A RAZÃO DE EU TER SAÍDO DE CAMPO!!'
+      feedback:
+        'A RAZÃO DE EU TER SAÍDO DE CAMPO!! aaaaaaaaaaaaaaaaaaa FEEEDBACK MUITO GRANDE PARA TESTAR A ANIMAÇÃO AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
     },
     {
       name: 'Rogério Siena',

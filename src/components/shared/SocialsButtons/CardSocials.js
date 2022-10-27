@@ -71,7 +71,6 @@ const CardSocialsStyle = styled.div`
   transition: height 0.5s 0.6s, width 0.5s;
   overflow: hidden;
   margin-top: -${props => (props.index === 1 ? '400px' : props.index === 2 ? '493px' : props.index === 3 ? '893px' : '0')};
-  //é aqui
 
   margin-bottom: 20px;
   :hover {

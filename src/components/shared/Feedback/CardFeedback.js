@@ -10,57 +10,48 @@ export default function CardFeedback({ name, points, feedback, increaseCardSizeT
   const [stateCardFeedback, setStateCardFeedback] = useState(false);
 
   return (
-    <Animated>
-      <AnimateHeight
-        className="AnimatedHeight"
-        duration={500}
-        height={stateCardFeedback ? 'auto' : '110px'}
-        animateOpacity={true}
+    <Container>
+      <CardFeedbackStyle
+        onClick={() =>
+          utils.increaseCardSizeToggle(setStateCardFeedback, stateCardFeedback)
+        }
+        stateCardFeedback={stateCardFeedback}
       >
-        <CardFeedbackStyle
-          onClick={() =>
-            utils.increaseCardSizeToggle(setStateCardFeedback, stateCardFeedback)
-          }
-          stateCardFeedback={stateCardFeedback}
-        >
-          <div className="columnIcon">
-            <div className="iconBackground">
-              <img src={iconprofile} alt="" />
-            </div>
+        <div className="columnIcon">
+          <div className="iconBackground">
+            <img src={iconprofile} alt="" />
           </div>
-          <div className="columnContent">
-            <h1>{name}</h1>
-            <span className="lineDetailsFeedback">
-              <p className="points">{points}</p>
-              {utils.incrementStarsFeedback(points).map((star, index) => (
-                <img
-                  key={index}
-                  src={
-                    star === 'startFull'
-                      ? iconstart
-                      : star === 'middle'
-                      ? iconmiddlestart
-                      : iconnotpoint
-                  }
-                  alt=""
-                />
-              ))}
+        </div>
+        <div className="columnContent">
+          <h1>{name}</h1>
+          <span className="lineDetailsFeedback">
+            <p className="points">{points}</p>
+            {utils.incrementStarsFeedback(points).map((star, index) => (
+              <img
+                key={index}
+                src={
+                  star === 'startFull'
+                    ? iconstart
+                    : star === 'middle'
+                    ? iconmiddlestart
+                    : iconnotpoint
+                }
+                alt=""
+              />
+            ))}
 
-              <p className="date">12/01/2022</p>
-            </span>
-            <div className="feedback">{feedback}</div>
-          </div>
-        </CardFeedbackStyle>
-      </AnimateHeight>
-    </Animated>
+            <p className="date">12/01/2022</p>
+          </span>
+          <div className="feedback">{feedback}</div>
+        </div>
+      </CardFeedbackStyle>
+    </Container>
   );
 }
 
-const Animated = styled.div`
-  .AnimatedHeight {
-    border-radius: 8px;
-    margin-bottom: 20px;
-  }
+const Container = styled.div`
+  background-color: red;
+  width: 100%;
 `;
 
 const CardFeedbackStyle = styled.div`
@@ -71,8 +62,12 @@ const CardFeedbackStyle = styled.div`
   max-width: 100%;
   padding: 15px 10px 15px 10px;
   font-weight: 500;
-
+  margin-bottom: 20px;
+  transition: height 2s ease-out;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
+  height: ${props => (props.stateCardSocialButtons ? '100%' : '40%')};
+  overflow: hidden;
+  width: 100%;
 
   :hover {
     cursor: pointer;
