@@ -1,10 +1,30 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-export default function WellcomeUser() {
+export default function WellcomeUser({ userInfo }) {
+  const hourCurrent = new Date().getHours();
+
+  const [greetingMessage, setGreetingMessage] = useState('Bom dia');
+
+  useEffect(() => {
+    if (hourCurrent >= 6 && hourCurrent <= 11) {
+      setGreetingMessage('Bom dia');
+    } else if (hourCurrent >= 12 && hourCurrent <= 17) {
+      setGreetingMessage('Boa tarde');
+    } else {
+      setGreetingMessage('Boa noite');
+    }
+  }, []);
   return (
     <ContainerWellcomeUser>
       <span className="container">
-        <h1 className="gooday">Bom dia, Alessandra!</h1>
-        <p>Nada melhor que um Gellato para começar o dia cheio de energia.</p>
+        <h1 className="gooday">{greetingMessage}, Alessandra!</h1>
+        <p>
+          {greetingMessage === 'Bom dia'
+            ? 'Nada melhor que um Gellato para começar o dia cheio de energia.'
+            : greetingMessage === 'Boa tarde'
+            ? 'Hmm!!! essa tarde ta pedindo um açaí da Gellato!'
+            : 'Nada melhor que um Gellato terminar a noite bem.'}
+        </p>
       </span>
     </ContainerWellcomeUser>
   );

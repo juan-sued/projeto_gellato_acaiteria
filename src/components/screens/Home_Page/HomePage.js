@@ -87,8 +87,8 @@ export default function HomePage() {
       <SideBar />
       <TitleStatus />
       <Main margin_top={'100'}>
-        <WellcomeUser />
-        <CardOfert />
+        <WellcomeUser userInfo={userInfo} />
+        <CardOfert objHomeResponseAPI={objHomeResponseAPI} />
         <Divider />
         <PlaceMyOrderButton />
         <Divider />

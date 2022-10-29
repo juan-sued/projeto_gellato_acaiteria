@@ -7,23 +7,23 @@ export default function FeedBacks({ titleSession }) {
   const arrayFeedbacks = [
     {
       name: 'Alessandra Meireles',
-      points: '1,0',
+      stars: '1,0',
       feedback: 'Açaí muito bom, dei um só pra ver como fica só com uma estrelinha'
     },
     {
       name: 'Ronaldinho Fenômeno',
-      points: '5,0',
+      stars: '5,0',
       feedback:
         'A RAZÃO DE EU TER SAÍDO DE CAMPO!! aaaaaaaaaaaaaaaaaaa FEEEDBACK MUITO GRANDE PARA TESTAR A ANIMAÇÃO AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
     },
     {
       name: 'Rogério Siena',
-      points: '3,0',
+      stars: '3,0',
       feedback: 'Melhor que agarrar pro São Paulo, mas dei 3 pq sou calvo'
     },
     {
       name: 'Silvio Santos',
-      points: '2,5',
+      stars: '2,5',
       feedback:
         ' MAOOOEEEH Colocaria mais calda de petróleo da próxima vez MAAAOOEEH O AVIÃOZINHO'
     }
@@ -37,7 +37,7 @@ export default function FeedBacks({ titleSession }) {
           <CardFeedback
             key={index}
             name={feedback.name}
-            points={feedback.points}
+            stars={feedback.stars}
             feedback={feedback.feedback}
           />
         ))}

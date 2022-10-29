@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import Image_Acai_Fruta from '../../../../assets/acaifruta2.png';
-import bowlacai from '../../../../assets/bowlacai.png';
-export default function CardOfert() {
+import Loading from '../../../shared/Loading';
+
+export default function CardOfert({ objHomeResponseAPI }) {
   return (
     <CardOfertContainer>
       <div className="cardOfert">
@@ -11,7 +12,11 @@ export default function CardOfert() {
         <div className="containerInter">
           <h2 className="titleCardOfert">Oferta do dia</h2>
           <div className="purplecircle">
-            <img src={bowlacai} alt="" />
+            {objHomeResponseAPI.length === 0 ? (
+              <Loading width={'40'} />
+            ) : (
+              <img src={objHomeResponseAPI.CardOfert.image} alt="" />
+            )}
           </div>
         </div>
 
