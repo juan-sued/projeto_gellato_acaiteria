@@ -8,6 +8,7 @@ const requestHomeContent = async (objResponseAPI, setObjResponseAPI, signOut) =>
     }
   } catch (err) {
     if (err.response) {
+      console.log('aqui');
       if (err.response.status === 401) {
         signOut();
       }
