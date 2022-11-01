@@ -1,9 +1,24 @@
 import styled from 'styled-components';
-
+import dayjs from 'dayjs';
+import { useEffect, useState } from 'react';
 export default function TitleStatus() {
+  const hourCurrent = new Date().getHours();
+
+  const [status, setStatus] = useState('Aberto agora');
+
+  useEffect(() => {
+    if (hourCurrent >= 9 && hourCurrent <= 19) {
+      console.log('aqui');
+      setStatus('Aberto agora');
+    } else if ((hourCurrent >= 0 && hourCurrent <= 8) || hourCurrent >= 20) {
+      console.log('aqui2');
+      setStatus('Fechado agora');
+    }
+  }, []);
+
   return (
-    <TitleStatusStyle>
-      <p>Aberto agora</p>
+    <TitleStatusStyle color={status}>
+      <p>{status}</p>
       <span></span>
     </TitleStatusStyle>
   );
@@ -15,10 +30,10 @@ const TitleStatusStyle = styled.div`
   flex-direction: column;
   position: absolute;
   left: 0;
-  top: 26px;
+  top: 24px;
 
   p {
-    color: #028c10;
+    color: ${props => (props.color === 'Fechado agora' ? '#9e0002' : '#028c10')};
     font-family: 'Josefin Slab', serif;
     font-size: 32px;
     font-weight: 700;
@@ -26,10 +41,10 @@ const TitleStatusStyle = styled.div`
   }
   span {
     position: relative;
-    margin-top: -8px;
-    width: 210px;
+    margin-top: -7px;
+    width: 103%;
     height: 1px;
-    background-color: black;
+    background-color: gray;
     z-index: -1;
   }
 `;

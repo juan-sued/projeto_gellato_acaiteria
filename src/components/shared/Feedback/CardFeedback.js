@@ -5,8 +5,8 @@ import iconmiddlestart from '../../../assets/iconmiddlestart.svg';
 import iconnotpoint from '../../../assets/iconnotpoint.svg';
 import * as utils from '../../../util/utilsFunctions';
 import { useState } from 'react';
-import AnimateHeight from 'react-animate-height';
-export default function CardFeedback({ name, points, feedback, increaseCardSizeToggle }) {
+
+export default function CardFeedback({ name, stars, feedback, increaseCardSizeToggle }) {
   const [stateCardFeedback, setStateCardFeedback] = useState(false);
 
   return (
@@ -25,8 +25,8 @@ export default function CardFeedback({ name, points, feedback, increaseCardSizeT
         <div className="columnContent">
           <h1>{name}</h1>
           <span className="lineDetailsFeedback">
-            <p className="points">{points}</p>
-            {utils.incrementStarsFeedback(points).map((star, index) => (
+            <p className="stars">{stars}</p>
+            {utils.incrementStarsFeedback(stars).map((star, index) => (
               <img
                 key={index}
                 src={
@@ -95,7 +95,7 @@ const CardFeedbackStyle = styled.div`
 
     height: 20px;
 
-    .points {
+    .stars {
       font-weight: 700;
       margin-right: 8px;
     }

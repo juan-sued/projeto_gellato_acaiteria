@@ -47,7 +47,7 @@ const TitleAndArrowContainer = styled.div`
       width: 103%;
       max-width: 210px;
       position: relative;
-      bottom: ${props => (props.fontSize === '30px' ? '8px' : '12px')};
+      bottom: ${props => (props.fontSize === '30px' ? '8px' : '13px')};
       left: 0;
 
       @media screen and (min-width: 700px) {
