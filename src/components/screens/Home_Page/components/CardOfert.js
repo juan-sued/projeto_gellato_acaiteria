@@ -3,7 +3,6 @@ import Image_Acai_Fruta from '../../../../assets/acaifruta2.png';
 import Loading from '../../../shared/Loading';
 
 export default function CardOfert({ objHomeResponseAPI }) {
-  console.log(objHomeResponseAPI.length === 0);
   return (
     <CardOfertContainer>
       <div className="cardOfert">
