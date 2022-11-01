@@ -15,6 +15,7 @@ import CarouselListProduct from '../../shared/CarouselListProduct';
 
 import copoHome2 from '../../../assets/copoHome2.jpg';
 import copoHome3 from '../../../assets/copoHome3.jpg';
+import bowlacai from '../../../assets/bowlacai.png';
 
 import FeedBacks from '../../shared/Feedback/Feedbacks';
 
@@ -36,7 +37,7 @@ export default function HomePage() {
   const objctResponseAPITest = {
     listMyFavoriteds: [
       {
-        image: copoHome2,
+        image: bowlacai,
         description: '1 Litro',
         price: '20,00'
       },

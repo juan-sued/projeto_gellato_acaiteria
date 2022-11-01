@@ -81,8 +81,9 @@ const CardOfertContainer = styled.div`
 
       img {
         position: relative;
-        max-width: 170px;
-
+        max-width: 100%;
+        width: fit-content;
+        border-radius: 100px;
         transform: rotate(3deg);
       }
     }
