@@ -4,9 +4,12 @@ import Loading from '../../shared/Loading';
 import ButtonSubmit from '../../shared/ButtonSubmit';
 import { ContainerFormClass, InputClass } from './styles';
 import signUpRequest from './singUpRequest';
+import { useNavigate } from 'react-router-dom';
 //import components
 
 export default function SignUpForm() {
+  const navigate = useNavigate();
+
   const [signUpData, setSignUpdata] = useState({
     name: '',
     email: '',
@@ -17,10 +20,11 @@ export default function SignUpForm() {
 
   const [stateColorButton, setStateCollorButton] = useState('#ffffff');
 
+  const [sucess, setSucess] = useState(false);
+
   const handleChangText = e => {
-    if (e.target.name === 'confirmPassword') {
-      setInputConfirmPassword(e.target.value);
-    }
+    if (e.target.name === 'confirmPassword') setInputConfirmPassword(e.target.value);
+
     setSignUpdata({
       ...signUpData,
       [e.target.name]: e.target.value
@@ -33,19 +37,18 @@ export default function SignUpForm() {
     if (inputConfirmPassword !== signUpData.password) {
       setInputConfirmPassword('');
       setStateCollorButton('#e21a26');
-      console.log(stateColorButton);
 
       return;
     }
 
-    signUpRequest(signUpData, setStateCollorButton);
+    signUpRequest({ signUpData, setStateCollorButton, setSucess });
+    if (signUpRequest) navigate('/sign-in');
   }
 
   if (
     (stateColorButton === '#e21a27' && signUpData.email.length > 0) ||
     (stateColorButton === '#e21a26' && inputConfirmPassword.length > 0)
   ) {
-    console.log('entrou aqui');
     setStateCollorButton('#ffffff');
   }
   return (

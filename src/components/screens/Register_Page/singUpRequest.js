@@ -1,13 +1,15 @@
+import { useNavigate } from 'react-router-dom';
 import axiosI from '../../../services/axios';
 
-const signUpRequest = async (signUpData, setStateCollorButton) => {
+async function SignUpRequest({ signUpData, setStateCollorButton, setSucess }) {
   setStateCollorButton('#8a8893');
   try {
+    console.log(signUpData);
     await axiosI.post('/sign-up', signUpData);
+    return true;
   } catch (err) {
-    console.log(err.response.data);
     setStateCollorButton('#e21a27');
   }
-};
+}
 
-export default signUpRequest;
+export default SignUpRequest;
