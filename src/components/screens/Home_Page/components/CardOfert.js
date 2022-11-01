@@ -12,8 +12,8 @@ export default function CardOfert({ objHomeResponseAPI }) {
         <div className="containerInter">
           <h2 className="titleCardOfert">Oferta do dia</h2>
           <div className="purplecircle">
-            {objHomeResponseAPI[0].length === 0 ? (
-              <img src={objHomeResponseAPI.CardOfert.image} alt="" />
+            {objHomeResponseAPI.listMyFavoriteds.length > 0 ? (
+              <img src={objHomeResponseAPI.listMyFavoriteds[0].image} alt="" />
             ) : (
               <Loading width={'40'} />
             )}
