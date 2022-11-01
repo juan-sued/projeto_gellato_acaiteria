@@ -3,6 +3,7 @@ import Image_Acai_Fruta from '../../../../assets/acaifruta2.png';
 import Loading from '../../../shared/Loading';
 
 export default function CardOfert({ objHomeResponseAPI }) {
+  console.log(objHomeResponseAPI.length === 0);
   return (
     <CardOfertContainer>
       <div className="cardOfert">
@@ -12,10 +13,10 @@ export default function CardOfert({ objHomeResponseAPI }) {
         <div className="containerInter">
           <h2 className="titleCardOfert">Oferta do dia</h2>
           <div className="purplecircle">
-            {objHomeResponseAPI.length === 0 ? (
-              <Loading width={'40'} />
-            ) : (
+            {objHomeResponseAPI.length > 0 ? (
               <img src={objHomeResponseAPI.CardOfert.image} alt="" />
+            ) : (
+              <Loading width={'40'} />
             )}
           </div>
         </div>
