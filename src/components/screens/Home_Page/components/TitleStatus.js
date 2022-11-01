@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
 export default function TitleStatus() {
   const hourCurrent = new Date().getHours();
@@ -8,10 +7,8 @@ export default function TitleStatus() {
 
   useEffect(() => {
     if (hourCurrent >= 9 && hourCurrent <= 19) {
-      console.log('aqui');
       setStatus('Aberto agora');
     } else if ((hourCurrent >= 0 && hourCurrent <= 8) || hourCurrent >= 20) {
-      console.log('aqui2');
       setStatus('Fechado agora');
     }
   }, []);
