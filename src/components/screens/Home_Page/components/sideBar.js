@@ -12,8 +12,17 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../../../hooks/useCart';
 import { formatPrice } from '../../../../util/format';
+import { useAuth } from '../../../../hooks/useAuth';
 export default function SideBar() {
   const navigate = useNavigate();
+  const { userInfo } = useAuth();
+  function shortName() {
+    if (userInfo !== null) {
+      const nameShorten = userInfo.name.split(' ');
+      return nameShorten[0] + ' ' + nameShorten[1];
+    }
+    console.log('');
+  }
 
   const { cart, setCart } = useCart();
 
@@ -42,18 +51,44 @@ export default function SideBar() {
   const selectedButton = text => {
     if (text.nameIcon === 'shopping_cart') {
       navigate('/cart');
-    }
-    if (text.nameIcon === 'logout') {
+    } else if (text.nameIcon === 'logout') {
       navigate('/sign-in');
+    } else if (text.nameIcon === 'add_box') {
+      navigate('/insert-product');
+    } else if (text.nameIcon === 'group_add') {
+      navigate('/');
     } else {
       console.log('não carrinho');
     }
   };
 
+  let listButtonsSideBar = [
+    { nameIcon: 'logout', nameText: 'Sair' },
+    { nameIcon: 'favorite', nameText: 'Meus favoritos' },
+    { nameIcon: 'emoji_events', nameText: 'Mais pedidos' },
+    { nameIcon: 'fingerprint', nameText: 'Minhas informações' },
+    { nameIcon: 'shopping_cart', nameText: 'Meu carrinho' }
+  ];
+
+  if (userInfo && userInfo.isAdministrator === false) {
+    listButtonsSideBar.splice(
+      1,
+      0,
+      {
+        nameIcon: 'add_box',
+        nameText: 'Adicionar produto'
+      },
+      {
+        nameIcon: 'group_add',
+        nameText: 'Add. Administrador'
+      }
+    );
+  }
+
   const list = anchor => (
     <>
       <TopBarList>
-        <div className="helloUser">Olá, Alessandra</div>
+        <div className="helloUser">{shortName()}</div>
       </TopBarList>
       <Test>
         <Box
@@ -63,14 +98,7 @@ export default function SideBar() {
           onKeyDown={toggleDrawer(anchor, false)}
         >
           <List>
-            {[
-              { nameIcon: 'logout', nameText: 'Sair' },
-              { nameIcon: 'favorite', nameText: 'Meus favoritos' },
-
-              { nameIcon: 'emoji_events', nameText: 'Mais pedidos' },
-              { nameIcon: 'fingerprint', nameText: 'Minhas informações' },
-              { nameIcon: 'shopping_cart', nameText: 'Meu carrinho' }
-            ].map((text, index) => (
+            {listButtonsSideBar.map((text, index) => (
               <ListItem
                 key={index}
                 disablePadding

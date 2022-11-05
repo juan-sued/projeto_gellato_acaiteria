@@ -24,14 +24,25 @@ import OurHistory from '../../shared/OurHistory/OurHistory';
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../../hooks/useAuth';
 import requestHomeContent from '../../../util/requests/requestHomeContent.js';
+import axiosI from '../../../services/axios';
+import requestFavoriteds from '../../../util/requests/requestFavoriteds';
 
 export default function HomePage() {
-  const { userInfo, signOut } = useAuth();
+  const { userInfo, signOut, signed } = useAuth();
 
   const [objHomeResponseAPI, setObjHomeResponseAPI] = useState([]);
+  const [favoritedsList, setFavoritedsList] = useState([]);
 
   useEffect(() => {
+    if (signed && axiosI.defaults.headers['Authorization'] !== undefined)
+      requestFavoriteds(favoritedsList, setFavoritedsList, signOut);
+
     requestHomeContent(objHomeResponseAPI, setObjHomeResponseAPI, signOut);
+
+    return () => {
+      setFavoritedsList([]);
+      setObjHomeResponseAPI([]); // This worked for me
+    };
   }, []);
 
   const objctResponseAPITest = {
@@ -99,11 +110,16 @@ export default function HomePage() {
           titleSession={'Mais pedidos'}
           margin_top={'50'}
         />
-        <CarouselListProduct
-          objctResponseAPI={objHomeResponseAPI}
-          titleSession={'Meus favoritos'}
-          margin_top={'50'}
-        />
+
+        {signed ? (
+          <CarouselListProduct
+            objctResponseAPI={favoritedsList}
+            titleSession={'Meus favoritos'}
+            margin_top={'50'}
+          />
+        ) : (
+          ''
+        )}
         <FeedBacks titleSession={'Feedbacks'} />
 
         <SocialsButtons />

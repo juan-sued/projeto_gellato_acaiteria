@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
     const storagedToken = localStorage.getItem('TBAuthToken');
 
     if (storagedUser && storagedToken) {
-      axiosI.defaults.headers['Authorization'] = `Baerer ${storagedToken}`;
+      axiosI.defaults.headers['Authorization'] = `Bearer ${storagedToken}`;
       setUserInfo(JSON.parse(storagedUser));
     }
   }, []);
@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
 
       setUserInfo(data.user);
 
-      axiosI.defaults.headers['Authorization'] = `Baerer ${data.token}`;
+      axiosI.defaults.headers['Authorization'] = `Bearer ${data.token}`;
       localStorage.setItem('TBAuthUser', JSON.stringify(data.user));
       localStorage.setItem('TBAuthToken', data.token);
 
@@ -41,11 +41,13 @@ export const AuthProvider = ({ children }) => {
   };
 
   const signOut = () => {
-    navigate('/');
+    navigate('/sign-in');
     setUserInfo(null);
     localStorage.removeItem('TBAuthUser');
     localStorage.removeItem('TBAuthToken');
   };
+
+  console.log(userInfo);
 
   return (
     <AuthContext.Provider

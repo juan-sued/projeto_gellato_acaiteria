@@ -6,7 +6,7 @@ export const ContainerVideo = styled.div`
   margin-bottom: 10px;
   position: fixed;
   z-index: 0;
-  bottom: 0;
+  bottom: -5px;
   right: 0;
   margin-bottom: 0;
 

@@ -17,7 +17,6 @@ const incrementStarsFeedback = stars => {
 };
 
 const increaseCardSizeToggle = (setStateCard, stateCard) => {
-  console.log(stateCard);
   return setStateCard(!stateCard);
 };
 

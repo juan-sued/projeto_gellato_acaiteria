@@ -10,7 +10,8 @@ import { useCart } from '../../../../hooks/useCart';
 
 import ItemProductTable from '../ItemProductTable';
 import { useAuth } from '../../../../hooks/useAuth';
-import arrowright from '../../../../assets/arrowright.svg';
+
+import TitlePage from '../../../shared/TitlePage';
 
 export default function Cart({ to, message, isSigned = false }) {
   const { userInfo, signOut } = useAuth();
@@ -42,7 +43,7 @@ export default function Cart({ to, message, isSigned = false }) {
     });
 
     const orderData = {
-      user: userInfo.email,
+      user: userInfo.idUser,
       order
     };
 
@@ -58,13 +59,7 @@ export default function Cart({ to, message, isSigned = false }) {
     <>
       <Back />
       <Container>
-        <BackPage>
-          <button onClick={() => navigate('/')}>
-            <img src={arrowright} alt="" />
-            <p>voltar</p>
-          </button>
-        </BackPage>
-        <TitleContainer>Meu Carrinho</TitleContainer>
+        <TitlePage title={'Meu Carrinho'} to={'/'} />
         <ProductTable>
           {cartFormatted.map((product, index) => (
             <ItemProductTable
@@ -99,26 +94,6 @@ export default function Cart({ to, message, isSigned = false }) {
   );
 }
 
-const BackPage = styled.div`
-  button {
-    width: 100%;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    margin-top: 20px;
-    border: none;
-    img {
-      transform: rotate(180deg);
-      width: 25px;
-    }
-    p {
-      font-size: 18px;
-      margin-left: 10px;
-      font-family: 'Josefin Slab', serif;
-    }
-  }
-`;
-
 const Back = styled.div`
   background-color: '#EEEDF4';
   position: fixed;
@@ -128,15 +103,6 @@ const Back = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-
-const TitleContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 40px;
-  height: 140px;
 `;
 
 const ProductTable = styled.div`

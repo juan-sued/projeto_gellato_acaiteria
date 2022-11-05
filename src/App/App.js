@@ -4,6 +4,7 @@ import 'material-icons/iconfont/material-icons.css';
 import Routes from '../Routes';
 import GlobalStyles from '../styles/globalStyles/globalStyles';
 import { CartProvider } from '../hooks/useCart';
+import { ProductProvider } from '../hooks/useProducts';
 
 export default function App() {
   return (
@@ -11,7 +12,9 @@ export default function App() {
       <GlobalStyles />
       <BrowserRouter>
         <AuthProvider>
-          <Routes />
+          <ProductProvider>
+            <Routes />
+          </ProductProvider>
         </AuthProvider>
       </BrowserRouter>
     </CartProvider>
