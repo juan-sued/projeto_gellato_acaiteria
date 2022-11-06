@@ -58,8 +58,8 @@ export default function Cart({ to, message, isSigned = false }) {
   return (
     <>
       <Back />
+      <TitlePage title={'Meu Carrinho'} to={'/'} />
       <Container>
-        <TitlePage title={'Meu Carrinho'} to={'/'} />
         <ProductTable>
           {cartFormatted.map((product, index) => (
             <ItemProductTable

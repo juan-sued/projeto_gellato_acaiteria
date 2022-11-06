@@ -10,95 +10,74 @@ import Loading from '../../shared/Loading';
 import SelectCategory from './selectCategory';
 import SelectProduct from './selectProduct';
 import { useProduct } from '../../../hooks/useProducts';
+import requestRegisterProduct from '../../../util/requests/requestRegisterProduct';
 export default function InputRegisterProduct() {
   const navigate = useNavigate();
 
   const { productsAndCategories } = useProduct();
 
-  const [inputCategory, setInputCategory] = useState('');
-
-  const [inputNameProduct, setInputNameProduct] = useState('');
-
-  const [inputAmountroduct, setInputAmountroduct] = useState('');
   const [selectedProduct, setSelectedProduct] = useState('');
-  const [inputProductName, setInputProductName] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('Pedido pré-pronto');
-  const [inputDiscountProduct, setInputDiscountProduct] = useState('');
-  const [inputImage, setInputImage] = useState('');
 
-  const [inputPriceProduct, setInputPriceProduct] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState(1);
+
   const [objNewProduct, setObjNewProduct] = useState({
     category: '',
     name: '',
     amount: '',
+    description: '',
     price: '',
-    discount: '',
     image: ''
   });
+
+  const handleChangeText = e => {
+    setObjNewProduct({ ...objNewProduct, [e.target.name]: e.target.value });
+  };
+  const sucess = () => {
+    navigate('/sucess-register');
+  };
 
   const [stateButton, setStateButton] = useState('habilitado');
 
   function registerProduct(event) {
     event.preventDefault();
+
     setStateButton('loading');
 
     //================ Validação de novo produto =================>
-    objNewProduct.name = selectedProduct;
+
     const productsList = productsAndCategories.productsList;
 
-    if (inputNameProduct) {
+    if (objNewProduct.name) {
       const isProductRegistered = productsList.some(
-        category => category.category === inputNameProduct
+        product => product.name === objNewProduct.name
       );
+
       if (isProductRegistered) {
-        setInputNameProduct('');
+        setObjNewProduct({ ...objNewProduct, name: '' });
         setStateButton('isProductRegistered');
       }
-      objNewProduct.name = inputNameProduct;
     }
     //================ Validação de nova categoria =================>
     objNewProduct.category = selectedCategory;
     const categoriesList = productsAndCategories.categoriesWithTitle;
 
-    if (inputCategory) {
+    if (objNewProduct.category) {
       const isCategoryRegistered = categoriesList.some(
-        category => category.category === inputCategory
+        category => category.category === objNewProduct.category
       );
+
       if (isCategoryRegistered) {
-        setInputCategory('');
+        setObjNewProduct({ ...objNewProduct, category: '' });
         setStateButton('isCategoryRegistered');
       }
-
-      objNewProduct.category = inputCategory;
     }
-
-    // ===
-
-    objNewProduct.amount = inputAmountroduct;
-    objNewProduct.price = inputPriceProduct;
-    objNewProduct.discount = inputDiscountProduct;
-    objNewProduct.image = inputImage;
-    // ===
-
-    setObjNewProduct({ ...objNewProduct });
-    console.log('deu certo', objNewProduct);
-    const promise = axios.post(URL, objNewProduct);
-
-    promise.then(() => {
-      navigate('../sucessProductRegister', { replace: true });
-    });
-    promise.catch(err => {
-      const error = err.response.status;
-      if (error === 500) console.log('erro do servidor');
-      setInputPriceProduct('');
-      //colocar um state button caso a categoria ja exista
-      setStateButton('err');
-    });
+    requestRegisterProduct(objNewProduct, setObjNewProduct, sucess);
   }
 
-  if (stateButton === 'err' && inputPriceProduct.length > 0) {
+  if (stateButton === 'err' && objNewProduct.price.length > 0) {
     setStateButton('habilitado');
   }
+
   return (
     <ContainerFormStyle>
       <form onSubmit={registerProduct}>
@@ -114,8 +93,8 @@ export default function InputRegisterProduct() {
               placeholder="Categoria"
               id="inputCategory"
               type="text"
-              value={inputCategory}
-              onChange={e => setInputCategory(e.target.value)}
+              value={objNewProduct.category}
+              onChange={handleChangeText}
               disabled={stateButton === 'loading' ? 'disabled' : ''}
             />
           </div>
@@ -126,8 +105,8 @@ export default function InputRegisterProduct() {
             placeholder="Imagem do produto"
             id="inputImage"
             type="url"
-            value={inputImage}
-            onChange={e => setInputImage(e.target.value)}
+            value={objNewProduct.image}
+            onChange={handleChangeText}
             disabled={stateButton === 'loading' ? 'disabled' : ''}
           />
         </div>
@@ -138,48 +117,47 @@ export default function InputRegisterProduct() {
             setSelectedProduct={setSelectedProduct}
             selectedCategory={selectedCategory}
           />
-          <div className="containerAddProductName">
-            <label htmlFor="inputProductName">Não encontrou?</label>
-            <InputClass
-              placeholder="Produto"
-              id="inputProductName"
-              type="text"
-              value={inputProductName}
-              onChange={e => setInputProductName(e.target.value)}
-              disabled={stateButton === 'loading' ? 'disabled' : ''}
-            />
+          <div className="container">
+            <div className="containerAddProductName">
+              <label htmlFor="inputProductName">Não encontrou?</label>
+              <InputClass
+                placeholder="Produto"
+                id="inputProductName"
+                type="text"
+                value={objNewProduct.name}
+                onChange={handleChangeText}
+                disabled={stateButton === 'loading' ? 'disabled' : ''}
+              />
+            </div>
           </div>
           <InputClass
-            placeholder="Qntd"
-            type="number"
-            min={0}
-            value={inputAmountroduct}
-            onChange={e => setInputAmountroduct(e.target.value)}
-            step={'0.00'}
+            placeholder="Descrição"
+            id="inputProductDescription"
+            className="inputProductDescription"
+            type="text"
+            value={objNewProduct.description}
+            onChange={handleChangeText}
             disabled={stateButton === 'loading' ? 'disabled' : ''}
-            required
           />
         </section>
 
         <section className="sectionPrice">
           <InputClass
-            placeholder="Valor"
+            placeholder="Qntd por copo (g ou ml)"
+            className="qtd"
             type="number"
-            min={0}
-            value={inputPriceProduct}
-            onChange={e => setInputPriceProduct(e.target.value)}
+            min="1"
+            value={objNewProduct.amount}
+            onChange={handleChangeText}
             disabled={stateButton === 'loading' ? 'disabled' : ''}
-            step=".01"
             required
           />
-
           <InputClass
-            placeholder="Desconto (0-100)%"
+            placeholder="R$ Valor"
             type="number"
-            min={0}
-            max={100}
-            value={inputDiscountProduct}
-            onChange={e => setInputDiscountProduct(e.target.value)}
+            min="1"
+            value={objNewProduct.price}
+            onChange={handleChangeText}
             disabled={stateButton === 'loading' ? 'disabled' : ''}
             required
           />
@@ -213,6 +191,7 @@ export default function InputRegisterProduct() {
 const ContainerFormStyle = styled.div`
   display: flex;
   justify-content: center;
+  margin-bottom: 50px;
 
   form {
     display: flex;
@@ -222,6 +201,16 @@ const ContainerFormStyle = styled.div`
     max-width: 600px;
     color: white;
     font-size: 19px;
+    label {
+      margin-left: 5px;
+      margin-bottom: 4px;
+      font-weight: 400;
+      font-size: 15px;
+      color: black;
+    }
+    input {
+      box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.25);
+    }
   }
 
   .sectionCategories {
@@ -240,14 +229,6 @@ const ContainerFormStyle = styled.div`
     .containerAddCategory {
       display: flex;
       flex-direction: column;
-
-      label {
-        margin-left: 5px;
-        margin-bottom: 4px;
-        font-weight: 3 00;
-        font-size: 15px;
-        color: white;
-      }
     }
 
     .containerAddCategory {
@@ -261,26 +242,33 @@ const ContainerFormStyle = styled.div`
 
   .sectionDescriptionProduct {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: flex-end;
+
     justify-content: space-between;
     margin-bottom: 10px;
     width: 100%;
 
+    .inputProductDescription {
+      margin-top: 10px;
+
+      min-width: 100%;
+    }
+
+    .container {
+      width: 100%;
+      display: flex;
+      align-items: flex-end;
+      margin-top: 12px;
+    }
+
     .containerAddProductName {
       display: flex;
       flex-direction: column;
-      width: 90%;
-      margin-right: 10px;
+      width: 100%;
+
       input {
         min-width: 100%;
-      }
-
-      label {
-        margin-left: 5px;
-        margin-bottom: 4px;
-        font-weight: 400;
-        font-size: 15px;
       }
     }
 
@@ -291,12 +279,16 @@ const ContainerFormStyle = styled.div`
 
   .sectionPrice {
     display: flex;
+    max-width: 100%;
 
     margin-bottom: 10px;
 
-    input:first-child {
-      margin-right: 10px;
+    input:last-child {
       max-width: 140px;
+    }
+    .qtd {
+      margin-right: 10px;
+      min-width: 228px;
     }
   }
 `;

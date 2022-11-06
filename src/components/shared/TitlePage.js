@@ -1,41 +1,58 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import arrowright from '../../assets/arrowright.svg';
-export default function TitlePage({ to = '/', title, color }) {
+export default function TitlePage({ to = '/', title }) {
   const navigate = useNavigate();
 
   return (
-    <Container>
-      <BackPage>
-        <button onClick={() => navigate(to)}>
-          <img src={arrowright} alt="" />
-          <p>voltar</p>
-        </button>
-      </BackPage>
+    <>
+      <Container>
+        <BackPage>
+          <button onClick={() => navigate(to)}>
+            <img src={arrowright} alt="" />
+            <p>voltar</p>
+          </button>
+        </BackPage>
+      </Container>
+
       <TitleContainer>{title}</TitleContainer>
-    </Container>
+    </>
   );
 }
-
-const Container = styled.div``;
-
+const Container = styled.div`
+  width: 100%;
+  padding: 20px 20px 0 20px;
+`;
 const BackPage = styled.div`
   button {
     width: 100%;
     display: flex;
     justify-content: start;
     align-items: center;
-    margin-top: 20px;
     border: none;
-    background-color: red;
+    :hover {
+      cursor: pointer;
+    }
+
     img {
       transform: rotate(180deg);
-      width: 25px;
+      width: 6%;
+      max-width: 40px;
     }
     p {
-      font-size: 18px;
+      font-size: 16px;
+
+      width: 100%;
+      text-align: start;
       margin-left: 10px;
       font-family: 'Josefin Slab', serif;
+    }
+
+    @media screen and (min-width: 413px) {
+      p {
+        font-size: 30px;
+        margin-left: 20px;
+      }
     }
   }
 `;

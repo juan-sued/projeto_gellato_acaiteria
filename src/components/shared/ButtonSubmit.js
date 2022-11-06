@@ -16,6 +16,6 @@ const ButtonSubmitStyle = styled.button`
   font-size: 20.976px;
   color: ${props => (props.backgroundcolor === '#ffffff' ? '#1c2156' : 'white')};
   font-family: 'Jost', sans-serif;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
   border-radius: 4px;
 `;

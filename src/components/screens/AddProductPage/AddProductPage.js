@@ -8,17 +8,10 @@ import TitlePage from '../../shared/TitlePage';
 export default function AddProductPage() {
   return (
     <>
-      <Background
-        backgroundColor={'#5645B7'}
-        colorGradient={'#D782D2'}
-        percentBackground={'30'}
-        backgroundColorGrand={'#513ab3'}
-      >
-        <Main margin_top={'20'}>
-          <TitlePage title={'Adicionar produto'} to={'/'} color={'#ffffff'} />
-          <InputRegisterProduct />
-        </Main>
-      </Background>
+      <TitlePage title={'Adicionar produto'} to={'/'} />
+      <Main margin_top={'40'}>
+        <InputRegisterProduct />
+      </Main>
     </>
   );
 }
