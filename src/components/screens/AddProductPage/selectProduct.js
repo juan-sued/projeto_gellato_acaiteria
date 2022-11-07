@@ -11,12 +11,20 @@ export default function SelectProduct({
   const { productsAndCategories } = useProduct();
 
   const [productsForCategories, setProductsForCategories] = useState([]);
-  setTimeout(() => {}, 1000);
+
   useEffect(() => {
-    if (productsAndCategories) {
-      const productsByIdCategory = productsAndCategories.productsList.filter(
-        product => product.categoryId === selectedCategory
+    console.log('id:', selectedCategory);
+    if (selectedCategory > 1) {
+      console.log('id:', selectedCategory);
+      console.log('productsAndCategories', productsAndCategories);
+      console.log(
+        'productsAndCategories.productsList',
+        productsAndCategories.productsList
       );
+      const productsByIdCategory = productsAndCategories.productsList.filter(
+        product => product.categoryId == selectedCategory
+      );
+      console.log('productsByIdCategory', productsByIdCategory);
       setProductsForCategories(productsByIdCategory);
     }
   }, [selectedCategory]);
@@ -29,13 +37,15 @@ export default function SelectProduct({
         onChange={e => setSelectedProduct(e.target.value)}
         name="products"
       >
-        {productsForCategories.length > 0
-          ? productsForCategories.map((product, index) => (
-              <option key={index} value={product.name}>
-                {product.name}
-              </option>
-            ))
-          : ''}
+        {productsForCategories.length > 0 ? (
+          productsForCategories.map((product, index) => (
+            <option key={index} value={product.name}>
+              {product.name}
+            </option>
+          ))
+        ) : (
+          <option>{'Escolha uma categoria'}</option>
+        )}
       </select>
     </SelectProductStyle>
   );

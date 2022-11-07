@@ -6,7 +6,6 @@ const Routes = () => {
   const { signed, userInfo } = useAuth();
 
   if (signed) {
-    console.log('aqui');
     return <AdministratorRoutes />;
   } else if (userInfo && !userInfo.isAdministrator) {
     return <PrivateRoutes />;

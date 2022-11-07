@@ -18,7 +18,7 @@ export default function InputRegisterProduct() {
 
   const [selectedProduct, setSelectedProduct] = useState('');
 
-  const [selectedCategory, setSelectedCategory] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState(0);
 
   const [objNewProduct, setObjNewProduct] = useState({
     category: '',
@@ -191,7 +191,6 @@ export default function InputRegisterProduct() {
 const ContainerFormStyle = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: 50px;
 
   form {
     display: flex;

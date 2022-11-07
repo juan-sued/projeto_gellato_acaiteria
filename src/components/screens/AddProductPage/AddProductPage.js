@@ -9,7 +9,7 @@ export default function AddProductPage() {
   return (
     <>
       <TitlePage title={'Adicionar produto'} to={'/'} />
-      <Main margin_top={'40'}>
+      <Main margin_top={'0'}>
         <InputRegisterProduct />
       </Main>
     </>

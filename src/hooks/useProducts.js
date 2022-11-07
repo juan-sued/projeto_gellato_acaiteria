@@ -5,16 +5,7 @@ import axiosI from '../services/axios';
 const ProductsContext = createContext();
 
 export const ProductProvider = ({ children }) => {
-  const [productsAndCategories, setProductsAndCategories] = useState({
-    productsList: [
-      {
-        name: 'açaí',
-        price: '2,50',
-        image: 'https://asdasdasdasdasd',
-        categoryId: 1
-      }
-    ]
-  });
+  const [productsAndCategories, setProductsAndCategories] = useState({});
 
   useEffect(() => {
     axiosI
@@ -25,31 +16,43 @@ export const ProductProvider = ({ children }) => {
       .catch(err => {
         const testArr = {
           categoriesList: [
-            { id: 2, name: 'adicionais' },
-            { id: 3, name: 'sabores de açaí' },
+            { id: 2, name: 'sabores de açaí' },
+            { id: 3, name: 'adicionais' },
             { id: 4, name: 'caldas' }
           ],
           productsList: [
             {
-              name: 'açaí',
+              name: 'e',
               price: '2,50',
               image: 'https://asdasdasdasdasd',
               categoryId: 1
             },
             {
-              name: 'açaí',
+              name: 'banana',
               price: '2,50',
               image: 'https://asdasdasdasdasd',
               categoryId: 2
             },
             {
-              name: 'açaí',
+              name: 'morango',
               price: '2,50',
               image: 'https://asdasdasdasdasd',
               categoryId: 3
             },
             {
-              name: 'açaí',
+              name: 'chocolate',
+              price: '2,50',
+              image: 'https://asdasdasdasdasd',
+              categoryId: 4
+            },
+            {
+              name: 'morango',
+              price: '2,50',
+              image: 'https://asdasdasdasdasd',
+              categoryId: 4
+            },
+            {
+              name: 'menta',
               price: '2,50',
               image: 'https://asdasdasdasdasd',
               categoryId: 4
@@ -62,7 +65,7 @@ export const ProductProvider = ({ children }) => {
         console.error(err);
       });
   }, []);
-  console.log(productsAndCategories);
+
   return (
     <ProductsContext.Provider
       value={{

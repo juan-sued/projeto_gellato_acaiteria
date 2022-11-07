@@ -8,12 +8,15 @@ export default function SelectCategory({ setSelectedCategory, selectedCategory }
 
   return (
     <SelectCategoryStyle>
-      <label htmlFor="categories">Escolha uma categoria: </label>
+      <label htmlFor="categories">Escolha uma categoria:</label>
       <select
         value={selectedCategory}
         onChange={e => setSelectedCategory(e.target.value)}
         name="categories"
       >
+        <option aria-selected aria-disabled value={0}>
+          Categorias
+        </option>
         {productsAndCategories.categoriesList !== undefined
           ? productsAndCategories.categoriesList.map((category, index) => (
               <option key={index} value={category.id}>

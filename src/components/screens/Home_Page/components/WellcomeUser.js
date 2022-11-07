@@ -20,7 +20,6 @@ export default function WellcomeUser({ userInfo }) {
       const nameShorten = userInfo.name.split(' ');
       return nameShorten[0];
     }
-    console.log('');
   }
 
   return (

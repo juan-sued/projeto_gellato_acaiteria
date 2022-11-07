@@ -47,8 +47,6 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('TBAuthToken');
   };
 
-  console.log(userInfo);
-
   return (
     <AuthContext.Provider
       value={{

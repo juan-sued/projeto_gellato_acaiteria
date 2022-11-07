@@ -21,7 +21,6 @@ export default function SideBar() {
       const nameShorten = userInfo.name.split(' ');
       return nameShorten[0] + ' ' + nameShorten[1];
     }
-    console.log('');
   }
 
   const { cart, setCart } = useCart();
