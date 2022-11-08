@@ -11,6 +11,7 @@ import SelectCategory from './selectCategory';
 import SelectProduct from './selectProduct';
 import { useProduct } from '../../../hooks/useProducts';
 import requestRegisterProduct from '../../../util/requests/requestRegisterProduct';
+import { useEffect } from 'react';
 export default function InputRegisterProduct() {
   const navigate = useNavigate();
 
@@ -28,7 +29,22 @@ export default function InputRegisterProduct() {
     price: '',
     image: ''
   });
+  console.log(productsAndCategories);
+  const [productsForCategories, setProductsForCategories] = useState([]);
 
+  useEffect(() => {
+    if (selectedCategory > 1) {
+      const productsByIdCategory = productsAndCategories.productsList.filter(
+        product => product.categoryId == selectedCategory
+      );
+
+      setProductsForCategories(productsByIdCategory);
+    } else {
+      setProductsForCategories([]);
+    }
+  }, [selectedCategory]);
+
+  console.log(objNewProduct);
   const handleChangeText = e => {
     setObjNewProduct({ ...objNewProduct, [e.target.name]: e.target.value });
   };
@@ -58,12 +74,12 @@ export default function InputRegisterProduct() {
       }
     }
     //================ Validação de nova categoria =================>
-    objNewProduct.category = selectedCategory;
-    const categoriesList = productsAndCategories.categoriesWithTitle;
+
+    const categories = productsAndCategories.categoriesList;
 
     if (objNewProduct.category) {
-      const isCategoryRegistered = categoriesList.some(
-        category => category.category === objNewProduct.category
+      const isCategoryRegistered = categories.some(
+        category => category.name === objNewProduct.category
       );
 
       if (isCategoryRegistered) {
@@ -91,6 +107,7 @@ export default function InputRegisterProduct() {
             <label htmlFor="inputCategory">Não encontrou? Adicione você mesmo:</label>
             <InputClass
               placeholder="Categoria"
+              name="category"
               id="inputCategory"
               type="text"
               value={objNewProduct.category}
@@ -103,7 +120,7 @@ export default function InputRegisterProduct() {
         <div className="containerImage">
           <InputClass
             placeholder="Imagem do produto"
-            id="inputImage"
+            name="image"
             type="url"
             value={objNewProduct.image}
             onChange={handleChangeText}
@@ -116,22 +133,35 @@ export default function InputRegisterProduct() {
             selectedProduct={selectedProduct}
             setSelectedProduct={setSelectedProduct}
             selectedCategory={selectedCategory}
+            productsForCategories={productsForCategories}
           />
-          <div className="container">
+          <ContainerAddName
+            heightTogle={productsForCategories.length > 0 ? '0%' : '100%'}
+          >
             <div className="containerAddProductName">
               <label htmlFor="inputProductName">Não encontrou?</label>
               <InputClass
                 placeholder="Produto"
+                name="name"
                 id="inputProductName"
                 type="text"
                 value={objNewProduct.name}
                 onChange={handleChangeText}
-                disabled={stateButton === 'loading' ? 'disabled' : ''}
+                disabled={
+                  stateButton === 'loading' || productsForCategories.length > 0
+                    ? 'disabled'
+                    : ''
+                }
               />
             </div>
-          </div>
-          <InputClass
+          </ContainerAddName>
+          <InputClassDescription
+            cols="30"
+            rows="30"
+            wrap="hard"
+            heightTogle={productsForCategories.length > 0 ? '200px' : '50px'}
             placeholder="Descrição"
+            name="description"
             id="inputProductDescription"
             className="inputProductDescription"
             type="text"
@@ -145,8 +175,11 @@ export default function InputRegisterProduct() {
           <InputClass
             placeholder="Qntd por copo (g ou ml)"
             className="qtd"
+            name="amount"
             type="number"
+            max={10000}
             min="1"
+            step="0.01"
             value={objNewProduct.amount}
             onChange={handleChangeText}
             disabled={stateButton === 'loading' ? 'disabled' : ''}
@@ -155,7 +188,9 @@ export default function InputRegisterProduct() {
           <InputClass
             placeholder="R$ Valor"
             type="number"
-            min="1"
+            name="price"
+            step="0.01"
+            min="0.5"
             value={objNewProduct.price}
             onChange={handleChangeText}
             disabled={stateButton === 'loading' ? 'disabled' : ''}
@@ -180,7 +215,7 @@ export default function InputRegisterProduct() {
           ) : stateButton === 'loading' ? (
             <Loading height={20} width={20} />
           ) : (
-            'Casdastrar Produto'
+            'Casdastrar'
           )}
         </ButtonSubmit>
       </form>
@@ -191,6 +226,8 @@ export default function InputRegisterProduct() {
 const ContainerFormStyle = styled.div`
   display: flex;
   justify-content: center;
+
+  padding-bottom: 20px;
 
   form {
     display: flex;
@@ -243,14 +280,10 @@ const ContainerFormStyle = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-
-    justify-content: space-between;
-    margin-bottom: 10px;
     width: 100%;
-
+    height: 100%;
+    max-height: 300px;
     .inputProductDescription {
-      margin-top: 10px;
-
       min-width: 100%;
     }
 
@@ -290,6 +323,21 @@ const ContainerFormStyle = styled.div`
       min-width: 228px;
     }
   }
+
+  select {
+    :hover {
+      cursor: pointer;
+    }
+  }
+`;
+
+const ContainerAddName = styled.div`
+  margin-top: 13px;
+  overflow-y: hidden;
+  height: ${props => props.heightTogle};
+  transition: all 0.5s ease-out;
+  max-height: 65px;
+  margin-bottom: 10px;
 `;
 
 const InputClass = styled.input`
@@ -298,11 +346,32 @@ const InputClass = styled.input`
   height: 45px;
   background: #ffffff;
   border: 1px solid #d4d4d4;
-  font-family: 'Jost', sans-serif;
+  font-family: 'Josefin Slab', serif;
   border-radius: 5px;
   padding-left: 10px;
 
   color: #000000;
+  ::placeholder {
+    color: #0004;
+  }
+`;
+const InputClassDescription = styled.textarea`
+  font-size: 20px;
+  width: 100%;
+  height: ${props => props.heightTogle};
+
+  background: #ffffff;
+  border: 1px solid #d4d4d4;
+  font-family: 'Josefin Slab', serif;
+  border-radius: 5px;
+  padding-left: 10px;
+  transition: all 0.3s 0s ease-out;
+  margin-bottom: 9px;
+  min-height: 52px;
+  color: #000000;
+  text-align: start;
+  padding: 10px;
+  text-overflow: ellipsis;
   ::placeholder {
     color: #0004;
   }

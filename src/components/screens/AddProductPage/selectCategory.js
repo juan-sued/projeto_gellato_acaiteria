@@ -41,7 +41,8 @@ const SelectCategoryStyle = styled.div`
     background-color: #ffffff;
     border-radius: 5px 5px 0 0;
     text-align: center;
-    font-family: 'Jost', sans-serif;
+    font-family: 'Josefin Slab', serif;
+
     font-size: smaller;
     height: 45px;
     min-width: 150px;

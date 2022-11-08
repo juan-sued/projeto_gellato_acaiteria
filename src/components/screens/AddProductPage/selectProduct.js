@@ -1,34 +1,10 @@
-import { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 
-import { useProduct } from '../../../hooks/useProducts';
 export default function SelectProduct({
   setSelectedProduct,
   selectedProduct,
-  selectedCategory
+  productsForCategories
 }) {
-  const { productsAndCategories } = useProduct();
-
-  const [productsForCategories, setProductsForCategories] = useState([]);
-
-  useEffect(() => {
-    console.log('id:', selectedCategory);
-    if (selectedCategory > 1) {
-      console.log('id:', selectedCategory);
-      console.log('productsAndCategories', productsAndCategories);
-      console.log(
-        'productsAndCategories.productsList',
-        productsAndCategories.productsList
-      );
-      const productsByIdCategory = productsAndCategories.productsList.filter(
-        product => product.categoryId == selectedCategory
-      );
-      console.log('productsByIdCategory', productsByIdCategory);
-      setProductsForCategories(productsByIdCategory);
-    }
-  }, [selectedCategory]);
-
   return (
     <SelectProductStyle>
       <label htmlFor="products">Nome do produto: </label>
@@ -60,7 +36,7 @@ const SelectProductStyle = styled.div`
     background-color: #ffffff;
     border-radius: 5px 5px 0 0;
     text-align: center;
-    font-family: 'Jost', sans-serif;
+    font-family: 'Josefin Slab', serif;
     font-size: 20px;
     height: 45px;
     min-width: 150px;

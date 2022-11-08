@@ -13,9 +13,15 @@ const ButtonSubmitStyle = styled.button`
   height: 55px;
   background: ${props => props.backgroundcolor};
   border: none;
-  font-size: 20.976px;
-  color: ${props => (props.backgroundcolor === '#ffffff' ? '#1c2156' : 'white')};
-  font-family: 'Jost', sans-serif;
+  font-size: 25px;
+  font-weight: 500;
+  color: ${props => (props.backgroundcolor === '#ffffff' ? '#1c1c1c' : 'white')};
+  font-family: 'Josefin Slab', serif;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
   border-radius: 4px;
+  min-height: 55px;
+
+  :hover {
+    cursor: pointer;
+  }
 `;
