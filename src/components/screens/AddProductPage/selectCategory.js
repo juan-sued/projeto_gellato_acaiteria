@@ -5,7 +5,6 @@ import { useProduct } from '../../../hooks/useProducts';
 
 export default function SelectCategory({ setSelectedCategory, selectedCategory }) {
   const { productsAndCategories } = useProduct();
-
   return (
     <SelectCategoryStyle>
       <label htmlFor="categories">Escolha uma categoria:</label>

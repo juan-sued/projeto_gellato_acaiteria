@@ -29,7 +29,6 @@ export default function InputRegisterProduct() {
     price: '',
     image: ''
   });
-  console.log(productsAndCategories);
   const [productsForCategories, setProductsForCategories] = useState([]);
 
   useEffect(() => {
@@ -67,11 +66,14 @@ export default function InputRegisterProduct() {
       const isProductRegistered = productsList.some(
         product => product.name === objNewProduct.name
       );
-
+      console.log('entrou aqui tb aaaaaaa');
       if (isProductRegistered) {
         setObjNewProduct({ ...objNewProduct, name: '' });
         setStateButton('isProductRegistered');
       }
+    } else {
+      console.log('entrou', selectedProduct);
+      setObjNewProduct({ ...objNewProduct, name: selectedProduct });
     }
     //================ Validação de nova categoria =================>
 

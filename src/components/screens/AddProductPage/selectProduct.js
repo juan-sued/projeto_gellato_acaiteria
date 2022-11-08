@@ -5,6 +5,7 @@ export default function SelectProduct({
   selectedProduct,
   productsForCategories
 }) {
+  console.log(selectedProduct);
   return (
     <SelectProductStyle>
       <label htmlFor="products">Nome do produto: </label>
@@ -13,15 +14,16 @@ export default function SelectProduct({
         onChange={e => setSelectedProduct(e.target.value)}
         name="products"
       >
-        {productsForCategories.length > 0 ? (
-          productsForCategories.map((product, index) => (
-            <option key={index} value={product.name}>
-              {product.name}
-            </option>
-          ))
-        ) : (
-          <option>{'Escolha uma categoria'}</option>
-        )}
+        <option value="" selected disabled>
+          Escolha um produto
+        </option>
+        {productsForCategories.length > 0
+          ? productsForCategories.map((product, index) => (
+              <option key={index} value={product.name}>
+                {product.name}
+              </option>
+            ))
+          : ''}
       </select>
     </SelectProductStyle>
   );
