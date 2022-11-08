@@ -14,7 +14,7 @@ export default function CardSocials({
   color
 }) {
   const [stateCardSocialButtons, setStateCardSocialButtons] = useState(false);
-  console.log(icon);
+
   return (
     <Container index={index}>
       <CardSocialsStyle

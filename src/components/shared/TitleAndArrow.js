@@ -8,7 +8,6 @@ export default function TitleAndArrow({
   fontWeight,
   colorLine = '#8e1c5ae5'
 }) {
-  console.log(color);
   return (
     <TitleAndArrowContainer
       color={color}

@@ -27,8 +27,6 @@ export default function SingInForm() {
   }
 
   if (stateColorButton === '#e21a27' && signInData.email.length > 0) {
-    console.log(signInData.email.length);
-
     setStateCollorButton('#ffffff');
   }
 

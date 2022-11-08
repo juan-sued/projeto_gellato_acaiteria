@@ -14,10 +14,25 @@ export default function WellcomeUser({ userInfo }) {
       setGreetingMessage('Boa noite');
     }
   }, []);
+
+  function shortName() {
+    if (userInfo !== null) {
+      const nameShorten = userInfo.name.split(' ');
+      return nameShorten[0];
+    }
+  }
+
   return (
     <ContainerWellcomeUser>
       <span className="container">
-        <h1 className="gooday">{greetingMessage}, Alessandra!</h1>
+        {userInfo === null ? (
+          ''
+        ) : (
+          <h1 className="gooday">
+            {greetingMessage}, {shortName()}!
+          </h1>
+        )}
+
         <p>
           {greetingMessage === 'Bom dia'
             ? 'Nada melhor que um Gellato para começar o dia cheio de energia.'

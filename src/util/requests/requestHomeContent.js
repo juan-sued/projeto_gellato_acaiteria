@@ -1,19 +1,12 @@
 import axiosI from '../../services/axios';
 
-const requestHomeContent = async (objResponseAPI, setObjResponseAPI, signOut) => {
-  try {
-    const promisse = await axiosI.get('/home-content');
-    if (promisse.status === 200) {
-      setObjResponseAPI([...objResponseAPI, promisse.data]);
-    }
-  } catch (err) {
-    if (err.response) {
-      console.log('aqui');
-      if (err.response.status === 401) {
-        signOut();
-      }
-    }
-  }
-};
+async function requestHomeContent(objHomeResponseAPI, setObjHomeResponseAPI, signOut) {
+  axiosI
+    .get(`/home-content`)
+    .then(({ data }) => {
+      setObjHomeResponseAPI([...objHomeResponseAPI, data]);
+    })
+    .catch(err => console.error(err));
+}
 
 export default requestHomeContent;
