@@ -6,6 +6,9 @@ import InputInfoField from '../../../shared/InputInfoField';
 import iconExpandMore from '../../../../assets/iconExpandMore.svg';
 
 import iconExpandLess from '../../../../assets/iconExpandLess.svg';
+import requestUpdateAddress from '../../../../util/requests/requestUpdate';
+import { returnDayFormated } from '../../../../util/format';
+import Loading from '../../../shared/Loading';
 
 export default function CardAddress({
   street,
@@ -16,17 +19,38 @@ export default function CardAddress({
   createdAt,
   updatedAt
 }) {
+  const [stateButton, setStateButton] = useState(true);
   const [editToggle, setEditToggle] = useState(false);
 
   const dayCreatedAt = returnDayFormated(createdAt);
   const dayUpdatedAt = returnDayFormated(updatedAt);
 
-  const [cardHeightToggle, setCardHeightToggle] = useState(false);
+  const [cardHeightToggle, setCardHeightToggle] = useState(true);
 
-  function returnDayFormated(date) {
-    return dayjs(date).format('DD-MM-YYYY');
+  const [updateDataAddress, setUpdateDataAddress] = useState({
+    street: '',
+    neighborhood: '',
+    number: '',
+    state: '',
+    cep: ''
+  });
+
+  const handleChangeText = e => {
+    setUpdateDataAddress({ ...updateDataAddress, [e.target.name]: e.target.value });
+  };
+  const sucess = () => {
+    console.log('tudo certo');
+
+    //aparecer uma popup aqui
+  };
+  function updateAddress(event) {
+    event.preventDefault();
+    setStateButton('loading');
+    requestUpdateAddress(updateDataAddress, setUpdateDataAddress, sucess, setStateButton);
+
+    console.log('entrou');
   }
-  console.log(cardHeightToggle);
+  console.log(stateButton);
   return (
     <Container>
       <TitleSession>
@@ -34,68 +58,105 @@ export default function CardAddress({
       </TitleSession>
 
       <CardAddressStyle cardHeightToggle={cardHeightToggle}>
-        <section className="street">
-          <InputInfoField
-            nameInput={'Rua: '}
-            editToggle={editToggle}
-            placeholder={street}
-          />
+        <form onSubmit={updateAddress}>
+          <section className="street">
+            <InputInfoField
+              nameInput={'Rua: '}
+              editToggle={editToggle}
+              placeholder={street}
+              name={'street'}
+              value={updateDataAddress.street}
+              onChange={handleChangeText}
+            />
 
-          <button
-            className="iconToggle"
-            onClick={() => setCardHeightToggle(!cardHeightToggle)}
-          >
-            <img src={cardHeightToggle ? iconExpandLess : iconExpandMore} alt="" />
-          </button>
-        </section>
+            <button
+              className="iconToggle"
+              type="button"
+              onClick={() => setCardHeightToggle(!cardHeightToggle)}
+            >
+              <img src={cardHeightToggle ? iconExpandLess : iconExpandMore} alt="" />
+            </button>
+          </section>
 
-        <section className="neighborhoodAndNumber">
-          <InputInfoField
-            nameInput={'Bairro: '}
-            editToggle={editToggle}
-            placeholder={neighborhood}
-            marginRight={'10px'}
-          />
-          <InputInfoField
-            nameInput={'Número: '}
-            editToggle={editToggle}
-            placeholder={number}
-          />
-        </section>
+          <section className="neighborhoodAndNumber">
+            <InputInfoField
+              nameInput={'Bairro: '}
+              editToggle={editToggle}
+              placeholder={neighborhood}
+              marginRight={'10px'}
+              name={'neighborhood'}
+              value={updateDataAddress.neighborhood}
+              onChange={handleChangeText}
+            />
+            <InputInfoField
+              nameInput={'Número: '}
+              editToggle={editToggle}
+              placeholder={number}
+              name={'number'}
+              value={updateDataAddress.number}
+              onChange={handleChangeText}
+            />
+          </section>
 
-        <section className="cepAndState">
-          <InputInfoField
-            nameInput={'Estado: '}
-            editToggle={editToggle}
-            placeholder={state}
-            marginRight={'10px'}
-          />
-          <InputInfoField nameInput={'CEP: '} editToggle={editToggle} placeholder={cep} />
-        </section>
+          <section className="cepAndState">
+            <InputInfoField
+              nameInput={'Estado: '}
+              editToggle={editToggle}
+              placeholder={state}
+              marginRight={'10px'}
+              name={'state'}
+              value={updateDataAddress.state}
+              onChange={handleChangeText}
+            />
+            <InputInfoField
+              nameInput={'CEP: '}
+              editToggle={editToggle}
+              placeholder={cep}
+              name={'cep'}
+              value={updateDataAddress.cep}
+              onChange={handleChangeText}
+            />
+          </section>
 
-        <section className="dateUpdate">
-          <InputInfoField
-            nameInput={'Criado em: '}
-            editToggle={false}
-            placeholder={dayCreatedAt}
-            marginRight={'10px'}
-          />
-          <InputInfoField
-            nameInput={'Atualizado em: '}
-            editToggle={false}
-            placeholder={dayUpdatedAt}
-            marginRight={'10px'}
-          />
-        </section>
+          <section className="dateUpdate">
+            <InputInfoField
+              nameInput={'Criado em: '}
+              editToggle={false}
+              placeholder={dayCreatedAt}
+              marginRight={'10px'}
+            />
+            <InputInfoField
+              nameInput={'Atualizado em: '}
+              editToggle={false}
+              placeholder={dayUpdatedAt}
+              marginRight={'10px'}
+            />
+          </section>
 
-        <ButtonsSubmit toggle={editToggle}>
-          <button className="editButton" onClick={() => setEditToggle(!editToggle)}>
-            EDITAR
-          </button>
-          <button className="submitButton" onClick={() => setEditToggle(!editToggle)}>
-            SALVAR
-          </button>
-        </ButtonsSubmit>
+          <ButtonsSubmit toggle={editToggle} stateButton={stateButton}>
+            <button
+              className="editButton"
+              type="button"
+              onClick={() => setEditToggle(!editToggle)}
+              disabled={stateButton === 'loading' || stateButton === 'err' ? true : false}
+            >
+              {stateButton === 'err' ? (
+                'Erro ao atualizar'
+              ) : stateButton === 'loading' ? (
+                <Loading width={'25px'} />
+              ) : (
+                'EDITAR'
+              )}
+            </button>
+            <button
+              className="submitButton"
+              type="submit"
+              onClick={() => setEditToggle(!editToggle)}
+            >
+              SALVAR
+            </button>
+          </ButtonsSubmit>
+        </form>
       </CardAddressStyle>
     </Container>
   );
@@ -158,9 +219,16 @@ const ButtonsSubmit = styled.div`
   }
   .editButton {
     display: ${props => (props.toggle ? 'none' : 'block')};
-    background-color: transparent;
-    border: 1px solid purple;
-    color: purple;
+
+    border: ${props =>
+      props.stateButton === 'err' || props.stateButton === 'loading'
+        ? 'none'
+        : ' 1px solid purple'};
+
+    background-color: ${props =>
+      props.stateButton === 'err' ? '#b71c1c' : 'transparent'};
+
+    color: ${props => (props.stateButton === 'err' ? 'white' : 'purple')};
   }
   .submitButton {
     display: ${props => (props.toggle ? 'block' : 'none')};

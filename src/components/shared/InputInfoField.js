@@ -4,7 +4,10 @@ export default function InputInfoField({
   placeholder,
   nameInput,
   editToggle,
-  marginRight
+  marginRight,
+  name,
+  value,
+  onChange
 }) {
   return (
     <InputInfoFieldStyle className="phone" border={editToggle} marginRight={marginRight}>
@@ -14,6 +17,9 @@ export default function InputInfoField({
         type="text"
         placeholder={placeholder}
         disabled={!editToggle}
+        name={name}
+        value={value}
+        onChange={onChange}
       />
     </InputInfoFieldStyle>
   );
@@ -21,7 +27,6 @@ export default function InputInfoField({
 
 const InputInfoFieldStyle = styled.div`
   margin-bottom: 20px;
-
   width: 100%;
   margin-right: ${props => props.marginRight};
 
@@ -40,7 +45,7 @@ const InputInfoFieldStyle = styled.div`
       props.border ? 'inset 0px 0px 4px rgba(0, 0, 0, 0.25)' : 'none'};
     padding-left: 10px;
     padding-right: 5px;
-    color: red;
+
     width: 100%;
 
     margin-right: 10px;
