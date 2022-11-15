@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import axios from 'axios';
+
 //===
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -34,7 +34,7 @@ export default function InputRegisterProduct() {
   useEffect(() => {
     if (selectedCategory > 1) {
       const productsByIdCategory = productsAndCategories.productsList.filter(
-        product => product.categoryId == selectedCategory
+        product => product.categoryId === selectedCategory
       );
 
       setProductsForCategories(productsByIdCategory);
@@ -66,13 +66,12 @@ export default function InputRegisterProduct() {
       const isProductRegistered = productsList.some(
         product => product.name === objNewProduct.name
       );
-      console.log('entrou aqui tb aaaaaaa');
+
       if (isProductRegistered) {
         setObjNewProduct({ ...objNewProduct, name: '' });
         setStateButton('isProductRegistered');
       }
     } else {
-      console.log('entrou', selectedProduct);
       setObjNewProduct({ ...objNewProduct, name: selectedProduct });
     }
     //================ Validação de nova categoria =================>

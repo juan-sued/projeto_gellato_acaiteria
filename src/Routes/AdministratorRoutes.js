@@ -3,6 +3,7 @@ import AddProductPage from '../components/screens/AddProductPage/AddProductPage'
 import Cart from '../components/screens/Cart_Page/components';
 import HomePage from '../components/screens/Home_Page/HomePage';
 import LoginPage from '../components/screens/Login_Page/Login_Page';
+import MyInformationPage from '../components/screens/MyInformations_Page/MyInformation';
 import RegisterPage from '../components/screens/Register_Page/RegisterPage';
 
 const AdministratorRoutes = () => (
@@ -12,6 +13,7 @@ const AdministratorRoutes = () => (
     <Route path="/sign-in" element={<LoginPage />} />
     <Route path="/insert-product" element={<AddProductPage />} />
     <Route path="/cart" element={<Cart />} />
+    <Route path="/my-informations-page" element={<MyInformationPage />} />
   </Routes>
 );
 export default AdministratorRoutes;
