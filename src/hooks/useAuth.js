@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
     setStateCollorButton('#8a8893');
 
     try {
-      const { data } = await axiosI.post('/sign-in', signInData);
+      const { data } = await axiosI.post('auth/sign-in', signInData);
 
       setUserInfo(data.user);
 

@@ -56,11 +56,14 @@ export default function SideBar() {
       navigate('/insert-product');
     } else if (text.nameIcon === 'group_add') {
       navigate('/');
+    } else if (text.nameIcon === 'fingerprint') {
+      navigate('/my-informations-page');
     } else {
       console.log('não carrinho');
     }
   };
 
+  //lista de buttons do sidebar
   let listButtonsSideBar = [
     { nameIcon: 'logout', nameText: 'Sair' },
     { nameIcon: 'favorite', nameText: 'Meus favoritos' },
@@ -69,6 +72,7 @@ export default function SideBar() {
     { nameIcon: 'shopping_cart', nameText: 'Meu carrinho' }
   ];
 
+  //adiciona buttons de administrador
   if (userInfo && userInfo.isAdministrator === false) {
     listButtonsSideBar.splice(
       1,
