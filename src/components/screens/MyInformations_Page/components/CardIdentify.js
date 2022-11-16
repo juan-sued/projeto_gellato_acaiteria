@@ -1,75 +1,106 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { returnDayFormated } from '../../../../util/format';
+import requestUpdateUser from '../../../../util/requests/requestUpdateUser';
+import ButtonSubmitHover from '../../../shared/ButtonSubmitHover';
 import InputInfoField from '../../../shared/InputInfoField';
+import Loading from '../../../shared/Loading';
 
-export default function CardIdentify({ userAndAddressesInfo }) {
+export default function CardIdentify({ userAndAddressesInfo, id }) {
+  const [stateButton, setStateButton] = useState(true);
   const [editToggle, setEditToggle] = useState(false);
 
+  const dayCreatedAt = returnDayFormated(userAndAddressesInfo.createdAt);
+  const dayUpdatedAt = returnDayFormated(userAndAddressesInfo.updatedAt);
+
+  const [updateDataUser, setUpdateDataUser] = useState({
+    name: '',
+    email: '',
+    cpf: '',
+    phone: ''
+  });
+
+  const handleChangeText = e => {
+    setUpdateDataUser({ ...updateDataUser, [e.target.name]: e.target.value });
+  };
+  const sucess = () => {
+    console.log('tudo certo');
+
+    //aparecer uma popup aqui
+  };
+  function updateUser(event) {
+    event.preventDefault();
+    setStateButton('loading');
+    requestUpdateUser(updateDataUser, setUpdateDataUser, sucess, setStateButton, id);
+  }
+  console.log(updateDataUser);
   return (
     <CardIdentifyStyle>
-      <InputInfoField
-        nameInput={'Nome: '}
-        editToggle={editToggle}
-        placeholder={userAndAddressesInfo.user.name}
-      />
-      <InputInfoField
-        nameInput={'Email: '}
-        editToggle={editToggle}
-        placeholder={userAndAddressesInfo.user.email}
-      />
-      <InputInfoField
-        nameInput={'CPF: '}
-        editToggle={editToggle}
-        placeholder={
-          userAndAddressesInfo.user.cpf ? userAndAddressesInfo.user.cpf : 'não cadastrado'
-        }
-      />
-      <InputInfoField
-        nameInput={'Telefone: '}
-        editToggle={editToggle}
-        placeholder={
-          userAndAddressesInfo.user.phone
-            ? userAndAddressesInfo.user.phone
-            : 'não cadastrado'
-        }
-      />
-      <ButtonsSubmit toggle={editToggle}>
-        <button className="editButton" onClick={() => setEditToggle(!editToggle)}>
-          EDITAR
-        </button>
-        <button className="submitButton" onClick={() => setEditToggle(!editToggle)}>
-          SALVAR
-        </button>
-      </ButtonsSubmit>
+      <form onSubmit={updateUser}>
+        <InputInfoField
+          nameInput={'Nome: '}
+          editToggle={editToggle}
+          placeholder={userAndAddressesInfo.user.name}
+          name={'name'}
+          value={updateDataUser.name}
+          onChange={handleChangeText}
+        />
+        <InputInfoField
+          nameInput={'Email: '}
+          editToggle={editToggle}
+          placeholder={userAndAddressesInfo.user.email}
+          name={'email'}
+          value={updateDataUser.email}
+          onChange={handleChangeText}
+        />
+        <InputInfoField
+          nameInput={editToggle ? 'CPF: (apenas números)' : 'CPF: '}
+          editToggle={editToggle}
+          placeholder={
+            userAndAddressesInfo.user.cpf
+              ? userAndAddressesInfo.user.cpf
+              : 'não cadastrado'
+          }
+          name={'cpf'}
+          value={updateDataUser.cpf}
+          onChange={handleChangeText}
+        />
+        <InputInfoField
+          nameInput={'Telefone: '}
+          editToggle={editToggle}
+          placeholder={
+            userAndAddressesInfo.user.phone
+              ? userAndAddressesInfo.user.phone
+              : 'não cadastrado'
+          }
+          name={'phone'}
+          value={updateDataUser.phone}
+          onChange={handleChangeText}
+        />
+
+        <section className="dateUpdate">
+          <InputInfoField
+            nameInput={'Criado em: '}
+            editToggle={false}
+            placeholder={dayCreatedAt}
+            marginRight={'10px'}
+          />
+          <InputInfoField
+            nameInput={'Atualizado em: '}
+            editToggle={false}
+            placeholder={dayUpdatedAt}
+            marginRight={'10px'}
+          />
+        </section>
+        <ButtonSubmitHover
+          stateButton={stateButton}
+          editToggle={editToggle}
+          setEditToggle={setEditToggle}
+        />
+      </form>
     </CardIdentifyStyle>
   );
 }
-
-const ButtonsSubmit = styled.div`
-  height: 50px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  button {
-    border: none;
-    height: 40px;
-    width: 100%;
-    border-radius: 3px;
-  }
-  .editButton {
-    display: ${props => (props.toggle ? 'none' : 'block')};
-    background-color: transparent;
-    border: 1px solid purple;
-    color: purple;
-  }
-  .submitButton {
-    display: ${props => (props.toggle ? 'block' : 'none')};
-    background-color: purple;
-    color: white;
-  }
-`;
 
 const CardIdentifyStyle = styled.div`
   background-color: white;
@@ -77,4 +108,10 @@ const CardIdentifyStyle = styled.div`
   height: auto;
   border-radius: 10px;
   padding: 15px;
+  section {
+    display: flex;
+    width: 100%;
+    justify-content: start;
+    align-items: center;
+  }
 `;

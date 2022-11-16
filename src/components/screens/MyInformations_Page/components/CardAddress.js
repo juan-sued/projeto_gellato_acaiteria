@@ -6,9 +6,10 @@ import InputInfoField from '../../../shared/InputInfoField';
 import iconExpandMore from '../../../../assets/iconExpandMore.svg';
 
 import iconExpandLess from '../../../../assets/iconExpandLess.svg';
-import requestUpdateAddress from '../../../../util/requests/requestUpdate';
+import requestUpdateAddress from '../../../../util/requests/requestUpdateAddress';
 import { returnDayFormated } from '../../../../util/format';
-import Loading from '../../../shared/Loading';
+
+import ButtonSubmitHover from '../../../shared/ButtonSubmitHover';
 
 export default function CardAddress({
   street,
@@ -17,7 +18,8 @@ export default function CardAddress({
   state,
   cep,
   createdAt,
-  updatedAt
+  updatedAt,
+  idAddress
 }) {
   const [stateButton, setStateButton] = useState(true);
   const [editToggle, setEditToggle] = useState(false);
@@ -39,18 +41,17 @@ export default function CardAddress({
     setUpdateDataAddress({ ...updateDataAddress, [e.target.name]: e.target.value });
   };
   const sucess = () => {
-    console.log('tudo certo');
-
-    //aparecer uma popup aqui
+    setStateButton('sucess');
+    setTimeout(() => {
+      setStateButton(true);
+    }, '3000');
   };
   function updateAddress(event) {
     event.preventDefault();
     setStateButton('loading');
-    requestUpdateAddress(updateDataAddress, setUpdateDataAddress, sucess, setStateButton);
-
-    console.log('entrou');
+    requestUpdateAddress(sucess, setStateButton, idAddress);
   }
-  console.log(stateButton);
+
   return (
     <Container>
       <TitleSession>
@@ -132,30 +133,11 @@ export default function CardAddress({
               marginRight={'10px'}
             />
           </section>
-
-          <ButtonsSubmit toggle={editToggle} stateButton={stateButton}>
-            <button
-              className="editButton"
-              type="button"
-              onClick={() => setEditToggle(!editToggle)}
-              disabled={stateButton === 'loading' || stateButton === 'err' ? true : false}
-            >
-              {stateButton === 'err' ? (
-                'Erro ao atualizar'
-              ) : stateButton === 'loading' ? (
-                <Loading width={'25px'} />
-              ) : (
-                'EDITAR'
-              )}
-            </button>
-            <button
-              className="submitButton"
-              type="submit"
-              onClick={() => setEditToggle(!editToggle)}
-            >
-              SALVAR
-            </button>
-          </ButtonsSubmit>
+          <ButtonSubmitHover
+            stateButton={stateButton}
+            editToggle={editToggle}
+            setEditToggle={setEditToggle}
+          />
         </form>
       </CardAddressStyle>
     </Container>
@@ -201,38 +183,5 @@ const TitleSession = styled.div`
   h1 {
     color: white;
     font-size: 30px;
-  }
-`;
-
-const ButtonsSubmit = styled.div`
-  height: 50px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  button {
-    border: none;
-    height: 40px;
-    width: 100%;
-    border-radius: 3px;
-  }
-  .editButton {
-    display: ${props => (props.toggle ? 'none' : 'block')};
-
-    border: ${props =>
-      props.stateButton === 'err' || props.stateButton === 'loading'
-        ? 'none'
-        : ' 1px solid purple'};
-
-    background-color: ${props =>
-      props.stateButton === 'err' ? '#b71c1c' : 'transparent'};
-
-    color: ${props => (props.stateButton === 'err' ? 'white' : 'purple')};
-  }
-  .submitButton {
-    display: ${props => (props.toggle ? 'block' : 'none')};
-    background-color: purple;
-    color: white;
   }
 `;
