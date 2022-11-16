@@ -1,13 +1,14 @@
 import axiosI from '../../services/axios';
 
-async function requestUpdateAddress(
-  updateDataAddress,
-  setUpdateDataAddress,
+async function requestUpdateUser(
+  updateDataUser,
+  setUpdateDataUser,
   sucess,
-  setStateButton
+  setStateButton,
+  id
 ) {
   axiosI
-    .patch(`/users/address`)
+    .patch(`/users/${id}`)
     .then(({ data }) => {
       sucess();
     })
@@ -21,4 +22,4 @@ async function requestUpdateAddress(
     });
 }
 
-export default requestUpdateAddress;
+export default requestUpdateUser;
