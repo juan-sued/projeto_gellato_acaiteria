@@ -1,19 +1,25 @@
 import axiosI from '../../services/axios';
 
-async function requestUpdateUser(
+async function requestUpdateUser({
   updateDataUser,
-  setUpdateDataUser,
   sucess,
   setStateButton,
-  id
-) {
+  id,
+  setUpdateDataUser
+}) {
   axiosI
-    .patch(`/users/${id}`)
+    .patch(`/users/`, updateDataUser)
     .then(({ data }) => {
       sucess();
     })
     .catch(err => {
       console.error(err);
+      setUpdateDataUser({
+        name: '',
+        email: '',
+        cpf: '',
+        phone: ''
+      });
       setStateButton('err');
       setTimeout(() => {
         console.log('aqui');

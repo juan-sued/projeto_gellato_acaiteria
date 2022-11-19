@@ -4,9 +4,13 @@ import { returnDayFormated } from '../../../../util/format';
 import requestUpdateUser from '../../../../util/requests/requestUpdateUser';
 import ButtonSubmitHover from '../../../shared/ButtonSubmitHover';
 import InputInfoField from '../../../shared/InputInfoField';
-import Loading from '../../../shared/Loading';
 
-export default function CardIdentify({ userAndAddressesInfo, id }) {
+export default function CardIdentify({
+  userAndAddressesInfo,
+  id,
+  requestKey,
+  setRequestKey
+}) {
   const [stateButton, setStateButton] = useState(true);
   const [editToggle, setEditToggle] = useState(false);
 
@@ -23,15 +27,22 @@ export default function CardIdentify({ userAndAddressesInfo, id }) {
   const handleChangeText = e => {
     setUpdateDataUser({ ...updateDataUser, [e.target.name]: e.target.value });
   };
+
   const sucess = () => {
-    console.log('tudo certo');
+    setStateButton('sucess');
+    setTimeout(() => {
+      setStateButton(true);
+    }, '3000');
+
+    setRequestKey(!requestKey);
 
     //aparecer uma popup aqui
   };
+
   function updateUser(event) {
     event.preventDefault();
     setStateButton('loading');
-    requestUpdateUser(updateDataUser, setUpdateDataUser, sucess, setStateButton, id);
+    requestUpdateUser({ updateDataUser, setUpdateDataUser, sucess, setStateButton, id });
   }
   console.log(updateDataUser);
   return (

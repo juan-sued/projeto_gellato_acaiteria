@@ -6,9 +6,8 @@ async function requestMyInformations(
   userInfo
 ) {
   if (userInfo) {
-    console.log(userInfo);
     axiosI
-      .get(`/users/${2}`)
+      .get(`/users/${userInfo.id}`)
       .then(({ data }) => {
         setUserAndAddressesInfo(data);
       })

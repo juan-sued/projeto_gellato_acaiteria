@@ -12,8 +12,6 @@ export default function ButtonSubmitHover({ stateButton, setEditToggle, editTogg
       >
         {stateButton === 'err' ? (
           'Erro ao atualizar'
-        ) : stateButton === 'sucess' ? (
-          'Tudo certinho'
         ) : stateButton === 'loading' ? (
           <Loading width={'25px'} />
         ) : (
@@ -65,11 +63,7 @@ const ButtonSubmitHoverStyle = styled.div`
         : ' 1px solid purple'};
 
     background-color: ${props =>
-      props.stateButton === 'err'
-        ? '#b71c1c'
-        : props.stateButton === 'sucess'
-        ? '#00c853'
-        : 'transparent'};
+      props.stateButton === 'err' ? '#b71c1c' : 'transparent'};
 
     color: ${props => (props.stateButton === 'err' ? 'white' : 'purple')};
   }

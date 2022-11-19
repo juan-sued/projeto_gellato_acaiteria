@@ -1,14 +1,13 @@
 import axiosI from '../../services/axios';
 
-async function requestUpdateAddress(
+async function requestAddAddress(
   sucess,
   setStateButton,
-  idAddress,
-  updateDataAddress,
-  setUpdateDataAddress
+  createDataAddress,
+  setCreateDataAddress
 ) {
   axiosI
-    .patch(`/users/addresses/${idAddress}`, updateDataAddress)
+    .post(`/users/addresses/`, createDataAddress)
     .then(({ data }) => {
       sucess();
     })
@@ -16,7 +15,7 @@ async function requestUpdateAddress(
       console.error(err);
 
       setStateButton('err');
-      setUpdateDataAddress({
+      setCreateDataAddress({
         street: '',
         neighborhood: '',
         number: '',
@@ -24,10 +23,9 @@ async function requestUpdateAddress(
         cep: ''
       });
       setTimeout(() => {
-        console.log('aqui');
         setStateButton(true);
       }, '3000');
     });
 }
 
-export default requestUpdateAddress;
+export default requestAddAddress;

@@ -6,29 +6,18 @@ import iconExpandLess from '../../../../assets/iconExpandLess.svg';
 import requestUpdateAddress from '../../../../util/requests/requestUpdateAddress';
 import { returnDayFormated } from '../../../../util/format';
 import ButtonSubmitHover from '../../../shared/ButtonSubmitHover';
+import requestAddAddress from '../../../../util/requests/requestAddAddress';
 
-export default function CardAddress({
-  id,
-  street,
-  number,
-  neighborhood,
-  state,
-  cep,
-  createdAt,
-  updatedAt,
-  idAddress,
+export default function CardAddAddress({
   requestKey,
-  setRequestKey
+  setRequestKey,
+  editToggleCard,
+  setEditToggleCard
 }) {
   const [stateButton, setStateButton] = useState(true);
-  const [editToggle, setEditToggle] = useState(false);
+  const [editToggle, setEditToggle] = useState(true);
 
-  const dayCreatedAt = returnDayFormated(createdAt);
-  const dayUpdatedAt = returnDayFormated(updatedAt);
-
-  const [cardHeightToggle, setCardHeightToggle] = useState(true);
-
-  const [updateDataAddress, setUpdateDataAddress] = useState({
+  const [createDataAddress, setCreateDataAddress] = useState({
     street: '',
     neighborhood: '',
     number: '',
@@ -37,7 +26,7 @@ export default function CardAddress({
   });
 
   const handleChangeText = e => {
-    setUpdateDataAddress({ ...updateDataAddress, [e.target.name]: e.target.value });
+    setCreateDataAddress({ ...createDataAddress, [e.target.name]: e.target.value });
   };
 
   const sucess = () => {
@@ -47,54 +36,40 @@ export default function CardAddress({
   function updateAddress(event) {
     event.preventDefault();
     setStateButton('loading');
-    requestUpdateAddress(
-      sucess,
-      setStateButton,
-      idAddress,
-      updateDataAddress,
-      setUpdateDataAddress
-    );
+    requestAddAddress(sucess, setStateButton, createDataAddress, setCreateDataAddress);
   }
-
+  console.log(editToggleCard);
   return (
-    <Container>
-      <CardAddressStyle cardHeightToggle={cardHeightToggle}>
+    <Container displayToggle={editToggleCard}>
+      <CardAddressStyle displayToggle={editToggleCard}>
         <form onSubmit={updateAddress}>
           <section className="street">
             <InputInfoField
               nameInput={'Rua: '}
               editToggle={editToggle}
-              placeholder={street}
+              placeholder={'ex: Rua nazaré'}
               name={'street'}
-              value={updateDataAddress.street}
+              value={createDataAddress.street}
               onChange={handleChangeText}
             />
-
-            <button
-              className="iconToggle"
-              type="button"
-              onClick={() => setCardHeightToggle(!cardHeightToggle)}
-            >
-              <img src={cardHeightToggle ? iconExpandLess : iconExpandMore} alt="" />
-            </button>
           </section>
 
           <section className="neighborhoodAndNumber">
             <InputInfoField
               nameInput={'Bairro: '}
               editToggle={editToggle}
-              placeholder={neighborhood}
+              placeholder={'ex: Inhaúma'}
               marginRight={'10px'}
               name={'neighborhood'}
-              value={updateDataAddress.neighborhood}
+              value={createDataAddress.neighborhood}
               onChange={handleChangeText}
             />
             <InputInfoField
               nameInput={'Número: '}
               editToggle={editToggle}
-              placeholder={number}
+              placeholder={'ex: 782'}
               name={'number'}
-              value={updateDataAddress.number}
+              value={createDataAddress.number}
               onChange={handleChangeText}
             />
           </section>
@@ -103,34 +78,19 @@ export default function CardAddress({
             <InputInfoField
               nameInput={'Estado: '}
               editToggle={editToggle}
-              placeholder={state}
+              placeholder={'ex: RJ'}
               marginRight={'10px'}
               name={'state'}
-              value={updateDataAddress.state}
+              value={createDataAddress.state}
               onChange={handleChangeText}
             />
             <InputInfoField
               nameInput={'CEP: '}
               editToggle={editToggle}
-              placeholder={cep}
+              placeholder={'ex: 20765-171'}
               name={'cep'}
-              value={updateDataAddress.cep}
+              value={createDataAddress.cep}
               onChange={handleChangeText}
-            />
-          </section>
-
-          <section className="dateUpdate">
-            <InputInfoField
-              nameInput={'Criado em: '}
-              editToggle={false}
-              placeholder={dayCreatedAt}
-              marginRight={'10px'}
-            />
-            <InputInfoField
-              nameInput={'Atualizado em: '}
-              editToggle={false}
-              placeholder={dayUpdatedAt}
-              marginRight={'10px'}
             />
           </section>
           <ButtonSubmitHover
@@ -153,8 +113,7 @@ const CardAddressStyle = styled.div`
   padding: 15px;
   overflow-y: hidden;
   padding-top: 20px;
-  height: ${props => (props.cardHeightToggle ? '82px' : '406px')};
-  transition: all 0.5s ease-out;
+  height: auto;
 
   section {
     display: flex;
@@ -177,4 +136,5 @@ const CardAddressStyle = styled.div`
 
 const Container = styled.div`
   margin-top: 10px;
+  display: ${props => (props.displayToggle ? 'block' : 'none')};
 `;
