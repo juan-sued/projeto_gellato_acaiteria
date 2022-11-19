@@ -6,7 +6,7 @@ import Loading from '../../shared/Loading';
 import Main from '../../shared/Main';
 import TitlePage from '../../shared/TitlePage';
 import CardAddress from './components/CardAddress';
-import CardIdentify from './components/CardIdentify';
+import CardIdentify from './CardIdentify';
 import iconAdd from '../../../assets/addpositivepurple.svg';
 import CardAddAddress from './components/CardAddAddress';
 export default function MyInformationPage() {
@@ -20,7 +20,7 @@ export default function MyInformationPage() {
       setUserAndAddressesInfo({});
     };
   }, [requestKey]);
-  console.log(userAndAddressesInfo);
+
   if (
     userAndAddressesInfo.user !== undefined &&
     userAndAddressesInfo.addresses !== undefined

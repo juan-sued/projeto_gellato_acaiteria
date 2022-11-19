@@ -22,7 +22,8 @@ export default function CardAddAddress({
     neighborhood: '',
     number: '',
     state: '',
-    cep: ''
+    cep: '',
+    createDataAddress: ''
   });
 
   const handleChangeText = e => {
@@ -73,7 +74,14 @@ export default function CardAddAddress({
               onChange={handleChangeText}
             />
           </section>
-
+          <InputInfoField
+            nameInput={'Cidade: '}
+            editToggle={editToggle}
+            placeholder={'ex: Rio de Janeiro'}
+            name={'city'}
+            value={createDataAddress.city}
+            onChange={handleChangeText}
+          />
           <section className="cepAndState">
             <InputInfoField
               nameInput={'Estado: '}

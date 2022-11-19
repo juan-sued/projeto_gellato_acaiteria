@@ -18,7 +18,8 @@ export default function CardAddress({
   updatedAt,
   idAddress,
   requestKey,
-  setRequestKey
+  setRequestKey,
+  city
 }) {
   const [stateButton, setStateButton] = useState(true);
   const [editToggle, setEditToggle] = useState(false);
@@ -98,7 +99,14 @@ export default function CardAddress({
               onChange={handleChangeText}
             />
           </section>
-
+          <InputInfoField
+            nameInput={'Cidade: '}
+            editToggle={editToggle}
+            placeholder={city}
+            name={'city'}
+            value={updateDataAddress.city}
+            onChange={handleChangeText}
+          />
           <section className="cepAndState">
             <InputInfoField
               nameInput={'Estado: '}
@@ -153,7 +161,7 @@ const CardAddressStyle = styled.div`
   padding: 15px;
   overflow-y: hidden;
   padding-top: 20px;
-  height: ${props => (props.cardHeightToggle ? '82px' : '406px')};
+  height: ${props => (props.cardHeightToggle ? '82px' : '487px')};
   transition: all 0.5s ease-out;
 
   section {
