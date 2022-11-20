@@ -8,7 +8,8 @@ export default function InputInfoField({
   name,
   value,
   onChange,
-  maxWidht
+  maxWidht,
+  type = 'text'
 }) {
   return (
     <InputInfoFieldStyle
@@ -20,12 +21,13 @@ export default function InputInfoField({
       <h1>{nameInput} </h1>
       <input
         className="inputPhone"
-        type="text"
+        type={type}
         placeholder={placeholder}
         disabled={!editToggle}
         name={name}
         value={value}
         onChange={onChange}
+        min={0}
       />
     </InputInfoFieldStyle>
   );

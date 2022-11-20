@@ -44,6 +44,7 @@ export default function CardAddAddress({
   function updateAddress(event) {
     event.preventDefault();
     setStateButton('loading');
+
     requestAddAddress(sucess, setStateButton, createDataAddress, setCreateDataAddress);
   }
   console.log(editToggleCard);
@@ -85,7 +86,8 @@ export default function CardAddAddress({
               name={'number'}
               value={createDataAddress.number}
               onChange={handleChangeText}
-              maxWidht={'80px'}
+              maxWidht={'90px'}
+              type={'number'}
             />
           </section>
 
@@ -112,7 +114,7 @@ export default function CardAddAddress({
             nameInput={'Complemento: '}
             editToggle={editToggle}
             placeholder={'ex: Ao lado da praça XV'}
-            name={'street'}
+            name={'addressDetail'}
             value={createDataAddress.addressDetail}
             onChange={handleChangeText}
           />

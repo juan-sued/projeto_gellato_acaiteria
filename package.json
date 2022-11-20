@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@brazilian-utils/brazilian-utils": "^1.0.0-rc.12",
     "@mui/material": "^5.10.8",
     "axios": "^0.27.2",
     "dayjs": "^1.11.6",

@@ -15,7 +15,7 @@ import { formatPrice } from '../../../../util/format';
 import { useAuth } from '../../../../hooks/useAuth';
 export default function SideBar() {
   const navigate = useNavigate();
-  const { userInfo } = useAuth();
+  const { userInfo, signOut } = useAuth();
   function shortName() {
     if (userInfo !== null) {
       const nameShorten = userInfo.name.split(' ');
@@ -51,7 +51,7 @@ export default function SideBar() {
     if (text.nameIcon === 'shopping_cart') {
       navigate('/cart');
     } else if (text.nameIcon === 'logout') {
-      navigate('/sign-in');
+      signOut();
     } else if (text.nameIcon === 'add_box') {
       navigate('/insert-product');
     } else if (text.nameIcon === 'group_add') {
