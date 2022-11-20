@@ -1,4 +1,4 @@
-import axiosI from '../../services/axios';
+import { axiosI } from '../../services/axios';
 
 async function requestAddAddress(
   sucess,
@@ -12,15 +12,15 @@ async function requestAddAddress(
       sucess();
     })
     .catch(err => {
-      console.error(err);
-
       setStateButton('err');
       setCreateDataAddress({
         street: '',
         neighborhood: '',
         number: '',
         state: '',
-        cep: ''
+        city: '',
+        cep: '',
+        addressDetail: ''
       });
       setTimeout(() => {
         setStateButton(true);

@@ -1,4 +1,4 @@
-import axiosI from '../../services/axios';
+import { axiosI } from '../../services/axios';
 
 const requestMoreOrders = async (objResponseAPI, setObjResponseAPI, signOut) => {
   try {

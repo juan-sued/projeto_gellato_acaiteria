@@ -6,7 +6,7 @@ import Loading from '../../shared/Loading';
 import Main from '../../shared/Main';
 import TitlePage from '../../shared/TitlePage';
 import CardAddress from './components/CardAddress';
-import CardIdentify from './CardIdentify';
+import CardIdentify from './components/CardIdentify';
 import iconAdd from '../../../assets/addpositivepurple.svg';
 import CardAddAddress from './components/CardAddAddress';
 export default function MyInformationPage() {

@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import InputInfoField from '../../../shared/InputInfoField';
 import iconExpandMore from '../../../../assets/iconExpandMore.svg';
-import iconExpandLess from '../../../../assets/iconExpandLess.svg';
+import iconsearch from '../../../../assets/iconsearch.svg';
 import requestUpdateAddress from '../../../../util/requests/requestUpdateAddress';
 import { returnDayFormated } from '../../../../util/format';
 import ButtonSubmitHover from '../../../shared/ButtonSubmitHover';
 import requestAddAddress from '../../../../util/requests/requestAddAddress';
+import requestCep from '../../../../util/requests/requestCep';
 
 export default function CardAddAddress({
   requestKey,
@@ -22,14 +23,20 @@ export default function CardAddAddress({
     neighborhood: '',
     number: '',
     state: '',
+    city: '',
     cep: '',
-    createDataAddress: ''
+    addressDetail: ''
   });
+
+  function searchCep() {
+    if (createDataAddress.cep.length === 8)
+      requestCep(createDataAddress, setCreateDataAddress, setStateButton);
+  }
 
   const handleChangeText = e => {
     setCreateDataAddress({ ...createDataAddress, [e.target.name]: e.target.value });
   };
-
+  console.log(createDataAddress);
   const sucess = () => {
     setRequestKey(!requestKey);
   };
@@ -44,6 +51,22 @@ export default function CardAddAddress({
     <Container displayToggle={editToggleCard}>
       <CardAddressStyle displayToggle={editToggleCard}>
         <form onSubmit={updateAddress}>
+          <section>
+            <InputInfoField
+              nameInput={'CEP: (Apenas números)'}
+              editToggle={editToggle}
+              placeholder={'ex: 20765171'}
+              name={'cep'}
+              value={createDataAddress.cep}
+              onChange={handleChangeText}
+              marginRight={'10px'}
+              maxWidht={'180px'}
+            />
+            <div className="containerIcon" onClick={searchCep}>
+              <img src={iconsearch} alt="" />
+            </div>
+          </section>
+
           <section className="street">
             <InputInfoField
               nameInput={'Rua: '}
@@ -52,18 +75,8 @@ export default function CardAddAddress({
               name={'street'}
               value={createDataAddress.street}
               onChange={handleChangeText}
-            />
-          </section>
-
-          <section className="neighborhoodAndNumber">
-            <InputInfoField
-              nameInput={'Bairro: '}
-              editToggle={editToggle}
-              placeholder={'ex: Inhaúma'}
               marginRight={'10px'}
-              name={'neighborhood'}
-              value={createDataAddress.neighborhood}
-              onChange={handleChangeText}
+              maxWidht={'350px'}
             />
             <InputInfoField
               nameInput={'Número: '}
@@ -72,6 +85,19 @@ export default function CardAddAddress({
               name={'number'}
               value={createDataAddress.number}
               onChange={handleChangeText}
+              maxWidht={'80px'}
+            />
+          </section>
+
+          <section className="neighborhoodAndNumber">
+            <InputInfoField
+              nameInput={'Bairro: '}
+              editToggle={editToggle}
+              placeholder={'ex: Inhaúma'}
+              name={'neighborhood'}
+              value={createDataAddress.neighborhood}
+              onChange={handleChangeText}
+              marginRight={'10px'}
             />
           </section>
           <InputInfoField
@@ -82,25 +108,15 @@ export default function CardAddAddress({
             value={createDataAddress.city}
             onChange={handleChangeText}
           />
-          <section className="cepAndState">
-            <InputInfoField
-              nameInput={'Estado: '}
-              editToggle={editToggle}
-              placeholder={'ex: RJ'}
-              marginRight={'10px'}
-              name={'state'}
-              value={createDataAddress.state}
-              onChange={handleChangeText}
-            />
-            <InputInfoField
-              nameInput={'CEP: '}
-              editToggle={editToggle}
-              placeholder={'ex: 20765-171'}
-              name={'cep'}
-              value={createDataAddress.cep}
-              onChange={handleChangeText}
-            />
-          </section>
+          <InputInfoField
+            nameInput={'Complemento: '}
+            editToggle={editToggle}
+            placeholder={'ex: Ao lado da praça XV'}
+            name={'street'}
+            value={createDataAddress.addressDetail}
+            onChange={handleChangeText}
+          />
+
           <ButtonSubmitHover
             stateButton={stateButton}
             editToggle={editToggle}
@@ -128,6 +144,25 @@ const CardAddressStyle = styled.div`
     width: 100%;
     justify-content: start;
     align-items: center;
+
+    .containerIcon {
+      background-color: purple;
+
+      width: 90px;
+      height: 39px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 2px;
+      border-radius: 3px;
+      box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+      :hover {
+        cursor: pointer;
+      }
+      img {
+        width: 26px;
+      }
+    }
   }
 
   .iconToggle {

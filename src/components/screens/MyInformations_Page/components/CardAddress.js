@@ -34,7 +34,8 @@ export default function CardAddress({
     neighborhood: '',
     number: '',
     state: '',
-    cep: ''
+    cep: '',
+    addressDetail: ''
   });
 
   const handleChangeText = e => {
@@ -102,7 +103,7 @@ export default function CardAddress({
           <InputInfoField
             nameInput={'Cidade: '}
             editToggle={editToggle}
-            placeholder={city}
+            placeholder={`${city}, ${state}`}
             name={'city'}
             value={updateDataAddress.city}
             onChange={handleChangeText}
@@ -114,7 +115,7 @@ export default function CardAddress({
               placeholder={state}
               marginRight={'10px'}
               name={'state'}
-              value={updateDataAddress.state}
+              value={`state`}
               onChange={handleChangeText}
             />
             <InputInfoField

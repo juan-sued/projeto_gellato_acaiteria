@@ -24,7 +24,7 @@ import OurHistory from '../../shared/OurHistory/OurHistory';
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../../hooks/useAuth';
 import requestHomeContent from '../../../util/requests/requestHomeContent.js';
-import axiosI from '../../../services/axios';
+import { axiosI } from '../../../services/axios';
 import requestFavoriteds from '../../../util/requests/requestFavoriteds';
 
 export default function HomePage() {

@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { returnDayFormated } from '../../../util/format';
-import requestUpdateUser from '../../../util/requests/requestUpdateUser';
-import ButtonSubmitHover from '../../shared/ButtonSubmitHover';
-import InputInfoField from '../../shared/InputInfoField';
+import { returnDayFormated } from '../../../../util/format';
+import requestUpdateUser from '../../../../util/requests/requestUpdateUser';
+import ButtonSubmitHover from '../../../shared/ButtonSubmitHover';
+import InputInfoField from '../../../shared/InputInfoField';
 
 export default function CardIdentify({
   userAndAddressesInfo,
