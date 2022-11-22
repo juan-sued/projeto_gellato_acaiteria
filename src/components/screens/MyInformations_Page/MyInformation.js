@@ -7,8 +7,8 @@ import Main from '../../shared/Main';
 import TitlePage from '../../shared/TitlePage';
 import CardAddress from './components/CardAddress';
 import CardIdentify from './components/CardIdentify';
-import iconAdd from '../../../assets/addpositivepurple.svg';
 import CardAddAddress from './components/CardAddAddress';
+import { MdAdd } from 'react-icons/md';
 export default function MyInformationPage() {
   const { userInfo } = useAuth();
   const [userAndAddressesInfo, setUserAndAddressesInfo] = useState({});
@@ -47,12 +47,14 @@ export default function MyInformationPage() {
                 className="containerIcon"
                 onClick={() => setEditToggleCard(!editToggleCard)}
               >
-                <img src={iconAdd} alt="" />
+                <MdAdd color="purple" size="25px" className="iconAdd" />
               </div>
             </TitleSession>
             <CardAddAddress
               editToggleCard={editToggleCard}
               setEditToggleCard={setEditToggleCard}
+              requestKey={requestKey}
+              setRequestKey={setRequestKey}
             />
             {userAndAddressesInfo.addresses !== undefined ? (
               userAndAddressesInfo.addresses.map((address, index) => (
@@ -126,10 +128,14 @@ const TitleSession = styled.div`
     padding-bottom: 2px;
     border-radius: 3px;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+
     :hover {
       cursor: pointer;
+      border: solid 1px purple;
+      background-color: #d196d1;
     }
     img {
+      color: red;
       width: 23px;
     }
   }

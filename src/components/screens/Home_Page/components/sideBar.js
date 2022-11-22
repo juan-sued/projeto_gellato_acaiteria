@@ -73,7 +73,8 @@ export default function SideBar() {
   ];
 
   //adiciona buttons de administrador
-  if (userInfo && userInfo.isAdministrator === false) {
+  console.log(userInfo);
+  if (userInfo && userInfo.isAdministrator === true) {
     listButtonsSideBar.splice(
       1,
       0,

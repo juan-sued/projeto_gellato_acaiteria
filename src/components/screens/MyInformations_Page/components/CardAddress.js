@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import InputInfoField from '../../../shared/InputInfoField';
-import iconExpandMore from '../../../../assets/iconExpandMore.svg';
-import iconExpandLess from '../../../../assets/iconExpandLess.svg';
+import iconremoveblack from '../../../../assets/iconremoveblack.svg';
+
 import requestUpdateAddress from '../../../../util/requests/requestUpdateAddress';
 import { returnDayFormated } from '../../../../util/format';
 import ButtonSubmitHover from '../../../shared/ButtonSubmitHover';
+import requestDeleteAddress from '../../../../util/requests/requestDelete';
+import { MdExpandLess, MdExpandMore } from 'react-icons/md';
 
 export default function CardAddress({
   id,
@@ -58,6 +60,11 @@ export default function CardAddress({
     );
   }
 
+  function deleteAddress() {
+    const URL = `/users/addresses/${idAddress}`;
+    requestDeleteAddress(URL, requestKey, setRequestKey);
+  }
+  console.log(updateDataAddress);
   return (
     <Container>
       <CardAddressStyle cardHeightToggle={cardHeightToggle}>
@@ -71,13 +78,19 @@ export default function CardAddress({
               value={updateDataAddress.street}
               onChange={handleChangeText}
             />
-
+            <button className="remove" type="button" onClick={deleteAddress}>
+              <img src={iconremoveblack} alt="" />
+            </button>
             <button
               className="iconToggle"
               type="button"
               onClick={() => setCardHeightToggle(!cardHeightToggle)}
             >
-              <img src={cardHeightToggle ? iconExpandLess : iconExpandMore} alt="" />
+              {cardHeightToggle ? (
+                <MdExpandLess color="purple" size="35px" />
+              ) : (
+                <MdExpandMore size="35px" color="purple" />
+              )}
             </button>
           </section>
 
@@ -172,13 +185,39 @@ const CardAddressStyle = styled.div`
     align-items: center;
   }
 
+  .remove {
+    left: 40px;
+    top: 50px;
+    position: relative;
+
+    img {
+      width: 25px;
+      height: 25px;
+    }
+
+    border: none;
+    background-color: transparent;
+
+    @media screen and (min-width: 413px) {
+      top: 320px;
+      left: 35px;
+      img {
+        width: 40px;
+        height: 40px;
+      }
+      :hover {
+        img {
+          width: 60px;
+          height: 60px;
+        }
+        left: 44px;
+      }
+    }
+  }
+
   .iconToggle {
     position: relative;
-    bottom: 25px;
-    img {
-      width: 20px;
-      height: 20px;
-    }
+    bottom: 30px;
     border: none;
     background-color: transparent;
   }

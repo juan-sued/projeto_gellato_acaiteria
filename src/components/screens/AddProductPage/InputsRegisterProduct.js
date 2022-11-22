@@ -29,6 +29,7 @@ export default function InputRegisterProduct() {
     price: '',
     image: ''
   });
+  console.log(objNewProduct);
   const [productsForCategories, setProductsForCategories] = useState([]);
 
   useEffect(() => {

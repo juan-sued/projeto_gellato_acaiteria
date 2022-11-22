@@ -1,10 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import InputInfoField from '../../../shared/InputInfoField';
-import iconExpandMore from '../../../../assets/iconExpandMore.svg';
 import iconsearch from '../../../../assets/iconsearch.svg';
-import requestUpdateAddress from '../../../../util/requests/requestUpdateAddress';
-import { returnDayFormated } from '../../../../util/format';
 import ButtonSubmitHover from '../../../shared/ButtonSubmitHover';
 import requestAddAddress from '../../../../util/requests/requestAddAddress';
 import requestCep from '../../../../util/requests/requestCep';
@@ -36,8 +33,9 @@ export default function CardAddAddress({
   const handleChangeText = e => {
     setCreateDataAddress({ ...createDataAddress, [e.target.name]: e.target.value });
   };
-  console.log(createDataAddress);
+
   const sucess = () => {
+    setEditToggleCard(!editToggleCard);
     setRequestKey(!requestKey);
   };
 
@@ -47,7 +45,7 @@ export default function CardAddAddress({
 
     requestAddAddress(sucess, setStateButton, createDataAddress, setCreateDataAddress);
   }
-  console.log(editToggleCard);
+
   return (
     <Container displayToggle={editToggleCard}>
       <CardAddressStyle displayToggle={editToggleCard}>
@@ -158,6 +156,7 @@ const CardAddressStyle = styled.div`
       padding-bottom: 2px;
       border-radius: 3px;
       box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+
       :hover {
         cursor: pointer;
       }
