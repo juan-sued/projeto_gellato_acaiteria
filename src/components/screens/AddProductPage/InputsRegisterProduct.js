@@ -29,6 +29,7 @@ export default function InputRegisterProduct() {
     price: '',
     image: ''
   });
+  console.log(objNewProduct);
   const [productsForCategories, setProductsForCategories] = useState([]);
 
   useEffect(() => {
@@ -43,7 +44,6 @@ export default function InputRegisterProduct() {
     }
   }, [selectedCategory]);
 
-  console.log(objNewProduct);
   const handleChangeText = e => {
     setObjNewProduct({ ...objNewProduct, [e.target.name]: e.target.value });
   };
@@ -84,9 +84,13 @@ export default function InputRegisterProduct() {
       );
 
       if (isCategoryRegistered) {
-        setObjNewProduct({ ...objNewProduct, category: '' });
+        setObjNewProduct({ ...objNewProduct, category: isCategoryRegistered.id });
         setStateButton('isCategoryRegistered');
       }
+    }
+    if (objNewProduct.category === '') {
+      console.log(selectedCategory);
+      setObjNewProduct({ ...objNewProduct, category: selectedCategory });
     }
     requestRegisterProduct(objNewProduct, setObjNewProduct, sucess);
   }

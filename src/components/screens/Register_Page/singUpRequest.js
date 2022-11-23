@@ -1,4 +1,4 @@
-import axiosI from '../../../services/axios';
+import { axiosI } from '../../../services/axios';
 
 async function SignUpRequest({ signUpData, setStateCollorButton, setSucess }) {
   setStateCollorButton('#8a8893');

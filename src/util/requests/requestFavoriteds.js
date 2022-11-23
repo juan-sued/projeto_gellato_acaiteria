@@ -1,4 +1,4 @@
-import axiosI from '../../services/axios';
+import { axiosI } from '../../services/axios';
 
 async function requestFavoriteds(favoritedsList, setFavoritedsList, signOut) {
   axiosI

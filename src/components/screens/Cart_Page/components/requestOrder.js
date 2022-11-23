@@ -1,4 +1,4 @@
-import axiosI from '../../../../services/axios';
+import { axiosI } from '../../../../services/axios';
 
 const requestOrder = async (orderData, signOut, sucess) => {
   try {

@@ -1,4 +1,4 @@
-import axiosI from '../../services/axios';
+import { axiosI } from '../../services/axios';
 
 async function requestMyInformations(
   userAndAddressesInfo,
@@ -6,9 +6,8 @@ async function requestMyInformations(
   userInfo
 ) {
   if (userInfo) {
-    console.log(userInfo);
     axiosI
-      .get(`/users/${2}`)
+      .get(`/users/${userInfo.id}`)
       .then(({ data }) => {
         setUserAndAddressesInfo(data);
       })

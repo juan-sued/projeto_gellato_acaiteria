@@ -15,7 +15,7 @@ import { formatPrice } from '../../../../util/format';
 import { useAuth } from '../../../../hooks/useAuth';
 export default function SideBar() {
   const navigate = useNavigate();
-  const { userInfo } = useAuth();
+  const { userInfo, signOut } = useAuth();
   function shortName() {
     if (userInfo !== null) {
       const nameShorten = userInfo.name.split(' ');
@@ -51,13 +51,15 @@ export default function SideBar() {
     if (text.nameIcon === 'shopping_cart') {
       navigate('/cart');
     } else if (text.nameIcon === 'logout') {
-      navigate('/sign-in');
+      signOut();
     } else if (text.nameIcon === 'add_box') {
       navigate('/insert-product');
     } else if (text.nameIcon === 'group_add') {
       navigate('/');
     } else if (text.nameIcon === 'fingerprint') {
       navigate('/my-informations-page');
+    } else if (text.nameIcon === 'inventory_2') {
+      navigate('/stock-page');
     } else {
       console.log('não carrinho');
     }
@@ -73,10 +75,15 @@ export default function SideBar() {
   ];
 
   //adiciona buttons de administrador
-  if (userInfo && userInfo.isAdministrator === false) {
+  console.log(userInfo);
+  if (userInfo && userInfo.isAdministrator === true) {
     listButtonsSideBar.splice(
       1,
       0,
+      {
+        nameIcon: 'inventory_2',
+        nameText: 'Estoque'
+      },
       {
         nameIcon: 'add_box',
         nameText: 'Adicionar produto'

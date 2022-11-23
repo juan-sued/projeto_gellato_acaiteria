@@ -5,6 +5,7 @@ import HomePage from '../components/screens/Home_Page/HomePage';
 import LoginPage from '../components/screens/Login_Page/Login_Page';
 import MyInformationPage from '../components/screens/MyInformations_Page/MyInformation';
 import RegisterPage from '../components/screens/Register_Page/RegisterPage';
+import StockPage from '../components/screens/Stock_Page/StockPage';
 
 const AdministratorRoutes = () => (
   <Routes>
@@ -14,6 +15,7 @@ const AdministratorRoutes = () => (
     <Route path="/insert-product" element={<AddProductPage />} />
     <Route path="/cart" element={<Cart />} />
     <Route path="/my-informations-page" element={<MyInformationPage />} />
+    <Route path="/stock-page" element={<StockPage />} />
   </Routes>
 );
 export default AdministratorRoutes;
