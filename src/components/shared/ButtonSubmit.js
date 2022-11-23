@@ -15,7 +15,7 @@ const ButtonSubmitStyle = styled.button`
   border: none;
   font-size: 25px;
   font-weight: 500;
-  color: ${props => (props.backgroundcolor === '#ffffff' ? '#1c1c1c' : 'white')};
+  color: ${props => (props.backgroundcolor === '#ffffff' ? '#8a8893' : 'white')};
   font-family: 'Josefin Slab', serif;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
   border-radius: 4px;

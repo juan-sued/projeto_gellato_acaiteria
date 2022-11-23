@@ -7,6 +7,10 @@ import SearchBar from '../../shared/SearchBar';
 import ListCard from './ListCard';
 import { useEffect } from 'react';
 import requestGetProducts from '../../../util/requests/requestGetProducts';
+import ButtonAdd from '../../shared/ButtonAdd';
+import Modal from '../../shared/Modal';
+import InputsRegisterProduct from './inputsRegister/InputsRegisterProduct';
+
 export default function StockPage() {
   const [responseProducts, setResponseProducts] = useState([]);
 
@@ -26,8 +30,20 @@ export default function StockPage() {
     };
   }, [searchProduct.searchBar]);
 
+  const [toggleModal, setToggleModal] = useState(false);
+  function closeModal() {
+    setToggleModal(!toggleModal);
+  }
   return (
     <>
+      {toggleModal ? (
+        <Modal functionToggle={closeModal}>
+          <InputsRegisterProduct />
+        </Modal>
+      ) : (
+        ''
+      )}
+
       <TitlePage title={'Estoque'} to={'/'} />
 
       <SearchBar
@@ -39,6 +55,8 @@ export default function StockPage() {
       <Main margin_top={'80'}>
         <ListCard responseProducts={responseProducts} />
       </Main>
+
+      <ButtonAdd functionToggle={closeModal} />
     </>
   );
 }
