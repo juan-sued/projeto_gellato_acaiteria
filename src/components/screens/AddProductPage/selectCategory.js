@@ -7,11 +7,11 @@ export default function SelectCategory({ setSelectedCategory, selectedCategory }
     <SelectCategoryStyle>
       <label htmlFor="categories">Escolha uma categoria:</label>
       <select
-        value={selectedCategory}
+        defaultValue={selectedCategory}
         onChange={e => setSelectedCategory(e.target.value)}
         name="categories"
       >
-        <option aria-selected aria-disabled value={0}>
+        <option defaultValue={''} disabled value={0}>
           Categorias
         </option>
         {productsAndCategories.categoriesList !== undefined

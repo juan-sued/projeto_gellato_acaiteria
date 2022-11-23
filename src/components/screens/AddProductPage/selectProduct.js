@@ -14,7 +14,7 @@ export default function SelectProduct({
         onChange={e => setSelectedProduct(e.target.value)}
         name="products"
       >
-        <option value="" selected disabled>
+        <option value="" defaultValue={''} disabled>
           Escolha um produto
         </option>
         {productsForCategories.length > 0

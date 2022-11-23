@@ -58,6 +58,8 @@ export default function SideBar() {
       navigate('/');
     } else if (text.nameIcon === 'fingerprint') {
       navigate('/my-informations-page');
+    } else if (text.nameIcon === 'inventory_2') {
+      navigate('/stock-page');
     } else {
       console.log('não carrinho');
     }
@@ -78,6 +80,10 @@ export default function SideBar() {
     listButtonsSideBar.splice(
       1,
       0,
+      {
+        nameIcon: 'inventory_2',
+        nameText: 'Estoque'
+      },
       {
         nameIcon: 'add_box',
         nameText: 'Adicionar produto'
